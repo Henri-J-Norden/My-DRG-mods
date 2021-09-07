@@ -17,3 +17,5 @@ struct FCharacterProgress AFSDPlayerState::GetSelectCharacterProgress() { return
 APlayerCharacter* AFSDPlayerState::GetSelectedCharacter() { return NULL; }
 
 void AFSDPlayerState::Server_NewMessage(FString Sender, FString Text, enum class EChatSenderType SenderType) { }
+
+AFSDPlayerController* AFSDPlayerState::GetPlayerController() { return NULL; }

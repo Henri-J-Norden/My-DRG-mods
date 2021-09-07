@@ -3,6 +3,6 @@
 
 #include "FSDPlayerController.h"
 
-UNetConnection* AFSDPlayerController::GetNetConnection() const  {
-	return NULL;
-}
+UNetConnection* AFSDPlayerController::GetNetConnection() const { return NULL; }
+
+//AFSDPlayerState* AFSDPlayerController::GetFSDPlayerState() { return NULL; }

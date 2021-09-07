@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerState.h"
 #include "PlayerCharacter.h"
 #include "structs.h"
+#include "FSDPlayerController.h"
 #include "FSDPlayerState.generated.h"
 
 
@@ -31,6 +32,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "FSDPlayerState") float GetSupplyHealthStatus();
 	UFUNCTION(BlueprintCallable, Category = "FSDPlayerState") float GetSupplyAmmoStatus();
 	UFUNCTION(BlueprintCallable, Category = "FSDPlayerState") void Server_NewMessage(FString Sender, FString Text, EChatSenderType SenderType);
+	UFUNCTION(BlueprintCallable, Category = "FSDPlayerState") AFSDPlayerController* GetPlayerController();
 
 	UPROPERTY(BlueprintReadOnly) bool IsOnSpaceRig;
 	UPROPERTY(BlueprintReadOnly) bool IsInMission;
