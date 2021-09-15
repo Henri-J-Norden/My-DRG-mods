@@ -40,18 +40,6 @@ struct FHeroInfo {
 };
 
 
-// Enum FSD.EChatSenderType
-UENUM(BlueprintType)
-enum class EChatSenderType : uint8 {
-	NormalUser,
-	DeluxUser,
-	Developer,
-	Streamer,
-	Modder,
-	EChatSenderType_MAX,
-};
-
-
 class FSD_API structs
 {
 public:

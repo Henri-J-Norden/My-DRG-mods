@@ -32,3 +32,7 @@ void ABosco::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+EDroneAIState ABosco::GetCurrentState() { return EDroneAIState::EDroneAIState_MAX; }
+int32 ABosco::GetReviveCharges() { return -1; }
+void ABosco::ReviveCounterChanged(int32 remainingCharges) {}
+void ABosco::UseABillity() {}

@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerState.h"
 #include "PlayerCharacter.h"
 #include "structs.h"
+#include "enums.h"
 #include "FSDPlayerController.h"
 #include "FSDPlayerState.generated.h"
 

@@ -7,12 +7,13 @@
 #include "structs.h"
 #include "PlayerCharacter.generated.h"
 
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLaserPointerEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDamagedEnemy);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSaluteEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnToggleMapTool);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnToggleScanTool);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPlayerShout);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPlayerShout);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnReviveCallEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCallDonkey);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCharacterStateChanged);
@@ -43,7 +44,7 @@ public:
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnSaluteEvent OnSaluteEvent;
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnToggleMapTool OnToggleMapTool;
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnToggleScanTool OnToggleScanTool;
-	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerShout OnPlayerShout;
+//	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerShout OnPlayerShout;
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnReviveCallEvent OnReviveCallEvent;
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnCallDonkey OnCallDonkey;
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnCharacterStateChanged OnCharacterStateChanged;
