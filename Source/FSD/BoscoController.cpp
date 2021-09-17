@@ -4,4 +4,4 @@
 #include "BoscoController.h"
 
 
-void ABoscoController::RegisterPlayer(APlayerCharacter* APlayerCharacter) { }
+void ABoscoController::RegisterPlayer(APlayerCharacter* PlayerCharacter) { }

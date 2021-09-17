@@ -32,9 +32,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnReviveused OnReviveused;
-	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnStateChanged OnStateChanged;
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, VisibleAnywhere) FOnStateChanged OnStateChanged;
 
-	UPROPERTY(BlueprintReadOnly) ABoscoController* DroneController;
+	UPROPERTY(BlueprintReadWrite) ABoscoController* DroneController;
 
 	UFUNCTION(BlueprintCallable, Category = "Bosco") EDroneAIState GetCurrentState();
 	UFUNCTION(BlueprintCallable, Category = "Bosco") int32 GetReviveCharges();

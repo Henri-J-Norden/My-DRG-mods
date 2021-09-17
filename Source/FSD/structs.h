@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "PlayerCharacterID.h"
+#include "enums.h"
 #include "structs.generated.h"
 
 
@@ -37,6 +38,17 @@ struct FHeroInfo {
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) FText HeroShortDescription; // 0x40(0x18)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) FText HeroLongDescription; // 0x58(0x18)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) FText SwitchToMessage; // 0x70(0x18)
+};
+
+USTRUCT(BlueprintType)
+struct FFSDChatMessage {
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) EChatMessageType MsgType; // 0x08(0x01)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) FString Sender; // 0x10(0x10)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) EChatSenderType SenderType; // 0x20(0x01)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) FString Msg; // 0x28(0x10)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) FUniqueNetIdRepl SenderNetID; // 0x38(0x28)
 };
 
 

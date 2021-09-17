@@ -18,14 +18,14 @@ class FSD_API AFSDPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-	public:
+public:
 
-		UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerSpawnBegin OnPlayerSpawnBegin;
-		UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerStateSelectedCharacterChanged OnPlayerStateSelectedCharacterChanged;
+	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerSpawnBegin OnPlayerSpawnBegin;
+	UPROPERTY(BlueprintAssignable, VisibleAnywhere) FOnPlayerStateSelectedCharacterChanged OnPlayerStateSelectedCharacterChanged;
 
-		UFUNCTION(BlueprintCallable, Category = "FSDPlayerController")
-			virtual UNetConnection* GetNetConnection() const override;
+	UFUNCTION(BlueprintCallable, Category = "FSDPlayerController")
+		virtual UNetConnection* GetNetConnection() const override;
 
-		//UFUNCTION(BlueprintCallable, Category = "FSDPlayerController") AFSDPlayerState* GetFSDPlayerState();
+	//UFUNCTION(BlueprintCallable, Category = "FSDPlayerController") AFSDPlayerState* GetFSDPlayerState();
 	
 };
