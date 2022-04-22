@@ -1,0 +1,4 @@
+[submodule "DRGLib"]
+	path = DRGLib
+	url = https://github.com/SamsDRGMods/DRGLib.git
+	branch = main
