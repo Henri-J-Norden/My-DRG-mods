@@ -1,4 +1,4 @@
-set modDirs=ModMOTD _
+set modDirs=ModMOTD
 set mod="MOTD"
 
 call Scripts\Execute.bat
