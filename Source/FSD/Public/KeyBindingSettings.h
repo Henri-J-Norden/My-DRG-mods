@@ -4,7 +4,7 @@
 #include "CustomKeySetting.h"
 #include "KeyBindingSettings.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UKeyBindingSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ protected:
     
 public:
     UKeyBindingSettings();
+
 };
 

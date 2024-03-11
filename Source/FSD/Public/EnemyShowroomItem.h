@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ShowroomItem.h"
 #include "EShowroomScaling.h"
+#include "ShowroomItem.h"
 #include "EnemyShowroomItem.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AEnemyShowroomItem : public AShowroomItem {
     GENERATED_BODY()
 public:
@@ -13,6 +13,7 @@ protected:
     EShowroomScaling Scaling;
     
 public:
-    AEnemyShowroomItem();
+    AEnemyShowroomItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

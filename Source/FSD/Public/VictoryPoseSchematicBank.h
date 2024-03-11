@@ -7,7 +7,7 @@
 class USchematicCategory;
 class UVictoryPose;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UVictoryPoseSchematicBank : public USchematicBankBase {
     GENERATED_BODY()
 public:
@@ -18,5 +18,6 @@ public:
     TMap<UVictoryPose*, FSchematicBankItem> VictoryPoses;
     
     UVictoryPoseSchematicBank();
+
 };
 

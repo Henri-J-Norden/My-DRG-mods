@@ -5,7 +5,7 @@
 
 class UPawnStat;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UStatChangeStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ protected:
     
 public:
     UStatChangeStatusEffectItem();
+
 };
 

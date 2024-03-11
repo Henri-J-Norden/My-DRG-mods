@@ -4,7 +4,7 @@
 #include "BehaviorTree/BehaviorTreeTypes.h"
 #include "BTTask_SetAttacking.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTTask_SetAttacking : public UBTTaskNode {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UBTTask_SetAttacking();
+
 };
 

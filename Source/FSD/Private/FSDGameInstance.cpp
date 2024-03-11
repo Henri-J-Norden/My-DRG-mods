@@ -1,28 +1,80 @@
 #include "FSDGameInstance.h"
-#include "Templates/SubclassOf.h"
 #include "FSDCloudLoadSave.h"
-#include "FSDSessionUpdater.h"
 #include "FSDSendToURL.h"
+#include "FSDSessionUpdater.h"
+#include "Templates/SubclassOf.h"
 
-class UTemporaryBuff;
-class UGeneratedMission;
-class AActor;
-class USoundBase;
-class AProceduralSetup;
-class UTexture2D;
-class UObject;
-class UFSDSaveGame;
-class UHUDWarningWidget;
-class ACharacterSelectionSwitcher;
-class UWorld;
-class UNetDriver;
-class UMutator;
-class APlayerCharacter;
-class AFSDPlayerController;
-class UIconGenerationManager;
-class UItemSkin;
+UFSDGameInstance::UFSDGameInstance() {
+    this->ShowingReconnectScreen = false;
+    this->ProceduralSetup = NULL;
+    this->HasStartedAMission = false;
+    this->FSDPrivateServer = false;
+    this->SoloSession = false;
+    this->IsJoiningInvite = false;
+    this->FirstTimeInFrontend = true;
+    this->SessionFirstStartOnSpaceRig = true;
+    this->ShowFirstCharacterSelector = true;
+    this->ShowSaveWarning = true;
+    this->WorldViewTargetDummy = NULL;
+    this->MissionResultInfo = NULL;
+    this->LoaderSequencePlaying = false;
+    this->CharacterSelectionLastViewTarget = NULL;
+    this->HasSeenInfoScreen = false;
+    this->DEBUGUseDebugSeedForMissions = false;
+    this->DEBUGAutoRotateMissions = false;
+    this->DEBUGFixedPLSSeed = -1;
+    this->DEBUGSeedOverride = 1;
+    this->CanPlayOnline = true;
+    this->CanCommunicateOnline = true;
+    this->GoogleAnalyticsWI = NULL;
+    this->DSTelemetryWrapper = NULL;
+    this->ForcedMachineEvent = NULL;
+    this->ForcedOtherEvent = NULL;
+    this->ShowMinerManualWorkInProgress = false;
+    this->LastDreadnaughtKillTime = -1.00f;
+    this->CharacterSelectionSwitcher = NULL;
+    this->bGameSettingsChanged = false;
+    this->ServerSearchActive = false;
+    this->IsOnPressStartScreen = false;
+    this->HasSeenStartScreen = false;
+    this->ProceduralLevel = NULL;
+    this->IconGenerationManagerClass = NULL;
+    this->IconGenerationManager = NULL;
+    this->CampaignManager = NULL;
+    this->GeneratedMission = NULL;
+    this->DesiredDifficulty = NULL;
+    this->SaveGame = NULL;
+    this->DisconnectReason = EDisconnectReason::None;
+    this->ShowCharacterSelectionWorld = false;
+    this->Viewer3DClass = NULL;
+    this->ShowLoaderWorld = false;
+    this->CharacterSelectionWorldActive = false;
+    this->MixerInteractivityEnabled = false;
+    this->LoaderWorldActive = false;
+    this->ResetHUDWhenReturning = false;
+    this->MovieModeActive = false;
+    this->MovieModeActiveInSpacerig = false;
+    this->MovieModeStartAtOrigin = false;
+    this->MovieModeStartWithCameraShake = false;
+    this->ActiveForgeSchematic = NULL;
+    this->FSDCloudLoadSave = CreateDefaultSubobject<UFSDCloudLoadSave>(TEXT("FSDCloudLoadSave"));
+    this->SessionUpdater = CreateDefaultSubobject<UFSDSessionUpdater>(TEXT("SessionUpdater"));
+    this->SendToURL = CreateDefaultSubobject<UFSDSendToURL>(TEXT("FSDSendToURL"));
+    this->FriendsAndInvites = NULL;
+    this->SessionStartTime = 0.00f;
+    this->SessionStartTimestamp = 0;
+    this->InKBytesPerSecond = 0.00f;
+    this->OutKBytesPerSecond = 0.00f;
+    this->PreSpawnNigaraParticles = true;
+    this->NextLoaderLevel = EAlwaysLoadedWorlds::CharacterViewer;
+    this->ControllerVibrationSubmix = NULL;
+    this->ControllerSpeakerSubmix = NULL;
+}
 
 void UFSDGameInstance::UpdateGlobelMissionSeed() {
+}
+
+void UFSDGameInstance::UpdateDebugSeed() {
 }
 
 void UFSDGameInstance::StopPhotographyInputProcessor() {
@@ -41,14 +93,6 @@ AProceduralSetup* UFSDGameInstance::SpawnProcedural() {
     return NULL;
 }
 
-bool UFSDGameInstance::ShouldPendingRewardsBeShown() const {
-    return false;
-}
-
-bool UFSDGameInstance::ShouldPendingRewardsBeGiven() const {
-    return false;
-}
-
 void UFSDGameInstance::SetViewer3DClass(TSubclassOf<AActor> NewClass, ECharselectionCameraLocation Location) {
 }
 
@@ -56,6 +100,9 @@ void UFSDGameInstance::SetSteamServerJoinStatus(ESteamServerJoinStatus NewStatus
 }
 
 void UFSDGameInstance::SetSteamSearchRegion(ESteamSearchRegion NewRegion) {
+}
+
+void UFSDGameInstance::SetShouldAdvertiseInServerlist(bool bShouldAdvertise) {
 }
 
 void UFSDGameInstance::SetServerSearchOptions(const FFSDServerSearchOptions& options) {
@@ -73,6 +120,9 @@ void UFSDGameInstance::SetProceduralMap(TSubclassOf<AProceduralSetup> procedural
 void UFSDGameInstance::SetPendingInviteJoinModding(const FBlueprintSessionResult& Result) {
 }
 
+void UFSDGameInstance::SetOverrideMaxPlayerCount(int32 Count) {
+}
+
 void UFSDGameInstance::SetMinersManualNotification(EMinersManualSection Section, UObject* IdentifyingObject, FText Text) {
 }
 
@@ -85,9 +135,15 @@ void UFSDGameInstance::SetIsUsingOnlineFeatures(bool bIsOnlineFeatureUsed) {
 void UFSDGameInstance::SetHasSeenInfoScreen() {
 }
 
+void UFSDGameInstance::SetGlobalMissionSeed(int32 Seed) {
+}
+
 void UFSDGameInstance::SetFSDPassword(const FString& pw) {
 }
 
+
+void UFSDGameInstance::SetDebugSeed(int32 Seed) {
+}
 
 void UFSDGameInstance::SetCharacterSelectionWorldVisible(bool V, ECharselectionCameraLocation cameraLocation, bool resetHud, ECharacterSelectorItemStatus itemStatus) {
 }
@@ -113,13 +169,16 @@ void UFSDGameInstance::ResetSaveGame() {
 void UFSDGameInstance::ResetAlwaysLoadedWorldsAndGameData() {
 }
 
-void UFSDGameInstance::RemoveRemporaryBuff() {
-}
-
 void UFSDGameInstance::RemoveBosco() {
 }
 
+void UFSDGameInstance::RemoveAllTemporaryBuff(APlayerController* PlayerController) {
+}
+
 void UFSDGameInstance::RefreshIsGameModded() {
+}
+
+void UFSDGameInstance::PreClientTravelCleanup(APlayerController* PlayerController) {
 }
 
 void UFSDGameInstance::PostInit(bool reload) {
@@ -177,6 +236,10 @@ bool UFSDGameInstance::HasSignedIn() {
     return false;
 }
 
+bool UFSDGameInstance::HasRandomBeerBuff() const {
+    return false;
+}
+
 bool UFSDGameInstance::HasPendingInvite() const {
     return false;
 }
@@ -207,8 +270,12 @@ TArray<FBlueprintSessionResult> UFSDGameInstance::GetServersFriendsArePlaying(TA
     return TArray<FBlueprintSessionResult>();
 }
 
-bool UFSDGameInstance::GetPendingRewards(FPendingRewardsStats& OutStats, FPendingRewards& OutRewards) const {
-    return false;
+FString UFSDGameInstance::GetSeedString(UObject* WorldContextObject) {
+    return TEXT("");
+}
+
+int32 UFSDGameInstance::GetOverrideMaxPlayerCount() const {
+    return 0;
 }
 
 TArray<UMutator*> UFSDGameInstance::GetMutators(TSubclassOf<UMutator> mutatorClass) const {
@@ -255,6 +322,10 @@ TArray<FNetworkConnectionInfo> UFSDGameInstance::GetConnectionInfo() {
     return TArray<FNetworkConnectionInfo>();
 }
 
+int32 UFSDGameInstance::GetCommonGlobalMissionSeed() const {
+    return 0;
+}
+
 APlayerCharacter* UFSDGameInstance::GetCharacterSelectorCharacter() {
     return NULL;
 }
@@ -263,9 +334,6 @@ void UFSDGameInstance::GameUserSettingsChanged() {
 }
 
 void UFSDGameInstance::CloseSessionLobby() {
-}
-
-void UFSDGameInstance::ClearPendingRewards() {
 }
 
 void UFSDGameInstance::ClearDisconnectError() {
@@ -277,6 +345,10 @@ void UFSDGameInstance::ChangeSkinPreview(UItemSkin* PreviewSkin) {
 void UFSDGameInstance::CancelJoin() {
 }
 
+void UFSDGameInstance::CachePSOsOnCommand() {
+}
+
+
 UHUDWarningWidget* UFSDGameInstance::AddWarningToHUD(TSubclassOf<UHUDWarningWidget> WidgetClass, UTexture2D* Texture, USoundBase* PingSound) {
     return NULL;
 }
@@ -287,72 +359,7 @@ void UFSDGameInstance::AddToFriendSessions(const FString& friendSessionId, const
 void UFSDGameInstance::AddStatValue(const FString& Key, float Value) {
 }
 
-void UFSDGameInstance::AddStatCount(const FString& Key, int32 count) {
+void UFSDGameInstance::AddStatCount(const FString& Key, int32 Count) {
 }
 
-UFSDGameInstance::UFSDGameInstance() {
-    this->ShowingReconnectScreen = false;
-    this->ProceduralSetup = NULL;
-    this->HasStartedAMission = false;
-    this->FSDPrivateServer = false;
-    this->SoloSession = false;
-    this->IsJoiningInvite = false;
-    this->FirstTimeInFrontend = true;
-    this->SessionFirstStartOnSpaceRig = true;
-    this->ShowFirstCharacterSelector = true;
-    this->ShowSaveWarning = true;
-    this->WorldViewTargetDummy = NULL;
-    this->MissionResultInfo = NULL;
-    this->LoaderSequencePlaying = false;
-    this->CharacterSelectionLastViewTarget = NULL;
-    this->HasSeenInfoScreen = false;
-    this->DEBUGSpawnRandomMissions = false;
-    this->DEBUGFixedPLSSeed = -1;
-    this->DEBUGSeedOverride = 1;
-    this->CanPlayOnline = true;
-    this->CanCommunicateOnline = true;
-    this->GoogleAnalyticsWI = NULL;
-    this->ForcedSpecialEvent = NULL;
-    this->ShowMinerManualWorkInProgress = false;
-    this->LastDreadnaughtKillTime = -1.00f;
-    this->CharacterSelectionSwitcher = NULL;
-    this->bGameSettingsChanged = false;
-    this->ServerSearchActive = false;
-    this->IsOnPressStartScreen = false;
-    this->HasSeenStartScreen = false;
-    this->ProceduralLevel = NULL;
-    this->IconGenerationManagerClass = NULL;
-    this->IconGenerationManager = NULL;
-    this->CampaignManager = NULL;
-    this->DeepDiveManager = NULL;
-    this->GeneratedMission = NULL;
-    this->DesiredDifficulty = NULL;
-    this->SaveGame = NULL;
-    this->DisconnectReason = EDisconnectReason::None;
-    this->ShowCharacterSelectionWorld = false;
-    this->Viewer3DClass = NULL;
-    this->ShowLoaderWorld = false;
-    this->CharacterSelectionWorldActive = false;
-    this->MixerInteractivityEnabled = false;
-    this->LoaderWorldActive = false;
-    this->ResetHUDWhenReturning = false;
-    this->MovieModeActive = false;
-    this->MovieModeActiveInSpacerig = false;
-    this->MovieModeStartAtOrigin = false;
-    this->MovieModeStartWithCameraShake = false;
-    this->ActiveForgeSchematic = NULL;
-    this->FSDCloudLoadSave = CreateDefaultSubobject<UFSDCloudLoadSave>(TEXT("FSDCloudLoadSave"));
-    this->SessionUpdater = CreateDefaultSubobject<UFSDSessionUpdater>(TEXT("SessionUpdater"));
-    this->SendToURL = CreateDefaultSubobject<UFSDSendToURL>(TEXT("FSDSendToURL"));
-    this->FriendsAndInvites = NULL;
-    this->SessionStartTime = 0.00f;
-    this->SessionStartTimestamp = 0;
-    this->InKBytesPerSecond = 0.00f;
-    this->OutKBytesPerSecond = 0.00f;
-    this->PreSpawnNigaraParticles = true;
-    this->TemporaryBuff = NULL;
-    this->NextLoaderLevel = EAlwaysLoadedWorlds::CharacterViewer;
-    this->ControllerVibrationSubmix = NULL;
-    this->ControllerSpeakerSubmix = NULL;
-}
 

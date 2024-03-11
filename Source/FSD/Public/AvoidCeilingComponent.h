@@ -5,7 +5,7 @@
 
 class USceneComponent;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAvoidCeilingComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -22,13 +22,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float DuckSpeed;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USceneComponent* ComponentToMove;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool IsDuckingEnabled;
     
 public:
-    UAvoidCeilingComponent();
+    UAvoidCeilingComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

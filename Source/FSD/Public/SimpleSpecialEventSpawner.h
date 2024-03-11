@@ -3,10 +3,10 @@
 #include "SpecialEventSpawner.h"
 #include "SimpleSpecialEventSpawner.generated.h"
 
-class UDebrisPositioning;
 class AActor;
+class UDebrisPositioning;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class USimpleSpecialEventSpawner : public USpecialEventSpawner {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     USimpleSpecialEventSpawner();
+
 };
 

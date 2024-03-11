@@ -5,7 +5,7 @@
 
 class UMaterialInterface;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class USkinColorVanityItem : public UVanityItem {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ public:
     UMaterialInterface* Material;
     
     USkinColorVanityItem();
+
 };
 

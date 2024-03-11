@@ -1,37 +1,37 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "FSDPawn.h"
-#include "EventParticipant.h"
 #include "UObject/NoExportTypes.h"
 #include "EGuntowerModuleState.h"
+#include "EventParticipant.h"
+#include "FSDPawn.h"
 #include "TowerModuleBase.generated.h"
 
-class USoundCue;
-class USceneComponent;
-class USkeletalMeshComponent;
-class UStaticMeshComponent;
 class UEnemyHealthComponent;
-class USkeletalMesh;
 class UParticleSystem;
+class USceneComponent;
+class USkeletalMesh;
+class USkeletalMeshComponent;
+class USoundCue;
+class UStaticMeshComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ATowerModuleBase : public AFSDPawn, public IEventParticipant {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USceneComponent* Root;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* ModuleMesh;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<UStaticMeshComponent*> ArmorPlates;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UEnemyHealthComponent* Health;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     FRotator ModuleRotation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -55,13 +55,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool ConstantRotation;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_State, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_State, meta=(AllowPrivateAccess=true))
     EGuntowerModuleState State;
     
 public:
-    ATowerModuleBase();
+    ATowerModuleBase(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetState(EGuntowerModuleState NewState);
     
@@ -77,7 +78,7 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void DoAttack();
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

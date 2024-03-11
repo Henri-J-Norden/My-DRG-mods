@@ -3,7 +3,7 @@
 #include "Engine/DataAsset.h"
 #include "CommunityGoalCategory.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCommunityGoalCategory : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UCommunityGoalCategory();
+
 };
 

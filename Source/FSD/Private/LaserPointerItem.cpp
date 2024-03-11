@@ -1,34 +1,7 @@
 #include "LaserPointerItem.h"
 #include "Components/SceneComponent.h"
 
-class UObject;
-class UTerrainMaterial;
-class AActor;
-class UPrimitiveComponent;
-
-void ALaserPointerItem::UnlockToMinersManual(UObject* WorldContextObject, FGuid ObjectID) {
-}
-
-void ALaserPointerItem::ToggleLaserVisible_Implementation(bool aVisible) {
-}
-
-void ALaserPointerItem::ServerPlaceMarker_Implementation(FVector Location, AActor* Actor, UPrimitiveComponent* Cmponent, UTerrainMaterial* TerrainMaterial, ELaserPointerMarkerType eMarkerType) {
-}
-bool ALaserPointerItem::ServerPlaceMarker_Validate(FVector Location, AActor* Actor, UPrimitiveComponent* Cmponent, UTerrainMaterial* TerrainMaterial, ELaserPointerMarkerType eMarkerType) {
-    return true;
-}
-
-void ALaserPointerItem::Server_SecondaryUse_Implementation() {
-}
-bool ALaserPointerItem::Server_SecondaryUse_Validate() {
-    return true;
-}
-
-
-void ALaserPointerItem::GetPointTransform_Implementation(FTransform& PointTransform) {
-}
-
-ALaserPointerItem::ALaserPointerItem() {
+ALaserPointerItem::ALaserPointerItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->MarkerType = NULL;
     this->SecondaryMarkerType = NULL;
     this->WaypointType = NULL;
@@ -40,6 +13,24 @@ ALaserPointerItem::ALaserPointerItem() {
     this->PointerComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Pointer"));
     this->LookAtDistance = 0.00f;
     this->LookAtShout = NULL;
+    this->MissionControlLookAtShout = NULL;
     this->GameState = NULL;
 }
+
+void ALaserPointerItem::UnlockToMinersManual(UObject* WorldContextObject, FGuid ObjectID) {
+}
+
+void ALaserPointerItem::ToggleLaserVisible_Implementation(bool aVisible) {
+}
+
+void ALaserPointerItem::ServerPlaceMarker_Implementation(FVector Location, AActor* Actor, UPrimitiveComponent* Cmponent, UTerrainMaterial* TerrainMaterial, ELaserPointerMarkerType eMarkerType) {
+}
+
+void ALaserPointerItem::Server_SecondaryUse_Implementation() {
+}
+
+
+void ALaserPointerItem::GetPointTransform_Implementation(FTransform& PointTransform) {
+}
+
 

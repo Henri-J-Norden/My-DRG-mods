@@ -6,7 +6,7 @@
 
 class UParticleSystem;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UAnimatedItemParticleAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UAnimatedItemParticleAfflictionEffect();
+
 };
 

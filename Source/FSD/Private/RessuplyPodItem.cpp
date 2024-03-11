@@ -1,13 +1,17 @@
 #include "RessuplyPodItem.h"
 #include "Net/UnrealNetwork.h"
 
-class UObject;
-class UItemPlacerAggregator;
+ARessuplyPodItem::ARessuplyPodItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->ResupplyBeacon = NULL;
+    this->ItemPlacerClass = NULL;
+    this->ItemPlacerInstance = NULL;
+    this->SupplyPodClass = NULL;
+    this->ResourceCost = 0;
+    this->CoolDown = 0.00f;
+    this->Used = false;
+}
 
 void ARessuplyPodItem::Server_Call_Resupply_Implementation(const FVector& Location) {
-}
-bool ARessuplyPodItem::Server_Call_Resupply_Validate(const FVector& Location) {
-    return true;
 }
 
 
@@ -28,13 +32,4 @@ void ARessuplyPodItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
     DOREPLIFETIME(ARessuplyPodItem, Used);
 }
 
-ARessuplyPodItem::ARessuplyPodItem() {
-    this->ResupplyBeacon = NULL;
-    this->ItemPlacerClass = NULL;
-    this->ItemPlacerInstance = NULL;
-    this->SupplyPodClass = NULL;
-    this->ResourceCost = 0;
-    this->CoolDown = 0.00f;
-    this->Used = false;
-}
 

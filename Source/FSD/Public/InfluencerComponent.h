@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "DebrisActorComponent.h"
 #include "Curves/CurveFloat.h"
+#include "DebrisActorComponent.h"
 #include "InfluencerComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UInfluencerComponent : public UDebrisActorComponent {
     GENERATED_BODY()
 public:
@@ -16,6 +16,7 @@ protected:
     FRuntimeFloatCurve ScaleCurve;
     
 public:
-    UInfluencerComponent();
+    UInfluencerComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,16 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "SavableDataAsset.h"
 #include "EItemCategory.h"
+#include "SavableDataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "ItemID.generated.h"
 
 class AActor;
-class UPlayerCharacterID;
 class AItem;
 class UItemData;
+class UItemSkin;
+class UPlayerCharacterID;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UItemID : public USavableDataAsset {
     GENERATED_BODY()
 public:
@@ -26,6 +27,7 @@ protected:
     
 public:
     UItemID();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsItemClassChildOf(TSubclassOf<AActor> InParentClass) const;
     
@@ -40,6 +42,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     AItem* GetItem() const;
+    
+    UFUNCTION(BlueprintCallable)
+    TArray<UItemSkin*> GetAllSkins();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TSubclassOf<AActor> GetActorClass() const;

@@ -5,14 +5,15 @@
 
 class URoomFeature;
 
-UCLASS()
+UCLASS(Blueprintable)
 class URoomGenerator : public URoomGeneratorBase {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<URoomFeature*> RoomFeatures;
     
     URoomGenerator();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<URoomFeature*> GetAllRoomFeatures() const;
     

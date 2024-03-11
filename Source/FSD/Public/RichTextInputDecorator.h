@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "CustomRichTextDecorator.h"
+#include "Templates/SubclassOf.h"
 #include "RichTextInputDecorator.generated.h"
 
 class URichTextInputWidget;
 
-UCLASS(Abstract, HideDropdown)
+UCLASS(Abstract, Blueprintable, HideDropdown)
 class URichTextInputDecorator : public UCustomRichTextDecorator {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ protected:
     
 public:
     URichTextInputDecorator();
+
 };
 

@@ -1,17 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Engine/DataAsset.h"
 #include "DefaultPickaxeParts.h"
+#include "Templates/SubclassOf.h"
 #include "PickaxeSettings.generated.h"
 
-class UPickaxePart;
-class UAnimMontage;
-class UPlayerCharacterID;
 class APickaxePreviewActor;
+class UAnimMontage;
 class UItemID;
+class UPickaxePart;
+class UPlayerCharacterID;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UPickaxeSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -25,7 +25,7 @@ public:
     UAnimMontage* Salute_TP;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UPickaxePart*> Parts;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -33,5 +33,6 @@ protected:
     
 public:
     UPickaxeSettings();
+
 };
 

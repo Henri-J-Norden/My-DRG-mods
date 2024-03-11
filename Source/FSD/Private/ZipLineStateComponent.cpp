@@ -1,60 +1,8 @@
 #include "ZipLineStateComponent.h"
 #include "Net/UnrealNetwork.h"
 
-void UZipLineStateComponent::ServerSetSpeedBoostActivated_Implementation(bool InBoostActivated) {
-}
-bool UZipLineStateComponent::ServerSetSpeedBoostActivated_Validate(bool InBoostActivated) {
-    return true;
-}
-
-void UZipLineStateComponent::ServerJumpPressed_Implementation(bool JumpForward) {
-}
-bool UZipLineStateComponent::ServerJumpPressed_Validate(bool JumpForward) {
-    return true;
-}
-
-void UZipLineStateComponent::ServerForwardInputChanged_Implementation(float Input) {
-}
-bool UZipLineStateComponent::ServerForwardInputChanged_Validate(float Input) {
-    return true;
-}
-
-void UZipLineStateComponent::ServerChangeDirection_Implementation() {
-}
-bool UZipLineStateComponent::ServerChangeDirection_Validate() {
-    return true;
-}
-
-
-
-void UZipLineStateComponent::OnRep_ZipLine() {
-}
-
-void UZipLineStateComponent::OnPlayerHit(float Damage, const FDamageData& DamageData, bool anyHealthLost) {
-}
-
-bool UZipLineStateComponent::GetSpeedBoostActivated() const {
-    return false;
-}
-
-FVector UZipLineStateComponent::GetJumpVector_Implementation(FVector LookVector, FVector CurrentVelocity) {
-    return FVector{};
-}
-
-void UZipLineStateComponent::All_SpeedBoostChanged_Implementation(bool bActive) {
-}
-bool UZipLineStateComponent::All_SpeedBoostChanged_Validate(bool bActive) {
-    return true;
-}
-
-void UZipLineStateComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    
-    DOREPLIFETIME(UZipLineStateComponent, ZipLineProjectile);
-    DOREPLIFETIME(UZipLineStateComponent, ZipLine);
-}
-
-UZipLineStateComponent::UZipLineStateComponent() {
+UZipLineStateComponent::UZipLineStateComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->StateId = 6;
     this->VerticalOffset = -80.00f;
     this->HorizontalOffset = -15.00f;
     this->TravelSpeed = 250.00f;
@@ -81,8 +29,47 @@ UZipLineStateComponent::UZipLineStateComponent() {
     this->ShoutSpeedBoostActivated = NULL;
     this->ZipLineProjectile = NULL;
     this->DamageBeforeFalling = 25.00f;
-    this->friendlyFireModifier = 0.50f;
+    this->FriendlyFireModifier = 0.50f;
     this->DamageResetTime = 2.00f;
     this->AudioComponent = NULL;
 }
+
+void UZipLineStateComponent::ServerSetSpeedBoostActivated_Implementation(bool InBoostActivated) {
+}
+
+void UZipLineStateComponent::ServerJumpPressed_Implementation(bool JumpForward) {
+}
+
+void UZipLineStateComponent::ServerForwardInputChanged_Implementation(float Input) {
+}
+
+void UZipLineStateComponent::ServerChangeDirection_Implementation() {
+}
+
+
+
+void UZipLineStateComponent::OnRep_ZipLine() {
+}
+
+void UZipLineStateComponent::OnPlayerHit(float Damage, const FDamageData& DamageData, bool anyHealthLost) {
+}
+
+bool UZipLineStateComponent::GetSpeedBoostActivated() const {
+    return false;
+}
+
+FVector UZipLineStateComponent::GetJumpVector_Implementation(FVector LookVector, FVector CurrentVelocity) {
+    return FVector{};
+}
+
+void UZipLineStateComponent::All_SpeedBoostChanged_Implementation(bool bActive) {
+}
+
+void UZipLineStateComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(UZipLineStateComponent, ZipLineProjectile);
+    DOREPLIFETIME(UZipLineStateComponent, ZipLine);
+}
+
 

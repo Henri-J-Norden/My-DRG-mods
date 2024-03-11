@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EDebrisMeshShadows.h"
-#include "EDebrisMeshCollisionProfile.h"
 #include "DecalData.h"
+#include "EDebrisMeshCollisionProfile.h"
+#include "EDebrisMeshShadows.h"
 #include "DebrisStaticMesh.generated.h"
 
-class UStaticMesh;
-class UParticleSystem;
-class USoundCue;
+class UFXSystemAsset;
 class UMaterialInterface;
+class USoundCue;
+class UStaticMesh;
 
 USTRUCT(BlueprintType)
 struct FDebrisStaticMesh {
@@ -30,7 +30,7 @@ public:
     USoundCue* DestroyedSound;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UParticleSystem* DestroyedParticles;
+    UFXSystemAsset* DestroyedParticles;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDecalData Decal;
@@ -43,6 +43,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool Durable;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 SpecialDebrisType;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool SpawnWhenCarving;

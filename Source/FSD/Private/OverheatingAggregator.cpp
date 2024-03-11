@@ -1,16 +1,17 @@
 #include "OverheatingAggregator.h"
 #include "Net/UnrealNetwork.h"
 
-void UOverheatingAggregator::Server_SetTemperature_Implementation(float NewTemperature) {
+UOverheatingAggregator::UOverheatingAggregator(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->HeatLossPerSecond = 10.00f;
+    this->OverheatedDuration = 2.00f;
+    this->bIsOverheated = false;
+    this->Temperature = 0.00f;
 }
-bool UOverheatingAggregator::Server_SetTemperature_Validate(float NewTemperature) {
-    return true;
+
+void UOverheatingAggregator::Server_SetTemperature_Implementation(float NewTemperature) {
 }
 
 void UOverheatingAggregator::Server_SetIsOverheated_Implementation(bool NewOverheated) {
-}
-bool UOverheatingAggregator::Server_SetIsOverheated_Validate(bool NewOverheated) {
-    return true;
 }
 
 void UOverheatingAggregator::OnRep_Temperature() {
@@ -40,10 +41,4 @@ void UOverheatingAggregator::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
     DOREPLIFETIME(UOverheatingAggregator, Temperature);
 }
 
-UOverheatingAggregator::UOverheatingAggregator() {
-    this->HeatLossPerSecond = 10.00f;
-    this->OverheatedDuration = 2.00f;
-    this->bIsOverheated = false;
-    this->Temperature = 0.00f;
-}
 

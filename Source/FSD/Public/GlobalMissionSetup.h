@@ -7,12 +7,12 @@
 #include "RequiredMissionItem.h"
 #include "GlobalMissionSetup.generated.h"
 
-class UMissionWarning;
-class UMissionNameBank;
 class UMissionMutator;
+class UMissionNameBank;
+class UMissionWarning;
 class UPlanetZone;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UGlobalMissionSetup : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -32,9 +32,6 @@ public:
     TArray<FMissionTemplateItem> AvailableMissions;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FMissionTemplateItem FacilityMission;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float FacilityMutatorChance;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -42,6 +39,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FIRandRange MutatorWarningCount;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FIRandRange ExtraSeasonWarningCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float DoubleWarningChance;
@@ -62,6 +62,7 @@ public:
     TArray<FRequiredMissionItem> GlobalRequiredMissions;
     
     UGlobalMissionSetup();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<FMissionTemplateItem> GetAllPossibleMissions() const;
     

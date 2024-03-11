@@ -1,32 +1,34 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "GameFramework/Actor.h"
 #include "UObject/NoExportTypes.h"
+#include "GameFramework/Actor.h"
 #include "DrinkableBarSlot.h"
+#include "EHolidayType.h"
+#include "HolidayMeshItems.h"
+#include "Templates/SubclassOf.h"
 #include "SpaceRigBar.generated.h"
 
-class UDrinkableDataAsset;
-class UInstantUsable;
+class ADrinkableActor;
+class APlayerCharacter;
 class UBarMenuWidget;
 class UBoxComponent;
-class APlayerCharacter;
-class ADrinkableActor;
+class UDrinkableDataAsset;
+class UInstantUsable;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class ASpaceRigBar : public AActor {
     GENERATED_BODY()
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDrinkableSignature, UDrinkableDataAsset*, Drinkable);
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDrinkableSignature OnNewDrinkableSpecial;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UInstantUsable* BarUsable;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UBoxComponent* BarUsableCollider;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -35,19 +37,26 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FVector> DrinkServingLocations;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FDrinkableBarSlot> DrinkableBarSlots;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_DrinkableSpecial, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_DrinkableSpecial, meta=(AllowPrivateAccess=true))
     UDrinkableDataAsset* DrinkableSpecial;
     
-public:
-    ASpaceRigBar();
-    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TMap<EHolidayType, FHolidayMeshItems> HolidayComponentMap;
     
+public:
+    ASpaceRigBar(const FObjectInitializer& ObjectInitializer);
+
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
 protected:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SpawnDrinkables(UDrinkableDataAsset* Drinkable, APlayerCharacter* User);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetVisibilityOfHolidayMeshes();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ReceiveFinishedSpawningDrinkables(UDrinkableDataAsset* DrinkableData, APlayerCharacter* Customer);

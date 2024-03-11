@@ -1,27 +1,6 @@
 #include "WalkingStateComponent.h"
 
-class UTrackBuilderMovement;
-class APlayerCharacter;
-
-void UWalkingStateComponent::TrackGrindCallback(APlayerCharacter* User, EInputKeys Key) {
-}
-
-void UWalkingStateComponent::Server_StartTrackMovement_Implementation(UTrackBuilderMovement* InMovement) {
-}
-bool UWalkingStateComponent::Server_StartTrackMovement_Validate(UTrackBuilderMovement* InMovement) {
-    return true;
-}
-
-void UWalkingStateComponent::Server_SetIsSliding_Implementation(bool isSliding) {
-}
-bool UWalkingStateComponent::Server_SetIsSliding_Validate(bool isSliding) {
-    return true;
-}
-
-void UWalkingStateComponent::JumpPress() {
-}
-
-UWalkingStateComponent::UWalkingStateComponent() {
+UWalkingStateComponent::UWalkingStateComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->SlidingEnabled = true;
     this->ShowDebug = false;
     this->SlideAngle = 70.00f;
@@ -33,4 +12,17 @@ UWalkingStateComponent::UWalkingStateComponent() {
     this->AudioComponentSliding = NULL;
     this->AudioComponentIceSliding = NULL;
 }
+
+void UWalkingStateComponent::TrackGrindCallback(APlayerCharacter* User, EInputKeys Key) {
+}
+
+void UWalkingStateComponent::Server_StartTrackMovement_Implementation(UTrackBuilderMovement* InMovement) {
+}
+
+void UWalkingStateComponent::Server_SetIsSliding_Implementation(bool isSliding) {
+}
+
+void UWalkingStateComponent::JumpPress() {
+}
+
 

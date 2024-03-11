@@ -1,32 +1,33 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EAsyncLoadPriority.h"
-#include "Subsystems/GameInstanceSubsystem.h"
 #include "UObject/NoExportTypes.h"
-#include "EAsyncPersistence.h"
+#include "Subsystems/GameInstanceSubsystem.h"
 #include "AsyncLoadCompleteDelegateDelegate.h"
+#include "EAsyncLoadPriority.h"
+#include "EAsyncPersistence.h"
 #include "AsyncManager.generated.h"
 
 class UObject;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UAsyncManager : public UGameInstanceSubsystem {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UObject*> PermanentReferences;
     
 public:
     UAsyncManager();
-    UFUNCTION(BlueprintCallable)
-    UClass* SyncLoadClass(const TSoftClassPtr<UObject>& Asset);
-    
+
     UFUNCTION(BlueprintCallable)
     UObject* SyncLoadAsset(const TSoftObjectPtr<UObject>& Asset);
     
     UFUNCTION(BlueprintCallable)
     void ReleaseAllHandles();
+    
+    UFUNCTION(BlueprintCallable)
+    UClass* Receive_SyncLoadClass(TSoftClassPtr<UObject> Asset);
     
     UFUNCTION(BlueprintCallable)
     void AsyncLoadSoftObjects(const TArray<TSoftObjectPtr<UObject>>& Items, EAsyncPersistence persistence, const FAsyncLoadCompleteDelegate& OnLoadComplete, EAsyncLoadPriority Priority);

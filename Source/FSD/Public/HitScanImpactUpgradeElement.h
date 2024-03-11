@@ -6,7 +6,7 @@
 class UFXSystemAsset;
 class USoundCue;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UHitScanImpactUpgradeElement : public UItemUpgradeElement {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UHitScanImpactUpgradeElement();
+
 };
 

@@ -3,7 +3,7 @@
 #include "GameFramework/Actor.h"
 #include "FindPointKeepingDistanceProbe.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFindPointKeepingDistanceProbe : public AActor {
     GENERATED_BODY()
 public:
@@ -19,6 +19,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float IdealTargetDist;
     
-    AFindPointKeepingDistanceProbe();
+    AFindPointKeepingDistanceProbe(const FObjectInitializer& ObjectInitializer);
+
 };
 

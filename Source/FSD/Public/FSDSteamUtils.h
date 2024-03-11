@@ -6,11 +6,12 @@
 
 class APlayerState;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UFSDSteamUtils : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UFSDSteamUtils();
+
     UFUNCTION(BlueprintCallable)
     static bool PlayerIsFollowingUsOnSteam();
     

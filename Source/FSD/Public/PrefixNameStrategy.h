@@ -3,10 +3,11 @@
 #include "SimpleNameStrategy.h"
 #include "PrefixNameStrategy.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UPrefixNameStrategy : public USimpleNameStrategy {
     GENERATED_BODY()
 public:
     UPrefixNameStrategy();
+
 };
 

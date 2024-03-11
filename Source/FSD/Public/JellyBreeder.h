@@ -1,18 +1,18 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "AFlyingBug.h"
+#include "Templates/SubclassOf.h"
 #include "JellyBreeder.generated.h"
 
-class UPhysicalMaterial;
+class AActor;
 class AProjectile;
 class UAnimSequenceBase;
 class UEnemyDescriptor;
 class UParticleSystem;
-class AActor;
+class UPhysicalMaterial;
 class USoundBase;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AJellyBreeder : public AAFlyingBug {
     GENERATED_BODY()
 public:
@@ -56,13 +56,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float MultiplierOnHighPlayerCount;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_BreedMode, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_BreedMode, meta=(AllowPrivateAccess=true))
     bool IsInBreedMode;
     
 public:
-    AJellyBreeder();
+    AJellyBreeder(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void SpawnEnemies(AProjectile* Egg, int32 AmountToSpawn);
     

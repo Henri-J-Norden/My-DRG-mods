@@ -3,15 +3,41 @@
 #include "Templates/SubclassOf.h"
 #include "UpgradableItemComponent.h"
 
-class USoundBase;
-class USceneComponent;
-class UAudioComponent;
-class USoundAttenuation;
-class USoundConcurrency;
-class AActor;
-class UTexture2D;
-class AItem;
-class UItemCharacterAnimationSet;
+AItem::AItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bNetUseOwnerRelevancy = true;
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->EnableDangerousSaveGameIDEditing = false;
+    this->ItemID = NULL;
+    this->Character = NULL;
+    this->UpgradableItem = CreateDefaultSubobject<UUpgradableItemComponent>(TEXT("Upgradable"));
+    this->CameraShake = NULL;
+    this->CameraShakeOnStartUsing = false;
+    this->CameraShakeOnEquip = false;
+    this->HeatCurve = NULL;
+    this->ManualHeatPerUse = 0.00f;
+    this->HeatOnStartUse = 0.00f;
+    this->CooldownRate = 1.00f;
+    this->ManualCooldownDelay = -1.00f;
+    this->UnjamDuration = 8.00f;
+    this->CurrentTemperature = 0.00f;
+    this->AudioTemperature = NULL;
+    this->AudioTemperatureFadeout = 0.00f;
+    this->TemperatureFloatParam = TEXT("Temperature");
+    this->TemperatureAudioComponent = NULL;
+    this->overHeated = false;
+    this->ShoutOverheated = NULL;
+    this->bAimAssistEnabled = true;
+    this->MovementRateWhileUsing = 1.00f;
+    this->CanPlayLedgeClimbWhileUsing = true;
+    this->CanInspectItem = true;
+    this->CanSprintWithItem = true;
+    this->CustomIconWidget = NULL;
+    this->AdvancedVibrationSendLevel = 1.00f;
+    this->IsEquipped = false;
+    this->IsUsing = false;
+}
 
 void AItem::UpdateSkin() {
 }
@@ -29,9 +55,6 @@ UAudioComponent* AItem::SpawnSound2D(USoundBase* Sound, float PriorityOverride, 
 }
 
 void AItem::Server_StartUsing_Implementation(bool NewIsUsing) {
-}
-bool AItem::Server_StartUsing_Validate(bool NewIsUsing) {
-    return true;
 }
 
 void AItem::Resupply(float percentage) {
@@ -112,38 +135,8 @@ FString AItem::GetAnalyticsItemCategory() const {
 void AItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
-    DOREPLIFETIME(AItem, Overheated);
+    DOREPLIFETIME(AItem, overHeated);
     DOREPLIFETIME(AItem, IsUsing);
 }
 
-AItem::AItem() {
-    this->EnableDangerousSaveGameIDEditing = false;
-    this->ItemID = NULL;
-    this->Character = NULL;
-    this->UpgradableItem = CreateDefaultSubobject<UUpgradableItemComponent>(TEXT("Upgradable"));
-    this->CameraShake = NULL;
-    this->CameraShakeOnStartUsing = false;
-    this->CameraShakeOnEquip = false;
-    this->HeatCurve = NULL;
-    this->ManualHeatPerUse = 0.00f;
-    this->CooldownRate = 1.00f;
-    this->ManualCooldownDelay = -1.00f;
-    this->UnjamDuration = 8.00f;
-    this->CurrentTemperature = 0.00f;
-    this->AudioTemperature = NULL;
-    this->AudioTemperatureFadeout = 0.00f;
-    this->TemperatureFloatParam = TEXT("Temperature");
-    this->TemperatureAudioComponent = NULL;
-    this->Overheated = false;
-    this->ShoutOverheated = NULL;
-    this->bAimAssistEnabled = true;
-    this->MovementRateWhileUsing = 1.00f;
-    this->CanPlayLedgeClimbWhileUsing = true;
-    this->CanInspectItem = true;
-    this->CanSprintWithItem = true;
-    this->CustomIconWidget = NULL;
-    this->AdvancedVibrationSendLevel = 1.00f;
-    this->IsEquipped = false;
-    this->IsUsing = false;
-}
 

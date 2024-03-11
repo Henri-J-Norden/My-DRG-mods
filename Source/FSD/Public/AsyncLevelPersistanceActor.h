@@ -5,13 +5,14 @@
 
 class UObject;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AAsyncLevelPersistanceActor : public AActor {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UObject*> References;
     
-    AAsyncLevelPersistanceActor();
+    AAsyncLevelPersistanceActor(const FObjectInitializer& ObjectInitializer);
+
 };
 

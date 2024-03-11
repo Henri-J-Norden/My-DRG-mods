@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "FloatPerkComponent.h"
 #include "DamageData.h"
+#include "FloatPerkComponent.h"
+#include "Templates/SubclassOf.h"
 #include "ThornsPerkComponent.generated.h"
 
 class UDamageClass;
 class UStatusEffect;
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UThornsPerkComponent : public UFloatPerkComponent {
     GENERATED_BODY()
 public:
@@ -23,7 +23,8 @@ protected:
     TSubclassOf<UStatusEffect> ThornsSTE;
     
 public:
-    UThornsPerkComponent();
+    UThornsPerkComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnHit(float Damage, const FDamageData& DamageData, bool anyHealthLost);

@@ -7,7 +7,7 @@
 
 class UFloodFillSettings;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UPillarSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -30,5 +30,6 @@ public:
     UFloodFillSettings* Noise;
     
     UPillarSettings();
+
 };
 

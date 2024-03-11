@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ReactiveTerrain.h"
+#include "Templates/SubclassOf.h"
 #include "StatusEffectReactiveTerrain.generated.h"
 
 class UStatusEffect;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UStatusEffectReactiveTerrain : public UReactiveTerrain {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ protected:
     
 public:
     UStatusEffectReactiveTerrain();
+
 };
 

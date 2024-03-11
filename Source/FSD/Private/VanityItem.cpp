@@ -1,10 +1,10 @@
 #include "VanityItem.h"
 
-class UObject;
-class UTexture;
-class AFSDPlayerState;
-class UPlayerCharacterID;
-class APlayerCharacter;
+UVanityItem::UVanityItem() {
+    this->Aquisition = NULL;
+    this->EventSourceAsset = NULL;
+    this->IconGenerationCameraKey = NULL;
+}
 
 bool UVanityItem::RemoveFromOwned(UObject* WorldContext) {
     return false;
@@ -74,6 +74,9 @@ void UVanityItem::CraftItemWithFashionite(UObject* WorldContextObject, UPlayerCh
 void UVanityItem::CraftItem(UObject* WorldContextObject, UPlayerCharacterID* characterID) const {
 }
 
+void UVanityItem::ChangeToItem(UCharacterVanityComponent* Gear) const {
+}
+
 bool UVanityItem::CanCraftWithFashionite(UObject* WorldContextObject) const {
     return false;
 }
@@ -88,14 +91,4 @@ void UVanityItem::ApplyItemPermanently(UObject* WorldContextObject, UPlayerChara
 void UVanityItem::ApplyItem(APlayerCharacter* Player, bool isPermanent) const {
 }
 
-UVanityItem::UVanityItem() {
-    this->IsPartOfRandomization = true;
-    this->Aquisition = NULL;
-    this->EventSourceAsset = NULL;
-    this->IconGenerationCameraKey = NULL;
-    this->RequiredDLC = NULL;
-    this->CraftingRestrictionDLC = NULL;
-    this->CraftingPlayerRankRequired = 0;
-    this->CraftingCreditsCost = 0;
-}
 

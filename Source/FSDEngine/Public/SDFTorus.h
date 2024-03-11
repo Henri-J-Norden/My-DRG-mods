@@ -4,7 +4,7 @@
 #include "SDFTorusProperties.h"
 #include "SDFTorus.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSDENGINE_API USDFTorus : public USDFBaseWithTransform {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FSDFTorusProperties Properties;
     
     USDFTorus();
+
 };
 

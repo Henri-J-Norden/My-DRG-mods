@@ -5,7 +5,7 @@
 
 class UHealthComponentBase;
 
-UCLASS(EditInlineNew, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UTerrainScannerStaticMesh : public UStaticMeshComponent {
     GENERATED_BODY()
 public:
@@ -19,11 +19,12 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bUseFogOfWar;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool bVisibleOnScanner;
     
 public:
-    UTerrainScannerStaticMesh();
+    UTerrainScannerStaticMesh(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void SetVisibleOnScanner(bool InShowOnScanner);
     

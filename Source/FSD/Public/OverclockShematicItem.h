@@ -3,11 +3,11 @@
 #include "SchematicItem.h"
 #include "OverclockShematicItem.generated.h"
 
-class UItemUpgrade;
 class UItemID;
+class UItemUpgrade;
 class UUpgradableGearComponent;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UOverclockShematicItem : public USchematicItem {
     GENERATED_BODY()
 public:
@@ -20,6 +20,7 @@ protected:
     
 public:
     UOverclockShematicItem();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UUpgradableGearComponent* GetOwningGearComponent() const;
     

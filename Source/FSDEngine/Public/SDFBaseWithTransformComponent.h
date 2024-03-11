@@ -3,10 +3,11 @@
 #include "SDFBaseComponent.h"
 #include "SDFBaseWithTransformComponent.generated.h"
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USDFBaseWithTransformComponent : public USDFBaseComponent {
     GENERATED_BODY()
 public:
-    USDFBaseWithTransformComponent();
+    USDFBaseWithTransformComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

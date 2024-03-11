@@ -3,12 +3,12 @@
 #include "PickaxePartItem.h"
 #include "PickaxeMaterialPart.generated.h"
 
+class UDynamicIcon;
 class UMaterialInstanceDynamic;
 class UMaterialInterface;
-class UDynamicIcon;
 class UObject;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UPickaxeMaterialPart : public UPickaxePartItem {
     GENERATED_BODY()
 public:
@@ -21,6 +21,7 @@ protected:
     
 public:
     UPickaxeMaterialPart();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UMaterialInstanceDynamic* CreateIcon(UObject* Owner) const;
     

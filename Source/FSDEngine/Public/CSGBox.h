@@ -4,7 +4,7 @@
 #include "MeshBoxProperties.h"
 #include "CSGBox.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGBox : public UConvexMeshWithCachedTree {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FMeshBoxProperties Properties;
     
     UCSGBox();
+
 };
 

@@ -3,19 +3,20 @@
 #include "TreasureRewarder.h"
 #include "VanityItemRewarder.generated.h"
 
-class UVanityItem;
 class UPlayerCharacterID;
+class UVanityItem;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UVanityItemRewarder : public UTreasureRewarder {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UVanityItem* GivenVanityItem;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UPlayerCharacterID* GivenCharacterID;
     
-    UVanityItemRewarder();
+    UVanityItemRewarder(const FObjectInitializer& ObjectInitializer);
+
 };
 

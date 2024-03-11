@@ -3,10 +3,11 @@
 #include "UObject/Object.h"
 #include "UseConditionBase.generated.h"
 
-UCLASS(Abstract, DefaultToInstanced, EditInlineNew)
+UCLASS(Abstract, Blueprintable, DefaultToInstanced, EditInlineNew)
 class UUseConditionBase : public UObject {
     GENERATED_BODY()
 public:
     UUseConditionBase();
+
 };
 

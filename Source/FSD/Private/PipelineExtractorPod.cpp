@@ -1,12 +1,11 @@
 #include "PipelineExtractorPod.h"
 #include "Net/UnrealNetwork.h"
 
-class APipelineSegment;
+APipelineExtractorPod::APipelineExtractorPod(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->TargetRotation = 0.00f;
+}
 
 void APipelineExtractorPod::SetTargetRotation_Implementation(APipelineSegment* InPipelineSegment) {
-}
-bool APipelineExtractorPod::SetTargetRotation_Validate(APipelineSegment* InPipelineSegment) {
-    return true;
 }
 
 
@@ -21,7 +20,4 @@ void APipelineExtractorPod::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
     DOREPLIFETIME(APipelineExtractorPod, TargetRotation);
 }
 
-APipelineExtractorPod::APipelineExtractorPod() {
-    this->TargetRotation = 0.00f;
-}
 

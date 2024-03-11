@@ -3,7 +3,7 @@
 #include "CharacterStateComponent.h"
 #include "AttachedStateComponent.generated.h"
 
-UCLASS(MinimalAPI, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, MinimalAPI, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAttachedStateComponent : public UCharacterStateComponent {
     GENERATED_BODY()
 public:
@@ -18,6 +18,7 @@ protected:
     float MaxPitch;
     
 public:
-    UAttachedStateComponent();
+    UAttachedStateComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

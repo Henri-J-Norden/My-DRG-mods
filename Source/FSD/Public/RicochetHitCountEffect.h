@@ -3,10 +3,11 @@
 #include "WeaponHitCountEffect.h"
 #include "RicochetHitCountEffect.generated.h"
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class URicochetHitCountEffect : public UWeaponHitCountEffect {
     GENERATED_BODY()
 public:
     URicochetHitCountEffect();
+
 };
 

@@ -3,18 +3,18 @@
 #include "GameFramework/Actor.h"
 #include "ThrowableActor.generated.h"
 
-class UProjectileMovementComponent;
 class APlayerCharacter;
+class UProjectileMovementComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AThrowableActor : public AActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UProjectileMovementComponent* Movement;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_IsMoving, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IsMoving, meta=(AllowPrivateAccess=true))
     bool IsMoving;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -24,9 +24,10 @@ protected:
     bool IgnoreOwnersCollision;
     
 public:
-    AThrowableActor();
+    AThrowableActor(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ReceiveIgnoreCharacter(APlayerCharacter* Character);
     

@@ -3,10 +3,11 @@
 #include "AfflictionEffect.h"
 #include "PawnFrozenUniqueAfflictionEffect.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UPawnFrozenUniqueAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
     UPawnFrozenUniqueAfflictionEffect();
+
 };
 

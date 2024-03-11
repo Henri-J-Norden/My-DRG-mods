@@ -6,7 +6,7 @@
 class UCurveFloat;
 class UDamageClass;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class URangedFlatDamageBonus : public UDamageBonusBase {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     URangedFlatDamageBonus();
+
 };
 

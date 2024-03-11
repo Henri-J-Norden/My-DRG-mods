@@ -1,12 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/EngineTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Components/ActorComponent.h"
+#include "Engine/EngineTypes.h"
 #include "CrossbowProjectileRicochet.generated.h"
 
+class ACrossbowProjectileBase;
 class UNiagaraSystem;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UCrossbowProjectileRicochet : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -20,11 +22,15 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float RicochetRange;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    ACrossbowProjectileBase* CastedOwner;
+    
 public:
-    UCrossbowProjectileRicochet();
+    UCrossbowProjectileRicochet(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
-    void Ricochet(const FHitResult& HitResult);
+    void Ricochet(const FHitResult& HitResult, const FVector& RelativeLocation);
     
 };
 

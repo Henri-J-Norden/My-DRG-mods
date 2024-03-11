@@ -4,22 +4,23 @@
 #include "EInputKeys.h"
 #include "ActivationObject.generated.h"
 
-class USingleUsableComponent;
 class APlayerCharacter;
+class USingleUsableComponent;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AActivationObject : public AActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USingleUsableComponent* Usable;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool HasBeenUsed;
     
 public:
-    AActivationObject();
+    AActivationObject(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnUsedBy(APlayerCharacter* User, EInputKeys Key);

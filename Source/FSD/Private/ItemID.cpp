@@ -1,9 +1,10 @@
 #include "ItemID.h"
 #include "Templates/SubclassOf.h"
 
-class AActor;
-class UItemData;
-class AItem;
+UItemID::UItemID() {
+    this->ItemOwner = NULL;
+    this->ItemCategory = EItemCategory::PrimaryWeapon;
+}
 
 bool UItemID::IsItemClassChildOf(TSubclassOf<AActor> InParentClass) const {
     return false;
@@ -25,6 +26,10 @@ AItem* UItemID::GetItem() const {
     return NULL;
 }
 
+TArray<UItemSkin*> UItemID::GetAllSkins() {
+    return TArray<UItemSkin*>();
+}
+
 TSubclassOf<AActor> UItemID::GetActorClass() const {
     return NULL;
 }
@@ -33,8 +38,4 @@ AActor* UItemID::GetActor() const {
     return NULL;
 }
 
-UItemID::UItemID() {
-    this->ItemOwner = NULL;
-    this->ItemCategory = EItemCategory::PrimaryWeapon;
-}
 

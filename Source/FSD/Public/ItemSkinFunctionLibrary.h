@@ -3,10 +3,11 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "ItemSkinFunctionLibrary.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UItemSkinFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UItemSkinFunctionLibrary();
+
 };
 

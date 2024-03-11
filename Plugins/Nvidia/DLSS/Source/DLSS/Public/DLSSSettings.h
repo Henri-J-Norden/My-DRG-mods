@@ -3,7 +3,7 @@
 #include "UObject/Object.h"
 #include "DLSSSettings.generated.h"
 
-UCLASS(config = Engine, DefaultConfig)
+UCLASS(Blueprintable, DefaultConfig, Config=Engine)
 class DLSS_API UDLSSSettings : public UObject {
     GENERATED_BODY()
 public:
@@ -28,21 +28,22 @@ public:
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bShowDLSSSDebugOnScreenMessages;
     
-    UPROPERTY(BlueprintReadWrite, Config, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString GenericDLSSBinaryPath;
     
-    UPROPERTY(BlueprintReadWrite, Config, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bGenericDLSSBinaryExists;
     
     UPROPERTY(AdvancedDisplay, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 NVIDIANGXApplicationId;
     
-    UPROPERTY(AdvancedDisplay, BlueprintReadWrite, Config, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(AdvancedDisplay, BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     FString CustomDLSSBinaryPath;
     
-    UPROPERTY(AdvancedDisplay, BlueprintReadWrite, Config, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(AdvancedDisplay, BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bCustomDLSSBinaryExists;
     
     UDLSSSettings();
+
 };
 

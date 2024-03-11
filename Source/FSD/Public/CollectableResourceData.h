@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ResourceData.h"
+#include "Templates/SubclassOf.h"
 #include "CollectableResourceData.generated.h"
 
-class UCollectableResourceCreator;
-class UDebrisPositioning;
-class UDebrisBase;
 class AActor;
+class UCollectableResourceCreator;
+class UDebrisBase;
+class UDebrisPositioning;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCollectableResourceData : public UResourceData {
     GENERATED_BODY()
 public:
@@ -35,10 +35,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<TSoftClassPtr<AActor>> CollectableClasses;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<TSubclassOf<AActor>> CollectableClassesLoaded;
     
 public:
     UCollectableResourceData();
+
 };
 

@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Reward.h"
 #include "IRandRange.h"
+#include "Reward.h"
 #include "WeeklyResourceReward.generated.h"
 
 class AFSDPlayerController;
 class UResourceData;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UWeeklyResourceReward : public UReward {
     GENERATED_BODY()
 public:
@@ -20,6 +20,7 @@ protected:
     
 public:
     UWeeklyResourceReward();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TMap<UResourceData*, float> GetRewards(AFSDPlayerController* Player) const;

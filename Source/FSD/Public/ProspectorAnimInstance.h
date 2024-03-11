@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EnemyAnimInstance.h"
 #include "UObject/NoExportTypes.h"
 #include "EProspectorRobotState.h"
+#include "EnemyAnimInstance.h"
 #include "ProspectorAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UProspectorAnimInstance : public UEnemyAnimInstance {
     GENERATED_BODY()
 public:
@@ -24,5 +24,6 @@ protected:
     
 public:
     UProspectorAnimInstance();
+
 };
 

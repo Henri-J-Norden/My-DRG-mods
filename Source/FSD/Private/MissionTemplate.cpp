@@ -1,18 +1,15 @@
 #include "MissionTemplate.h"
 #include "Templates/SubclassOf.h"
 
-class UTexture2D;
-class UObject;
-class UMissionMutator;
-class UFSDSaveGame;
-class AProceduralSetup;
-class UMissionDuration;
-class UMissionComplexity;
-class UMissionTemplate;
-class UBiome;
-class UMissionWarning;
-class UObjective;
-class UGeneratedMission;
+UMissionTemplate::UMissionTemplate() {
+    this->PrimaryObjective = NULL;
+    this->MissionIcon = NULL;
+    this->MissionIconSmall = NULL;
+    this->MissionTypeIndex = 0;
+    this->MustBeUnlocked = true;
+    this->RoomEncounerScale = 1.00f;
+    this->StationaryEnemyScale = 1.00f;
+}
 
 
 bool UMissionTemplate::IsLocked(UFSDSaveGame* SaveGame) const {
@@ -43,6 +40,10 @@ TSubclassOf<AProceduralSetup> UMissionTemplate::GetPLS() const {
     return NULL;
 }
 
+TSubclassOf<UObjective> UMissionTemplate::GetObjectiveClass() {
+    return NULL;
+}
+
 int32 UMissionTemplate::GetMissionTypeIndex() const {
     return 0;
 }
@@ -55,17 +56,8 @@ UTexture2D* UMissionTemplate::GetMissionButtonImage() const {
     return NULL;
 }
 
-UGeneratedMission* UMissionTemplate::GenerateMission(const UObject* WorldContextObject, UBiome* Biome, int32 Seed, int32 GlobalSeed, int32 missionIndex, UMissionComplexity* limitComplexity, UMissionDuration* limitDuration, UMissionMutator* Mutator, TArray<UMissionWarning*> Warnings, TSubclassOf<UObjective> forceSecondary) {
+UGeneratedMission* UMissionTemplate::GenerateMission(const UObject* WorldContextObject, UBiome* Biome, int32 Seed, int32 GlobalSeed, int32 missionIndex, UMissionComplexity* limitComplexity, UMissionDuration* limitDuration, UMissionMutator* Mutator, TArray<UMissionWarning*> Warnings, TArray<TSubclassOf<UObjective>> forceSecondary) {
     return NULL;
 }
 
-UMissionTemplate::UMissionTemplate() {
-    this->PrimaryObjective = NULL;
-    this->MissionIcon = NULL;
-    this->MissionIconSmall = NULL;
-    this->MissionTypeIndex = 0;
-    this->MustBeUnlocked = true;
-    this->RoomEncounerScale = 1.00f;
-    this->StationaryEnemyScale = 1.00f;
-}
 

@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ExplosionBaseComponent.h"
-#include "ScaledEffect.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/EngineTypes.h"
+#include "ExplosionBaseComponent.h"
+#include "ScaledEffect.h"
 #include "ProjectileExplosion.generated.h"
 
+class UForceFeedbackAttenuation;
 class UForceFeedbackEffect;
 class USoundCue;
-class UForceFeedbackAttenuation;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UProjectileExplosion : public UExplosionBaseComponent {
     GENERATED_BODY()
 public:
@@ -28,7 +28,8 @@ protected:
     UForceFeedbackAttenuation* ForceFeedbackAttanuation;
     
 public:
-    UProjectileExplosion();
+    UProjectileExplosion(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void SpawnEffectsFromHit(const FHitResult& Hit);
     

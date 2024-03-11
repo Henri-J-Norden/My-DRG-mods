@@ -1,32 +1,8 @@
 #include "ActorFunctionLibrary.h"
 #include "Templates/SubclassOf.h"
 
-class USceneComponent;
-class USoundCue;
-class UPostProcessComponent;
-class UMaterialInstanceDynamic;
-class UItemID;
-class APlayerCharacter;
-class UEnemyComponent;
-class UTexture2D;
-class UObject;
-class APlayerController;
-class UFXSystemAsset;
-class UWindowWidget;
-class UUserWidget;
-class AActor;
-class UPathfinderCollisionComponent;
-class UFSDPhysicalMaterial;
-class UPlayerCharacterID;
-class UMeshComponent;
-class UInventoryList;
-class UActorComponent;
-class UBlendableInterface;
-class IBlendableInterface;
-class AFSDGameMode;
-class UDamageClass;
-class UHealthComponentBase;
-class AFSDGameState;
+UActorFunctionLibrary::UActorFunctionLibrary() {
+}
 
 void UActorFunctionLibrary::UnlockSpecificCharacters(TArray<APlayerCharacter*> Characters, ECharacterState UnlockIf, ECharacterState UnlockTo) {
 }
@@ -208,7 +184,11 @@ FVector UActorFunctionLibrary::FindLatejoinDroppodLocation(AFSDGameMode* GameMod
     return FVector{};
 }
 
-AActor* UActorFunctionLibrary::FindClosestEnemyFromLocation(const FVector& fromLocation, float range, bool LineOfSightCheck, UObject* WorldContextObject, const TArray<AActor*>& IgnoredActors, const FVector& Offset) {
+AActor* UActorFunctionLibrary::FindClosestEnemyFromLocation(const FVector& fromLocation, float range, bool LineOfSightCheck, UObject* WorldContextObject, const TArray<AActor*>& IgnoredActors, const FVector& Offset, bool onlyTargetable) {
+    return NULL;
+}
+
+AActor* UActorFunctionLibrary::FindClosestEnemyFromActorWithSkipChance(AActor* FromActor, float range, float SkipChance, bool LineOfSightCheck, const FGameplayTagQuery& tagQuery, FVector Offset) {
     return NULL;
 }
 
@@ -230,19 +210,6 @@ float UActorFunctionLibrary::EvaluateRuntimeCurve(UObject* WorldContextObject, c
 void UActorFunctionLibrary::DissolveMaterials(const UObject* WorldContextObject, UMeshComponent*& Mesh, float Duration) {
 }
 
-void UActorFunctionLibrary::DamagePlayersInArea(const FVector& Origin, AActor* Instigator, const float Damage, const float Radius, UDamageClass* DamageClass) {
-}
-
-UHealthComponentBase* UActorFunctionLibrary::DamageIfInRange(float MaxDistance, float Damage, AActor* Target, AActor* Attacker, UDamageClass* DamageClass) {
-    return NULL;
-}
-
-void UActorFunctionLibrary::DamageAllInAreaExcept(const FVector Origin, AActor* Instigator, const float Damage, const float BlastRadius, const float MaxDamageRadius, const float minDamagePercent, const TArray<AActor*>& IgnoreActors, const float friendlyFireModifier, UDamageClass* DamageClass) {
-}
-
-void UActorFunctionLibrary::DamageAllInArea(const FVector Origin, AActor* Instigator, const float Damage, const float BlastRadius, const float MaxDamageRadius, const float minDamagePercent, const float friendlyFireModifier, UDamageClass* DamageClass) {
-}
-
 TArray<UMaterialInstanceDynamic*> UActorFunctionLibrary::CreateDynamicMaterialInstances(UMeshComponent* Mesh) {
     return TArray<UMaterialInstanceDynamic*>();
 }
@@ -258,6 +225,4 @@ bool UActorFunctionLibrary::ActorMatchesTagQuery(const FGameplayTagQuery& Query,
     return false;
 }
 
-UActorFunctionLibrary::UActorFunctionLibrary() {
-}
 

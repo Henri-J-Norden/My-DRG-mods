@@ -1,22 +1,25 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "OnGetUserPrivilegeCompleteBPDelegateDelegate.h"
-#include "EBlueprintableUserPrivileges.h"
 #include "EBlueprintablePrivilegeResults.h"
-#include "OnShowWebUrlClosedBPDelegate.h"
+#include "EBlueprintableUserPrivileges.h"
 #include "EInviteBlockReason.h"
+#include "OnGetIsUpdatePendingBPDelegate.h"
+#include "OnGetUserPrivilegeCompleteBPDelegateDelegate.h"
+#include "OnProfileUIClosedBPDelegate.h"
+#include "OnShowWebUrlClosedBPDelegate.h"
 #include "FSDOnlineSystemUtils.generated.h"
 
+class APlayerState;
 class UFSDGameInstance;
 class UObject;
-class APlayerState;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UFSDOnlineSystemUtils : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UFSDOnlineSystemUtils();
+
     UFUNCTION(BlueprintCallable)
     static void TryToResolvePrivilege(const APlayerState* PlayerState, EBlueprintableUserPrivileges Privilege, EBlueprintablePrivilegeResults reason);
     
@@ -28,6 +31,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     static void OpenURLInOverlay(const FString& URL, FOnShowWebUrlClosedBP OnOverlayClosed);
+    
+    UFUNCTION(BlueprintCallable)
+    static void OpenProfileWithEvent(APlayerState* Requestor, APlayerState* Requestee, FOnProfileUIClosedBP OnProfileWindowClosed);
     
     UFUNCTION(BlueprintCallable)
     static void OpenProfileByUserId(APlayerState* Requestor, const FString& RequesteeUserID);
@@ -42,12 +48,15 @@ public:
     static void GetOnlinePlayBlockReasons(TArray<EBlueprintablePrivilegeResults>& reasons);
     
     UFUNCTION(BlueprintCallable)
+    static void GetIsUpdatePending(const FOnGetIsUpdatePendingBP& Delegate);
+    
+    UFUNCTION(BlueprintCallable)
     static void GetIsPrivilegeAllowed(const APlayerState* PlayerState, EBlueprintableUserPrivileges Privilege, const FOnGetUserPrivilegeCompleteBPDelegate& Delegate);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static FText GetInviteFeatureBlockReason(UObject* WorldContextObject, EInviteBlockReason reason);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static EInviteBlockReason CanPlayerInvite(UObject* WorldContextObject);
     
 };

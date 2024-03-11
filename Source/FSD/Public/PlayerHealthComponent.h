@@ -1,38 +1,38 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "HealthComponent.h"
-#include "HealthRegenerationParams.h"
-#include "RejoinListener.h"
-#include "FullHealthSignatureDelegate.h"
-#include "HealthRegeneratingChangedDelegate.h"
-#include "HitSigDelegate.h"
 #include "AudioWithCooldown.h"
+#include "FullHealthSignatureDelegate.h"
+#include "HealthComponent.h"
+#include "HealthRegeneratingChangedDelegate.h"
+#include "HealthRegenerationParams.h"
+#include "HitSigDelegate.h"
+#include "RejoinListener.h"
+#include "Templates/SubclassOf.h"
 #include "PlayerHealthComponent.generated.h"
 
-class UCurveFloat;
+class AActor;
+class AController;
 class APlayerCharacter;
+class UCurveFloat;
 class UParticleSystem;
 class UParticleSystemComponent;
 class UPlayerDamageTakenMutator;
 class UStatusEffect;
-class AActor;
-class AController;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPlayerHealthComponent : public UHealthComponent, public IRejoinListener {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FFullHealthSignature OnFullHealthCannotHeal;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FFullHealthSignature OnHealedFromCrystalEvent;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHealthRegeneratingChanged OnHealthRegeneratingChanged;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHitSig OnPlayerHit;
     
 protected:
@@ -42,7 +42,7 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_MaxArmor, meta=(AllowPrivateAccess=true))
     float MaxArmor;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_ArmorDamage, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_ArmorDamage, meta=(AllowPrivateAccess=true))
     float ArmorDamage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -63,7 +63,7 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ShieldRegenDelay;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     APlayerCharacter* Character;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -75,7 +75,7 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FAudioWithCooldown AudioFriendlyFire;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UParticleSystemComponent* ShieldLinkInstance;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -84,29 +84,30 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ReviveInvulnerabilityTime;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UPlayerDamageTakenMutator* DamageTakenMutator;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TSubclassOf<UStatusEffect> IronWillStatusEffectClass;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UStatusEffect* IronWillStatusEffect;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     bool IronWillActive;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float IronWillTimeToActivate;
     
 public:
-    UPlayerHealthComponent();
+    UPlayerHealthComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     UStatusEffect* SetIronWillStatusEffect(TSubclassOf<UStatusEffect> steClass);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_TryActivateIronWill();
     
 protected:
@@ -136,20 +137,20 @@ public:
     float GetHealthRegeneratingTargetRatio() const;
     
 protected:
-    UFUNCTION(BlueprintCallable, Client, Reliable, WithValidation)
+    UFUNCTION(BlueprintCallable, Client, Reliable)
     void Client_SetHealthRegenerating(bool isRegenerating);
     
-    UFUNCTION(BlueprintCallable, Client, Unreliable, WithValidation)
+    UFUNCTION(BlueprintCallable, Client, Unreliable)
     void Client_OnFriendlyFire(AController* EventInstigator, AActor* DamageCauser);
     
-    UFUNCTION(BlueprintCallable, Client, Reliable, WithValidation)
+    UFUNCTION(BlueprintCallable, Client, Reliable)
     void Client_HealthFullCannotHeal();
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool CanActivateIronWill() const;
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

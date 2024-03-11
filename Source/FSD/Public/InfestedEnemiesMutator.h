@@ -3,10 +3,10 @@
 #include "Mutator.h"
 #include "InfestedEnemiesMutator.generated.h"
 
-class UParticleSystem;
 class AFSDPawn;
+class UParticleSystem;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UInfestedEnemiesMutator : public UMutator {
     GENERATED_BODY()
 public:
@@ -16,6 +16,7 @@ protected:
     
 public:
     UInfestedEnemiesMutator();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UParticleSystem* GetParticleSystem(AFSDPawn* enemy) const;
     

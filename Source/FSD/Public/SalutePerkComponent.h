@@ -3,7 +3,7 @@
 #include "FloatPerkComponent.h"
 #include "SalutePerkComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USalutePerkComponent : public UFloatPerkComponent {
     GENERATED_BODY()
 public:
@@ -15,7 +15,8 @@ protected:
     float FleeRadius;
     
 public:
-    USalutePerkComponent();
+    USalutePerkComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnSalute();

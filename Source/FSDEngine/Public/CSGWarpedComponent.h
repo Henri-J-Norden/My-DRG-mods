@@ -4,13 +4,14 @@
 #include "WarpedProperties.h"
 #include "CSGWarpedComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UCSGWarpedComponent : public UCSGBaseComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FWarpedProperties Properties;
     
-    UCSGWarpedComponent();
+    UCSGWarpedComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

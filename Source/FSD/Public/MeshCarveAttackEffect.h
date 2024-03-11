@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "AttackEffect.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
 #include "MeshCarveAttackEffect.generated.h"
 
 class UStaticMesh;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UMeshCarveAttackEffect : public UAttackEffect {
     GENERATED_BODY()
 public:
@@ -32,5 +32,6 @@ protected:
     
 public:
     UMeshCarveAttackEffect();
+
 };
 

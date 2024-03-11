@@ -1,37 +1,29 @@
 #include "TrackBuilderItem.h"
+#include "CrosshairAggregator.h"
 #include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
-#include "CrosshairAggregator.h"
 
-class UTrackBuilderConnectPoint;
-class UTrackBuilderUsable;
-class ATrackBuilderSegment;
+ATrackBuilderItem::ATrackBuilderItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->CrosshairAggregator = CreateDefaultSubobject<UCrosshairAggregator>(TEXT("CrosshairAggregator"));
+    this->ObstructionType = EPlaceableObstructionType::Valid;
+    this->DefaultSegmentType = NULL;
+    this->NextSegment = NULL;
+    this->bIsPlacingSegment = false;
+}
 
 void ATrackBuilderItem::UpdatePlacement(const FTransform& InTransform, UTrackBuilderConnectPoint* InConnectPoint, bool bPlacementValid, bool InUpdateServer) {
 }
 
 void ATrackBuilderItem::ServerUpdatePlacement_Implementation(const FTransform& InTransform, const bool bPlacementValid, UTrackBuilderConnectPoint* InConnectPoint) {
 }
-bool ATrackBuilderItem::ServerUpdatePlacement_Validate(const FTransform& InTransform, const bool bPlacementValid, UTrackBuilderConnectPoint* InConnectPoint) {
-    return true;
-}
 
 void ATrackBuilderItem::ServerFinishPlacement_Implementation(const FTransform& FinalLocation, UTrackBuilderConnectPoint* ConnectPoint) {
-}
-bool ATrackBuilderItem::ServerFinishPlacement_Validate(const FTransform& FinalLocation, UTrackBuilderConnectPoint* ConnectPoint) {
-    return true;
 }
 
 void ATrackBuilderItem::ServerCancelPlacement_Implementation() {
 }
-bool ATrackBuilderItem::ServerCancelPlacement_Validate() {
-    return true;
-}
 
 void ATrackBuilderItem::ServerBeginPlaceSegment_Implementation(UTrackBuilderUsable* InUsable) {
-}
-bool ATrackBuilderItem::ServerBeginPlaceSegment_Validate(UTrackBuilderUsable* InUsable) {
-    return true;
 }
 
 
@@ -59,11 +51,4 @@ void ATrackBuilderItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
     DOREPLIFETIME(ATrackBuilderItem, bIsPlacingSegment);
 }
 
-ATrackBuilderItem::ATrackBuilderItem() {
-    this->CrosshairAggregator = CreateDefaultSubobject<UCrosshairAggregator>(TEXT("CrosshairAggregator"));
-    this->ObstructionType = EPlaceableObstructionType::Valid;
-    this->DefaultSegmentType = NULL;
-    this->NextSegment = NULL;
-    this->bIsPlacingSegment = false;
-}
 

@@ -1,10 +1,17 @@
 #include "GoogleAnalyticsWrapper.h"
 
-class AFSDPlayerState;
-class APlayerController;
-class AFSDGameState;
-class AActor;
-class USeasonChallenge;
+UGoogleAnalyticsWrapper::UGoogleAnalyticsWrapper() {
+    this->LastUnlockedWeapons = TEXT("None");
+    this->LastKnownClass = TEXT("None");
+    this->BoscoLoadOut = TEXT("Bosco=;");
+    this->WasCampaign = false;
+    this->LastCampaignProgress = 0;
+    this->WasLastCampaignMission = false;
+    this->LastCampaignSize = 0;
+    this->DiscordCommunityTrackingID = TEXT("UA-85959451-10");
+    this->CommunityGoalsTrackingID = TEXT("UA-85959451-12");
+    this->ShouldUpdateSchematicTrackingInformation = true;
+}
 
 void UGoogleAnalyticsWrapper::StartMissionPartyInfo(AFSDGameState* GameState) {
 }
@@ -36,7 +43,7 @@ void UGoogleAnalyticsWrapper::RecordGaTreeOfVanityClaim(int32 NodeID) {
 void UGoogleAnalyticsWrapper::RecordGASeasonLevelUp() {
 }
 
-void UGoogleAnalyticsWrapper::RecordGAMissionTotalTimeHit(const FString& Key, const FString& Campaign, bool Rank, int32 totalTime, int32 Progress, int32 XP, int32 Credits) {
+void UGoogleAnalyticsWrapper::RecordGAMissionTotalTimeHit(const FString& Key, const FString& Campaign, bool Rank, int32 TotalTime, int32 Progress, int32 XP, int32 Credits) {
 }
 
 void UGoogleAnalyticsWrapper::RecordGAMissionTimeEvent(int32 Time) {
@@ -45,16 +52,16 @@ void UGoogleAnalyticsWrapper::RecordGAMissionTimeEvent(int32 Time) {
 void UGoogleAnalyticsWrapper::RecordGAEvent(const FString& EventCategory, const FString& EventAction, const FString& EventLabel, const int32 EventValue, EFSDGoogleAnalyticsProperties Property) {
 }
 
-void UGoogleAnalyticsWrapper::RecordGADeepDiveStageHit(const FString& Key, bool Rank, int32 stageTime, int32 timeSinceStartOfDive, int32 totalTime, int32 nitraLeft) {
+void UGoogleAnalyticsWrapper::RecordGADeepDiveStageHit(const FString& Key, bool Rank, int32 StageTime, int32 TimeSinceStartOfDive, int32 TotalTime, int32 NitraLeft) {
 }
 
-void UGoogleAnalyticsWrapper::RecordGaChallengeReroll(int32 challengeIndex, USeasonChallenge* challenge) {
+void UGoogleAnalyticsWrapper::RecordGaChallengeReroll(int32 ChallengeIndex, USeasonChallenge* Challenge) {
 }
 
 void UGoogleAnalyticsWrapper::RecordExtraFailInfo(const FString& MissionName, const FString& Stage, const FString& ExtraText) {
 }
 
-void UGoogleAnalyticsWrapper::RecordCustomGAEvent(const FString& EventCategory, const FString& EventAction, const FString& EventLabel, const int32 EventValue, const FString& TrackingId) {
+void UGoogleAnalyticsWrapper::RecordCustomGAEvent(const FString& EventCategory, const FString& EventAction, const FString& EventLabel, const int32 EventValue, const FString& TrackingID) {
 }
 
 void UGoogleAnalyticsWrapper::RecordContinuousDamage(AActor* DamageCauser) {
@@ -89,16 +96,4 @@ FString UGoogleAnalyticsWrapper::GetAnalyticsFText(FText Text) {
 void UGoogleAnalyticsWrapper::EndMissionPartyInfo() {
 }
 
-UGoogleAnalyticsWrapper::UGoogleAnalyticsWrapper() {
-    this->LastUnlockedWeapons = TEXT("None");
-    this->LastKnownClass = TEXT("None");
-    this->BoscoLoadOut = TEXT("Bosco=;");
-    this->WasCampaign = false;
-    this->LastCampaignProgress = 0;
-    this->WasLastCampaignMission = false;
-    this->LastCampaignSize = 0;
-    this->DiscordCommunityTrackingID = TEXT("UA-85959451-10");
-    this->CommunityGoalsTrackingID = TEXT("UA-85959451-12");
-    this->ShouldUpdateSchematicTrackingInformation = true;
-}
 

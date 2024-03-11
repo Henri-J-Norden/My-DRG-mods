@@ -1,17 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Engine/DataAsset.h"
 #include "SaveGameIDInterface.h"
-#include "UObject/NoExportTypes.h"
 #include "ResourceData.generated.h"
 
-class UObject;
+class AFSDPhysicsActor;
 class UMissionStat;
+class UObject;
 class UTexture2D;
-class AResourceChunk;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API UResourceData : public UDataAsset, public ISaveGameIDInterface {
     GENERATED_BODY()
 public:
@@ -61,7 +61,7 @@ public:
     bool ShowSeparatelyInEndScreen;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftClassPtr<AResourceChunk> Spawnable;
+    TSoftClassPtr<AFSDPhysicsActor> Spawnable;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -73,18 +73,22 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 XPValue;
     
-    UPROPERTY(BlueprintReadWrite, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SeasonXPMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGuid SavegameID;
     
 public:
     UResourceData();
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     float GetOwnedAmount(UObject* WorldContextObject) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetIsTradableCraftingMaterial() const;
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

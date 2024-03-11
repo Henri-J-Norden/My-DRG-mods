@@ -1,20 +1,20 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "TowerModuleBase.h"
 #include "UObject/NoExportTypes.h"
+#include "TowerModuleBase.h"
 #include "AimingTowerModule.generated.h"
 
 class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AAimingTowerModule : public ATowerModuleBase {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Replicated, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     AActor* Target;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     FRotator AimRotation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -27,8 +27,9 @@ protected:
     int32 BurstSize;
     
 public:
-    AAimingTowerModule();
+    AAimingTowerModule(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 };
 

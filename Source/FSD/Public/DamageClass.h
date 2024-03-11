@@ -4,11 +4,11 @@
 #include "DamageClass.generated.h"
 
 class UDamageImpulse;
-class UPawnStat;
 class UDialogDataAsset;
+class UPawnStat;
 class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UDamageClass : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -36,5 +36,6 @@ protected:
     
 public:
     UDamageClass();
+
 };
 

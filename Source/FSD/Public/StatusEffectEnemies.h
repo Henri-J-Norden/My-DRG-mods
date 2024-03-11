@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "GameplayTagContainer.h"
+#include "GameplayTagContainer.h"
 #include "RunningMissionBP.h"
-#include "GameplayTagContainer.h"
-#include "GameplayTagContainer.h"
+#include "Templates/SubclassOf.h"
 #include "StatusEffectEnemies.generated.h"
 
-class UEnemyDescriptor;
 class APawn;
+class UEnemyDescriptor;
 class UStatusEffect;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class UStatusEffectEnemies : public URunningMissionBP {
     GENERATED_BODY()
 public:
@@ -35,6 +35,7 @@ protected:
     
 public:
     UStatusEffectEnemies();
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnEnemySpawned(APawn* enemy, UEnemyDescriptor* descriptor);

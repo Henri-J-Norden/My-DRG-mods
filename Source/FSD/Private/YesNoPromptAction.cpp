@@ -1,8 +1,7 @@
 #include "YesNoPromptAction.h"
 
-class UResourceData;
-class UObject;
-class UYesNoPromptAction;
+UYesNoPromptAction::UYesNoPromptAction() {
+}
 
 UYesNoPromptAction* UYesNoPromptAction::PromptYesNo(UObject* WorldContext, FYesNoPromptSettings Prompt) {
     return NULL;
@@ -15,6 +14,4 @@ UYesNoPromptAction* UYesNoPromptAction::PromptPurchase(UObject* WorldContext, FY
 void UYesNoPromptAction::PromptCallback(bool YesClicked) {
 }
 
-UYesNoPromptAction::UYesNoPromptAction() {
-}
 

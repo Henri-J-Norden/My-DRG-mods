@@ -4,11 +4,11 @@
 #include "ExampleUpdatedDelegateDelegate.h"
 #include "ExampleActor.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AExampleActor : public AActor {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FExampleUpdatedDelegate OnExampleUpdatedEvent;
     
 protected:
@@ -16,8 +16,9 @@ protected:
     float Field;
     
 public:
-    AExampleActor();
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    AExampleActor(const FObjectInitializer& ObjectInitializer);
+
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_ExampleFunction();
     
     UFUNCTION(BlueprintCallable, Client, Reliable)

@@ -6,12 +6,12 @@
 
 class UGeneratedMission;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API UMissionGenerationManager : public UGameInstanceSubsystem {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<int32, FGeneratedMissionGroup> AllMissionGroups;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -19,11 +19,15 @@ protected:
     
 public:
     UMissionGenerationManager();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<UGeneratedMission*> GetMissions(int32 Seed);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UGeneratedMission* GetMissionFromSeeds(int32 GlobalSeed, int32 MissionSeed);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    TArray<UGeneratedMission*> GetAvailableMissionsWithSeasonContentCheck(bool HasOptedOutOfSeasonContent);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<UGeneratedMission*> GetAvailableMissions();

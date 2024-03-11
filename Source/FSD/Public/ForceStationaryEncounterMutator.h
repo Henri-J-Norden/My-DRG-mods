@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Mutator.h"
 #include "IRandRange.h"
+#include "Mutator.h"
 #include "ForceStationaryEncounterMutator.generated.h"
 
 class UEnemyGroupDescriptor;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UForceStationaryEncounterMutator : public UMutator {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ public:
     FIRandRange GroupSize;
     
     UForceStationaryEncounterMutator();
+
 };
 

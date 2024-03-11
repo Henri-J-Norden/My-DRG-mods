@@ -1,26 +1,26 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Components/ActorComponent.h"
-#include "ObjectiveUpdatedSignatureDelegate.h"
-#include "ObjectiveMissionIcon.h"
-#include "MissionShouts.h"
 #include "CreditsReward.h"
+#include "MissionShouts.h"
+#include "ObjectiveMissionIcon.h"
+#include "ObjectiveUpdatedSignatureDelegate.h"
+#include "Templates/SubclassOf.h"
 #include "Objective.generated.h"
 
-class UObjectiveWidget;
-class UResourceData;
-class UMissionStat;
 class UBiome;
-class UOptionalObjectiveWidget;
-class UTexture2D;
+class UMissionStat;
 class UObjective;
+class UObjectiveWidget;
+class UOptionalObjectiveWidget;
+class UResourceData;
+class UTexture2D;
 
-UCLASS(Abstract, Blueprintable, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UObjective : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FObjectiveUpdatedSignature OnObjectiveUpdated;
     
 protected:
@@ -42,8 +42,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool ScaleObjectiveToMission;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bHasReturnObjective;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool RequiredReturnObjectiveCompleted;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool ShowObjectiveInHUD;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMissionStat* ObjectiveCompletedStat;
@@ -51,19 +57,23 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftClassPtr<UOptionalObjectiveWidget> OptionalObjectiveWidgetClass;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_IsPrimaryObjective, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IsPrimaryObjective, meta=(AllowPrivateAccess=true))
     int32 IsPrimaryObjective;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    bool bIsNeededForMissionCompletion;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     float MissionScale;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UBiome*> BannedInBiomes;
     
 public:
-    UObjective();
+    UObjective(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable)
     void SignalObjectiveUpdated();
@@ -83,6 +93,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, BlueprintPure)
     bool IsObjectiveResource(UResourceData* InResource) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsNeededForMissionCompletion() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsFinalBattle() const;

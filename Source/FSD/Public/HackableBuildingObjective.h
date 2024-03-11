@@ -1,21 +1,22 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "Objective.h"
 #include "UObject/NoExportTypes.h"
+#include "Objective.h"
+#include "Templates/SubclassOf.h"
 #include "HackableBuildingObjective.generated.h"
 
 class AProceduralSetup;
-class UDebrisPositioning;
 class ARessuplyPod;
+class UDebrisPositioning;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UHackableBuildingObjective : public UObjective {
     GENERATED_BODY()
 public:
-    UHackableBuildingObjective();
+    UHackableBuildingObjective(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
-    static void DropOverCharger(AProceduralSetup* setup, const FVector& buildingLocation, float idealRange, float idealZDistance, UDebrisPositioning* DebrisPositioning, TSubclassOf<ARessuplyPod> generatorClass);
+    static void DropOverCharger(AProceduralSetup* Setup, const FVector& buildingLocation, float idealRange, float idealZDistance, UDebrisPositioning* DebrisPositioning, TSubclassOf<ARessuplyPod> generatorClass, bool AddImportantLocation);
     
 };
 

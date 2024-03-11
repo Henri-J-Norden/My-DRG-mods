@@ -1,23 +1,23 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayTagContainer.h"
 #include "ERoomMirror.h"
 #include "ERoomMirroringSupport.h"
-#include "GameplayTagContainer.h"
 #include "RoomBurner.generated.h"
 
+class ADeepCSGWorld;
+class AProceduralSetup;
 class UBiome;
-class URoomGenerator;
 class UDifficultySetting;
 class UEnemyDescriptor;
 class UMissionMutator;
-class UMissionWarning;
-class USpecialEvent;
 class UMissionTemplate;
-class ADeepCSGWorld;
-class AProceduralSetup;
+class UMissionWarning;
+class URoomGenerator;
+class USpecialEvent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ARoomBurner : public AActor {
     GENERATED_BODY()
 public:
@@ -28,7 +28,7 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     ERoomMirror MirrorTest;
     
-    UPROPERTY(BlueprintReadWrite, EditInstanceOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     URoomGenerator* RoomGenerator;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -91,21 +91,22 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UMissionTemplate* CustomMissionTemplate;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ADeepCSGWorld* CSGWorld;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AProceduralSetup* PLSLiveEditor;
     
 private:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     URoomGenerator* LiveEditRoomGenerator;
     
 public:
-    ARoomBurner();
+    ARoomBurner(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
-    void SpawnEncounter(AProceduralSetup* setup);
+    void SpawnEncounter(AProceduralSetup* Setup);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)

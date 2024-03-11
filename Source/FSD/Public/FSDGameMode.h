@@ -1,91 +1,92 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "PlayerLoggedInDelegate.h"
+#include "UObject/NoExportTypes.h"
 #include "GameFramework/GameMode.h"
-#include "MatchStartedSignatureDelegate.h"
 #include "AllReadySignatureDelegate.h"
 #include "CallDonkeyDelegate.h"
-#include "UObject/NoExportTypes.h"
+#include "ECriticalItemPass.h"
 #include "EPauseReason.h"
+#include "MatchStartedSignatureDelegate.h"
+#include "PlayerLoggedInDelegate.h"
+#include "Templates/SubclassOf.h"
 #include "FSDGameMode.generated.h"
 
-class UEnemyWaveManager;
-class APlayerController;
-class UPheromoneSpawnerComponent;
-class UEnemySpawnManager;
-class UObjectivesManager;
-class UKeepInsideWorld;
-class ABosco;
-class UMissionManager;
-class UEncounterManager;
-class UDifficultyManager;
-class UCritterManager;
-class AFSDPlayerController;
-class UFormationsManagerComponent;
-class AMolly;
-class AMiningPod;
-class UWidget;
-class UEnemyDescriptor;
 class AActor;
+class ABosco;
 class AFSDGameMode;
+class AFSDPlayerController;
+class AMolly;
 class APlayerCharacter;
+class APlayerController;
+class ATeamTransport;
+class UCritterManager;
+class UDifficultyManager;
+class UEncounterManager;
+class UEnemyDescriptor;
+class UEnemySpawnManager;
+class UEnemyWaveManager;
+class UFormationsManagerComponent;
+class UKeepInsideWorld;
+class UMissionManager;
+class UObjectivesManager;
+class UPheromoneSpawnerComponent;
+class UWidget;
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class FSD_API AFSDGameMode : public AGameMode {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FMatchStartedSignature OnMatchStarted;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FAllReadySignature OnAllControllersReady;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FPlayerLoggedIn OnPlayerLoggedIn;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FCallDonkey OnDonkeyCalled;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool GenerationStarted;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPheromoneSpawnerComponent* PheromoneComponent;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UEnemySpawnManager* EnemySpawnManager;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UObjectivesManager* ObjectivesManager;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UKeepInsideWorld* KeepInsideWorld;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UMissionManager* MissionManager;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UEncounterManager* EncounterManagerComponent;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UCritterManager* CritterManager;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<AFSDPlayerController*> PlayerControllers;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UFormationsManagerComponent* FormationsManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftClassPtr<AMiningPod> DropPodClass;
+    TSoftClassPtr<ATeamTransport> DropPodClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftClassPtr<AMolly> MuleClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftClassPtr<AMiningPod> DropodEscapeClass;
+    TSoftClassPtr<ATeamTransport> DropodEscapeClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftClassPtr<ABosco> droneClass;
@@ -96,16 +97,16 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ContinueCountdown;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool PreventAllLatejoin;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool PreventLateJoinOnMissionStart;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float PlayerSpawnHeightOffset;
     
-    UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float FriendlyFireGracePeriod;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -120,16 +121,17 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool AllowSpecialEncounters;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UEnemyWaveManager* CachedWaveManager;
     
 public:
-    AFSDGameMode();
+    AFSDGameMode(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void StartGame();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void SpawnMissionCriticalItems();
+    void SpawnMissionCriticalItems(const ECriticalItemPass& pass);
     
 protected:
     UFUNCTION(BlueprintCallable)
@@ -173,6 +175,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void HostAbortMission();
     
+protected:
+    UFUNCTION(BlueprintCallable)
+    void HandlePlayerBanning(AFSDPlayerController* FSDPlayerController);
+    
+public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UEnemyWaveManager* GetWaveManager() const;
     
@@ -181,6 +188,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TSubclassOf<AMolly> GetMuleClass() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetMissionWasAborted();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UEncounterManager* GetEncounterManager() const;
@@ -192,10 +202,10 @@ public:
     FSoftObjectPath GetDropPodEscapePath() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    TSubclassOf<AMiningPod> GetDropPodEscapeClass() const;
+    TSubclassOf<ATeamTransport> GetDropPodEscapeClass() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    TSubclassOf<AMiningPod> GetDropPodClass() const;
+    TSubclassOf<ATeamTransport> GetDropPodClass() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FSoftObjectPath GetDronePath() const;

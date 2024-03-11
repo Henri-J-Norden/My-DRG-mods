@@ -3,19 +3,20 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "PresenceSubSystem.generated.h"
 
-class UDiscordWrapper;
 class UCommunityGoalWrapper;
+class UDiscordWrapper;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UPresenceSubSystem : public UGameInstanceSubsystem {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDiscordWrapper* DiscordWI;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UCommunityGoalWrapper* CommunityWI;
     
     UPresenceSubSystem();
+
 };
 

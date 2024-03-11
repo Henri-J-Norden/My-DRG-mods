@@ -3,16 +3,16 @@
 #include "VanityItem.h"
 #include "ArmorMaterialVanityItem.generated.h"
 
-class UMaterialInstanceDynamic;
-class UMaterialInterface;
-class UDynamicIcon;
+class UArmorMaterialVanityItem;
 class UArmorVanityItem;
+class UDynamicIcon;
 class UMaterialInstance;
 class UMaterialInstanceConstant;
+class UMaterialInstanceDynamic;
+class UMaterialInterface;
 class UObject;
-class UArmorMaterialVanityItem;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UArmorMaterialVanityItem : public UVanityItem {
     GENERATED_BODY()
 public:
@@ -34,6 +34,7 @@ protected:
     
 public:
     UArmorMaterialVanityItem();
+
     UFUNCTION(BlueprintCallable)
     static UMaterialInstanceConstant* SetArmorMaterialToTwoSided(UMaterialInstance* Parent);
     

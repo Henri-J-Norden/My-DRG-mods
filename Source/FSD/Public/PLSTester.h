@@ -1,21 +1,27 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Templates/SubclassOf.h"
 #include "PLSTester.generated.h"
 
-class UMissionDuration;
-class UMissionWarning;
-class UMissionComplexity;
-class UMissionMutator;
 class UBiome;
-class UMissionTemplate;
 class UDifficultySetting;
+class UMissionComplexity;
+class UMissionDuration;
+class UMissionMutator;
+class UMissionTemplate;
+class UMissionWarning;
+class UObjective;
+class USpecialEvent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class APLSTester : public AActor {
     GENERATED_BODY()
 public:
 protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FString FullSeedString;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 PLSSeed;
     
@@ -29,6 +35,9 @@ protected:
     int32 GlobalMissionIndex;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool OptOutOfSeasonContent;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMissionComplexity* limitComplexity;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -39,6 +48,12 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UMissionWarning*> Warnings;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<TSubclassOf<UObjective>> SecondaryObjectives;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USpecialEvent* SpecialEvent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UBiome* Biome;
@@ -59,6 +74,7 @@ protected:
     FText CustomMissionName;
     
 public:
-    APLSTester();
+    APLSTester(const FObjectInitializer& ObjectInitializer);
+
 };
 

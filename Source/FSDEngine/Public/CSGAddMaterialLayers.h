@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGSingleChildBase.h"
 #include "CSGAddMaterialLayersProperties.h"
+#include "CSGSingleChildBase.h"
 #include "CSGAddMaterialLayers.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCSGAddMaterialLayers : public UCSGSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FCSGAddMaterialLayersProperties Properties;
     
     UCSGAddMaterialLayers();
+
 };
 

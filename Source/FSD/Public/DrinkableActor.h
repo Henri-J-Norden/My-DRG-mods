@@ -3,10 +3,10 @@
 #include "GameFramework/Actor.h"
 #include "DrinkableActor.generated.h"
 
-class UDrinkableDataAsset;
 class APlayerCharacter;
+class UDrinkableDataAsset;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class ADrinkableActor : public AActor {
     GENERATED_BODY()
 public:
@@ -15,9 +15,10 @@ protected:
     UDrinkableDataAsset* DrinkableData;
     
 public:
-    ADrinkableActor();
+    ADrinkableActor(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void Pickup(APlayerCharacter* byCharacter);
     

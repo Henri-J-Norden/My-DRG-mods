@@ -3,12 +3,12 @@
 #include "Objective.h"
 #include "KillEnemiesObjective.generated.h"
 
-class UEnemyDescriptor;
-class UDebrisPositioning;
 class APawn;
+class UDebrisPositioning;
+class UEnemyDescriptor;
 class UHealthComponentBase;
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UKillEnemiesObjective : public UObjective {
     GENERATED_BODY()
 public:
@@ -25,16 +25,17 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UEnemyDescriptor* EnemyTarget;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_EnemiesKilled, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_EnemiesKilled, meta=(AllowPrivateAccess=true))
     int32 EnemiesKilled;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_EnemiesToKill, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_EnemiesToKill, meta=(AllowPrivateAccess=true))
     int32 EnemiesToKill;
     
 public:
-    UKillEnemiesObjective();
+    UKillEnemiesObjective(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure=false)
     void RegisterTargetSpawned(APawn* Target) const;
     

@@ -5,7 +5,7 @@
 
 class UAnimMontage;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UProjectileAttackComponent : public UProjectileAttackBaseComponent {
     GENERATED_BODY()
 public:
@@ -14,7 +14,8 @@ protected:
     bool ManualyComplete;
     
 public:
-    UProjectileAttackComponent();
+    UProjectileAttackComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void AddAttackMontage(UAnimMontage* attackMontage);

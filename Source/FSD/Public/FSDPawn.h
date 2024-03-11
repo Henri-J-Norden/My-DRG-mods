@@ -1,46 +1,46 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "BoolDelegateDelegate.h"
-#include "GameFramework/Pawn.h"
-#include "GameplayTagAssetInterface.h"
-#include "Targetable.h"
-#include "ProjectileSpawner.h"
-#include "GameplayTagContainer.h"
-#include "GameplayTagContainer.h"
-#include "EPawnAttitude.h"
 #include "UObject/NoExportTypes.h"
+#include "GameFramework/Pawn.h"
+#include "GameplayTagContainer.h"
+#include "GameplayTagAssetInterface.h"
+#include "GameplayTagContainer.h"
+#include "BoolDelegateDelegate.h"
+#include "EPawnAttitude.h"
+#include "ProjectileSpawner.h"
+#include "Targetable.h"
 #include "FSDPawn.generated.h"
 
-class AFSDAIController;
-class UEnemyTemperatureComponent;
-class UStatusEffectsComponent;
-class UHealthComponentBase;
-class UEnemyDescriptor;
-class UPawnStatsComponent;
 class AActor;
+class AFSDAIController;
+class UEnemyDescriptor;
+class UEnemyTemperatureComponent;
+class UHealthComponentBase;
+class UPawnStatsComponent;
 class USkeletalMeshComponent;
+class UStatusEffectsComponent;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AFSDPawn : public APawn, public IGameplayTagAssetInterface, public ITargetable, public IProjectileSpawner {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FBoolDelegate OnFrozenEvent;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UStatusEffectsComponent* StatusEffects;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UEnemyTemperatureComponent* Temperature;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTagContainer GameplayTags;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UEnemyDescriptor* SpawnedFromDescriptor;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_IsFrozen, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IsFrozen, meta=(AllowPrivateAccess=true))
     bool IsFrozen;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -49,16 +49,17 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool FleeInsteadOfBackingOff;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool IsFleeing;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UPawnStatsComponent* PawnStatsInstance;
     
 public:
-    AFSDPawn();
+    AFSDPawn(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void UnFreeze();
     
@@ -94,7 +95,7 @@ protected:
     void OnFirstHostileDamageTaken();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void OnEnemyScaled(float newScale);
+    void OnEnemyScaled(float NewScale);
     
     UFUNCTION(BlueprintCallable)
     void OnArmorShattered(const FVector& Location);
@@ -108,6 +109,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void MakeElite();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsElite() const;
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure)
     bool GetIsAlerted() const;
@@ -130,7 +134,7 @@ public:
     UFUNCTION(BlueprintCallable)
     void BackOffFromLocation(const FVector& fromLocation);
     
-    
+
     // Fix for true pure virtual functions not being implemented
     UFUNCTION(BlueprintCallable)
     bool HasMatchingGameplayTag(FGameplayTag TagToCheck) const override PURE_VIRTUAL(HasMatchingGameplayTag, return false;);

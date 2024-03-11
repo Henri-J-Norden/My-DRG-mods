@@ -2,12 +2,12 @@
 #include "CoreMinimal.h"
 #include "EGameOwnerStatus.generated.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum class EGameOwnerStatus : uint8 {
     Supporter,
     ContentCreator,
     Developer,
     Modder,
-    EGameOwnerStatus_Max = 0xFF,
+    EGameOwnerStatus_Max = 255 UMETA(Hidden),
 };
 

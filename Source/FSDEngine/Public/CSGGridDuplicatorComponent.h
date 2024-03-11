@@ -4,13 +4,14 @@
 #include "CSGGridDuplicatorProperties.h"
 #include "CSGGridDuplicatorComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UCSGGridDuplicatorComponent : public UCSGBaseComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FCSGGridDuplicatorProperties Properties;
     
-    UCSGGridDuplicatorComponent();
+    UCSGGridDuplicatorComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

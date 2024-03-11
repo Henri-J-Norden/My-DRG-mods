@@ -3,10 +3,11 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "SoundClassManager.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class USoundClassManager : public UGameInstanceSubsystem {
     GENERATED_BODY()
 public:
     USoundClassManager();
+
 };
 

@@ -4,7 +4,7 @@
 #include "VoronoiProperties.h"
 #include "CSGVoronoi.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGVoronoi : public USimpleMeshWithCachedTree {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FVoronoiProperties Properties;
     
     UCSGVoronoi();
+
 };
 

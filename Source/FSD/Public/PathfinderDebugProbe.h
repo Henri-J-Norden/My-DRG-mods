@@ -3,13 +3,14 @@
 #include "GameFramework/Actor.h"
 #include "PathfinderDebugProbe.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class APathfinderDebugProbe : public AActor {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     AActor* Dest;
     
-    APathfinderDebugProbe();
+    APathfinderDebugProbe(const FObjectInitializer& ObjectInitializer);
+
 };
 

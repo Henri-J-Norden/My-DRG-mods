@@ -7,7 +7,7 @@ class UDamageComponent;
 class UNiagaraSystem;
 class USoundCue;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UEnemyDetonationSetting : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -32,5 +32,6 @@ protected:
     
 public:
     UEnemyDetonationSetting();
+
 };
 

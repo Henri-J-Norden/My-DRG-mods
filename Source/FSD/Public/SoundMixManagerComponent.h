@@ -4,15 +4,16 @@
 #include "SoundMixManagerItem.h"
 #include "SoundMixManagerComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USoundMixManagerComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FSoundMixManagerItem> SoundMixes;
     
 public:
-    USoundMixManagerComponent();
+    USoundMixManagerComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

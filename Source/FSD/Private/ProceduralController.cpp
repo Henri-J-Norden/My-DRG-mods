@@ -1,9 +1,9 @@
 #include "ProceduralController.h"
 
-void UProceduralController::Server_RequestTunnelData_Implementation() {
+UProceduralController::UProceduralController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
-bool UProceduralController::Server_RequestTunnelData_Validate() {
-    return true;
+
+void UProceduralController::Server_RequestTunnelData_Implementation() {
 }
 
 
@@ -36,6 +36,4 @@ void UProceduralController::Client_ReceivePLSInfluencers_Implementation(const FG
 void UProceduralController::Client_ReceivePLSDebris_Implementation(const TArray<FGeneratedDebrisItem>& levelDebris) {
 }
 
-UProceduralController::UProceduralController() {
-}
 

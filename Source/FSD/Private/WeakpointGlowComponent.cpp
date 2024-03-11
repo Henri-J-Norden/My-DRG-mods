@@ -1,10 +1,13 @@
 #include "WeakpointGlowComponent.h"
 
-class USkeletalMeshComponent;
-class UHealthComponentBase;
-class UCurveFloat;
-class UMeshComponent;
-class UFSDPhysicalMaterial;
+UWeakpointGlowComponent::UWeakpointGlowComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->EmissiveParam = TEXT("Dynamic Emissive Multiplier");
+    this->CurveMultiplier = 1.00f;
+    this->Mode = EWeakpointGlowMode::Set;
+    this->WeakPointMaterial = NULL;
+    this->AddFirstChannelAutomatically = true;
+    this->ReplaceMatIndex = 0;
+}
 
 bool UWeakpointGlowComponent::StopLoopingGlow(int32 aGlowID, bool aFade) {
     return false;
@@ -32,11 +35,4 @@ void UWeakpointGlowComponent::All_ShowWeakPointHit_Implementation(uint8 Channel)
 void UWeakpointGlowComponent::AddWeakpointGlow(bool loopIndefinitely, float LoopTime, UCurveFloat* GrowCurve, UCurveFloat* FadeCurve, int32 UniqueId, int32 Channel) {
 }
 
-UWeakpointGlowComponent::UWeakpointGlowComponent() {
-    this->EmissiveParam = TEXT("Dynamic Emissive Multiplier");
-    this->CurveMultiplier = 1.00f;
-    this->WeakPointMaterial = NULL;
-    this->AddFirstChannelAutomatically = true;
-    this->ReplaceMatIndex = 0;
-}
 

@@ -4,7 +4,7 @@
 #include "StatusEffectItem.h"
 #include "DotEnemyArmorStatusEffectItem.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UDotEnemyArmorStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UDotEnemyArmorStatusEffectItem();
+
 };
 

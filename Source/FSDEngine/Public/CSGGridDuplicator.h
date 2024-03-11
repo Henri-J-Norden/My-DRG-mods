@@ -4,7 +4,7 @@
 #include "CSGGridDuplicatorProperties.h"
 #include "CSGGridDuplicator.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCSGGridDuplicator : public UCSGDuplicateSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FCSGGridDuplicatorProperties Properties;
     
     UCSGGridDuplicator();
+
 };
 

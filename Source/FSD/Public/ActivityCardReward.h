@@ -5,7 +5,7 @@
 
 class UGameActivityType;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UActivityCardReward : public UReward {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UActivityCardReward();
+
 };
 

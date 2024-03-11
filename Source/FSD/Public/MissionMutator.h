@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Engine/DataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "MissionMutator.generated.h"
 
 class UMutator;
@@ -9,7 +9,7 @@ class UObjective;
 class URunningMissionBP;
 class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UMissionMutator : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -34,5 +34,6 @@ protected:
     
 public:
     UMissionMutator();
+
 };
 

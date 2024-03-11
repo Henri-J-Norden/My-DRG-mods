@@ -5,16 +5,17 @@
 
 class UTexture2D;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UTutorialWidget : public UFSDUserWidget {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     float RemainingVisibleTime;
     
 public:
     UTutorialWidget();
+
     UFUNCTION(BlueprintCallable)
     void Show(const FText& Text, const FText& Title, const FText& TaskText, UTexture2D* Image, float Duration);
     

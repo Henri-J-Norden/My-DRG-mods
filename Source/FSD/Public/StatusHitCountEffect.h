@@ -6,7 +6,7 @@
 
 class UStatusEffect;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class UStatusHitCountEffect : public UWeaponHitCountEffect {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UStatusHitCountEffect();
+
 };
 

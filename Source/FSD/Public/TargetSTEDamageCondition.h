@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "DamageCondition.h"
+#include "Templates/SubclassOf.h"
 #include "TargetSTEDamageCondition.generated.h"
 
 class UStatusEffect;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTargetSTEDamageCondition : public UDamageCondition {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ protected:
     
 public:
     UTargetSTEDamageCondition();
+
 };
 

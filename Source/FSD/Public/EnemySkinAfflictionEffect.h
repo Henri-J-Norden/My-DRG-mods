@@ -5,7 +5,7 @@
 
 class UMaterialInterface;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UEnemySkinAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UEnemySkinAfflictionEffect();
+
 };
 

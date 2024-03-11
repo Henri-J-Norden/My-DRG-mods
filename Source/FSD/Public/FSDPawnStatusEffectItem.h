@@ -3,7 +3,7 @@
 #include "StatusEffectItem.h"
 #include "FSDPawnStatusEffectItem.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UFSDPawnStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ protected:
     
 public:
     UFSDPawnStatusEffectItem();
+
 };
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTDecorator.h"
-#include "UObject/NoExportTypes.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "BTDecorator_CheckObstruction.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTDecorator_CheckObstruction : public UBTDecorator {
     GENERATED_BODY()
 public:
@@ -25,5 +25,6 @@ public:
     FBlackboardKeySelector TargetKey;
     
     UBTDecorator_CheckObstruction();
+
 };
 

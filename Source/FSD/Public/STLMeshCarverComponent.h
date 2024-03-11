@@ -7,7 +7,7 @@
 class USTLMeshCarver;
 class UTerrainMaterialBase;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USTLMeshCarverComponent : public UPrimitiveComponent {
     GENERATED_BODY()
 public:
@@ -23,6 +23,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool PreviewEnabled;
     
-    USTLMeshCarverComponent();
+    USTLMeshCarverComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Item.h"
 #include "ItemLoadoutAnimations.h"
+#include "Templates/SubclassOf.h"
 #include "LoadoutItemProxy.generated.h"
 
-class UItemCharacterAnimationSet;
 class AActor;
+class UItemCharacterAnimationSet;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ALoadoutItemProxy : public AItem {
     GENERATED_BODY()
 public:
@@ -20,7 +20,8 @@ protected:
     FItemLoadoutAnimations LoadoutAnimations;
     
 public:
-    ALoadoutItemProxy();
+    ALoadoutItemProxy(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     static TSubclassOf<AItem> GetLoadoutItemFromClass(TSubclassOf<AActor> ActorClass);
     

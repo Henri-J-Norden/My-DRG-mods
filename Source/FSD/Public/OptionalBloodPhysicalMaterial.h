@@ -5,7 +5,7 @@
 
 class UParticleSystem;
 
-UCLASS(CollapseCategories)
+UCLASS(Blueprintable, CollapseCategories)
 class UOptionalBloodPhysicalMaterial : public UFSDPhysicalMaterial {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UOptionalBloodPhysicalMaterial();
+
 };
 

@@ -6,7 +6,7 @@
 
 class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UMinersManualData : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -16,6 +16,7 @@ protected:
     
 public:
     UMinersManualData();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     void GetText(FText& Headline, FText& richText);
     

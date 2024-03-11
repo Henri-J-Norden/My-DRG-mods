@@ -1,8 +1,9 @@
 #include "SkinnableComponent.h"
 
-class AFSDPlayerState;
-class UItemID;
-class UItemSkin;
+USkinnableComponent::USkinnableComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->EquippedSkinColor = NULL;
+    this->EquippedSkinMesh = NULL;
+}
 
 void USkinnableComponent::UpdateSkin(AFSDPlayerState* Player) {
 }
@@ -10,7 +11,7 @@ void USkinnableComponent::UpdateSkin(AFSDPlayerState* Player) {
 void USkinnableComponent::OnLoadoutChanged() {
 }
 
-TArray<UItemSkin*> USkinnableComponent::GetSkinsForItem(UItemID* ItemID, EItemSkinType SkinType) {
+TArray<UItemSkin*> USkinnableComponent::GetSkinsForItem(UItemID* ItemID, EItemSkinType skinType) {
     return TArray<UItemSkin*>();
 }
 
@@ -22,7 +23,7 @@ UItemSkin* USkinnableComponent::GetEquippedSkinColor(UItemID* ItemID, AFSDPlayer
     return NULL;
 }
 
-UItemSkin* USkinnableComponent::GetEquippedSkin(UItemID* ItemID, EItemSkinType SkinType, AFSDPlayerState* Player) {
+UItemSkin* USkinnableComponent::GetEquippedSkin(UItemID* ItemID, EItemSkinType skinType, AFSDPlayerState* Player) {
     return NULL;
 }
 
@@ -41,8 +42,4 @@ UItemSkin* USkinnableComponent::GetBaseColorSkinForMeshSkin(UItemID* ItemID, UIt
 void USkinnableComponent::EquipSkin(UItemSkin* Skin, UItemID* ItemID, AFSDPlayerState* Player) {
 }
 
-USkinnableComponent::USkinnableComponent() {
-    this->EquippedSkinColor = NULL;
-    this->EquippedSkinMesh = NULL;
-}
 

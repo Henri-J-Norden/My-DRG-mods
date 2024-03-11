@@ -6,16 +6,17 @@
 
 class UGemTracker;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UGemProximityTracker : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, Export, Transient, meta=(AllowPrivateAccess=true))
     TArray<TWeakObjectPtr<UGemTracker>> Trackers;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FTrackPositionList> TrackerLists;
     
-    UGemProximityTracker();
+    UGemProximityTracker(const FObjectInitializer& ObjectInitializer);
+
 };
 

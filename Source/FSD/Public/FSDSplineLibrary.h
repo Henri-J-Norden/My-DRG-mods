@@ -1,31 +1,32 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/EngineTypes.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "Curve2DAppearance.h"
-#include "UObject/NoExportTypes.h"
 #include "Components/SplineComponent.h"
-#include "UObject/NoExportTypes.h"
 #include "Engine/EngineTypes.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
-#include "Blueprint/UserWidget.h"
-#include "EPreciousMaterialOptions.h"
+#include "Engine/EngineTypes.h"
 #include "ECarveFilterType.h"
+#include "EPreciousMaterialOptions.h"
+#include "Blueprint/UserWidget.h"
+#include "Curve2DAppearance.h"
 #include "FSDSplineLibrary.generated.h"
 
-class USplineComponent;
 class AActor;
 class UObject;
-class UTerrainMaterial;
+class USplineComponent;
 class USplineMeshComponent;
+class UTerrainMaterial;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UFSDSplineLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UFSDSplineLibrary();
+
     UFUNCTION(BlueprintCallable)
     static bool SplineComponentSphereTrace(USplineComponent*& SplineComponent, float Radius, TEnumAsByte<ETraceTypeQuery> TraceType, float StepSize, TArray<AActor*> IgnoreActors, FHitResult& OutHitResult, FVector Offset);
     
@@ -65,7 +66,7 @@ public:
     UFUNCTION(BlueprintCallable)
     static void ConvertSplineDistanceToInputKey(UPARAM(Ref) USplineComponent*& SplineComponent, USplineComponent* OptionalTargetSpline);
     
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static bool CarveAroundSplinePoints(UObject* WorldContext, const FVector& InStartLocation, const FVector& InStartTangent, const FVector& InEndLocation, const FVector& InEndTangent, float InRadius, UTerrainMaterial* InTerrainMaterial, ECarveFilterType InCarveFilter, EPreciousMaterialOptions InPrecious);
     
     UFUNCTION(BlueprintCallable)

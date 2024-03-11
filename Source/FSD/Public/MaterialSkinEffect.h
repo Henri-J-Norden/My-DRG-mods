@@ -5,7 +5,7 @@
 
 class UMaterialInterface;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UMaterialSkinEffect : public USkinEffect {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UMaterialSkinEffect();
+
 };
 

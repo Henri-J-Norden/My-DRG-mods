@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "CellId.generated.h"
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FSDENGINE_API FCellId {
     GENERATED_BODY()
 public:

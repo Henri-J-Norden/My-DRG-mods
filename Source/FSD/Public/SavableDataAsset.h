@@ -7,7 +7,7 @@
 
 class UBuildRestriction;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class USavableDataAsset : public UDataAsset, public ISaveGameIDInterface {
     GENERATED_BODY()
 public:
@@ -23,10 +23,11 @@ protected:
     
 public:
     USavableDataAsset();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FGuid GetSavegameID() const;
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

@@ -7,7 +7,9 @@ UHeadVanityItem::UHeadVanityItem() {
     this->HideMoustache = false;
     this->HideBeard = false;
     this->HideAll = false;
+    this->RequiresSlimArmor = false;
     this->HideHead = false;
     this->HeadMesh = ECharacterHeadMesh::Full;
 }
+
 

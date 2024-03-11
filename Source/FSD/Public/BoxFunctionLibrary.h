@@ -1,15 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
 #include "BoxFunctionLibrary.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UBoxFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UBoxFunctionLibrary();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FBox CreateBoxAt(FVector Location, FVector Size);
     

@@ -5,13 +5,14 @@
 
 class UPillarGenerationComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class APillarGenerationItem : public AGenerationItem {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPillarGenerationComponent* PillarComponent;
     
-    APillarGenerationItem();
+    APillarGenerationItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,10 +1,10 @@
 #include "StatusEffectsComponent.h"
 #include "Templates/SubclassOf.h"
 
-class UStatusEffect;
-class AActor;
-class UHealthComponentBase;
-class UObject;
+UStatusEffectsComponent::UStatusEffectsComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->OwnerHealth = NULL;
+    this->IgnoreAll = false;
+}
 
 bool UStatusEffectsComponent::TryPushActiveStatusEffect(TSubclassOf<UStatusEffect> StatusEffect, AActor* Target, AActor* Owner) {
     return false;
@@ -20,6 +20,9 @@ bool UStatusEffectsComponent::PushActiveStatusEffectInstance(UStatusEffect* Stat
 
 bool UStatusEffectsComponent::PushActiveStatusEffect(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner) {
     return false;
+}
+
+void UStatusEffectsComponent::PopAllActiveStatusEffectsOfType(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner) {
 }
 
 void UStatusEffectsComponent::PopAllActiveStatusEffects(AActor* Owner) {
@@ -40,12 +43,16 @@ bool UStatusEffectsComponent::HasActiveEffect(TSubclassOf<UStatusEffect> StatusE
     return false;
 }
 
+int32 UStatusEffectsComponent::GetStackAmount(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner) const {
+    return 0;
+}
+
+int32 UStatusEffectsComponent::GetFullStackAmount(TSubclassOf<UStatusEffect> StatusEffect) const {
+    return 0;
+}
+
 UStatusEffect* UStatusEffectsComponent::CreateStatusEffectInstance(TSubclassOf<UStatusEffect> StatusEffect, UObject* Owner) {
     return NULL;
 }
 
-UStatusEffectsComponent::UStatusEffectsComponent() {
-    this->OwnerHealth = NULL;
-    this->IgnoreAll = false;
-}
 

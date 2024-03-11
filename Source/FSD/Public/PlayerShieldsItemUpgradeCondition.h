@@ -4,7 +4,7 @@
 #include "ItemUpgradeCondition.h"
 #include "PlayerShieldsItemUpgradeCondition.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UPlayerShieldsItemUpgradeCondition : public UItemUpgradeCondition {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UPlayerShieldsItemUpgradeCondition();
+
 };
 

@@ -4,7 +4,7 @@
 #include "DanceItem.h"
 #include "DanceSettings.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UDanceSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     TArray<FDanceItem> DanceMoves;
     
     UDanceSettings();
+
 };
 

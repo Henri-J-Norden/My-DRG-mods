@@ -6,7 +6,7 @@
 
 class UDamageImpulse;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UDotStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UDotStatusEffectItem();
+
 };
 

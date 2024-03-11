@@ -1,27 +1,29 @@
 #include "FSDPlayerController.h"
+#include "FSDCheatManager.h"
+#include "FSDWidgetEffectsComponent.h"
+#include "PerkUsageComponent.h"
 #include "Templates/SubclassOf.h"
 #include "TerrainLatejoinComponent.h"
-#include "PerkUsageComponent.h"
-#include "FSDWidgetEffectsComponent.h"
 
-class UTutorialContentWidget;
-class APlayerCharacter;
-class UTexture2D;
-class UTemporaryBuff;
-class AActor;
-class UFSDAchievement;
-class AFSDPlayerState;
-class UPlayerCharacterID;
-class USoundCue;
-class UTreasureRewarder;
-class UVanityItem;
-class UVictoryPose;
-class UItemSkin;
-class UItemID;
-class UPickaxePart;
+AFSDPlayerController::AFSDPlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->CheatClass = UFSDCheatManager::StaticClass();
+    this->ClickEventKeys.AddDefaulted(1);
+    this->PerkUsageComponent = CreateDefaultSubobject<UPerkUsageComponent>(TEXT("PerkUsageCompent"));
+    this->LateJoinComponent = CreateDefaultSubobject<UTerrainLatejoinComponent>(TEXT("TerrainLateJoin"));
+    this->IsOnSpaceRig = false;
+    this->bReceivedEndLevel = false;
+    this->ServerTravelDone = true;
+    this->WidgetEffects = CreateDefaultSubobject<UFSDWidgetEffectsComponent>(TEXT("WidgetEffects"));
+    this->SpacerigSpawnType = ESpacerigStartType::PlayerHub;
+    this->bDetectGravityChanges = false;
+}
 
 void AFSDPlayerController::ToggleVoiceOn(bool Enabled) {
 }
+
+void AFSDPlayerController::SpawnHUDLocal(TSubclassOf<AHUD> hudClass) {
+}
+
 
 void AFSDPlayerController::ShowTutorialWidget(TSubclassOf<UTutorialContentWidget> TutorialWidget, bool ignoreQueue) {
 }
@@ -37,35 +39,23 @@ void AFSDPlayerController::SetAchievementProgressFromServer_Implementation(UFSDA
 
 void AFSDPlayerController::ServerSetUserHoldToRun_Implementation(bool Value) {
 }
-bool AFSDPlayerController::ServerSetUserHoldToRun_Validate(bool Value) {
-    return true;
-}
 
 void AFSDPlayerController::Server_TravelDone_Implementation() {
 }
 
-void AFSDPlayerController::Server_SetLateJoinDone_Implementation() {
+void AFSDPlayerController::Server_TakeDamageFrom_Implementation(UDamageComponent* Damage, FVector Location) {
 }
-bool AFSDPlayerController::Server_SetLateJoinDone_Validate() {
-    return true;
+
+void AFSDPlayerController::Server_SetLateJoinDone_Implementation() {
 }
 
 void AFSDPlayerController::Server_SetGenerationStatus_Implementation(const FString& Status, float Fraction) {
 }
-bool AFSDPlayerController::Server_SetGenerationStatus_Validate(const FString& Status, float Fraction) {
-    return true;
-}
 
 void AFSDPlayerController::Server_SetGenerationFraction_Implementation(float Fraction) {
 }
-bool AFSDPlayerController::Server_SetGenerationFraction_Validate(float Fraction) {
-    return true;
-}
 
 void AFSDPlayerController::Server_SetGenerationDone_Implementation() {
-}
-bool AFSDPlayerController::Server_SetGenerationDone_Validate() {
-    return true;
 }
 
 void AFSDPlayerController::Server_SetExtraEndScreenTime_Implementation(float extraTime) {
@@ -73,29 +63,17 @@ void AFSDPlayerController::Server_SetExtraEndScreenTime_Implementation(float ext
 
 void AFSDPlayerController::Server_SetControllerReady_Implementation() {
 }
-bool AFSDPlayerController::Server_SetControllerReady_Validate() {
-    return true;
-}
 
 void AFSDPlayerController::Server_ResetHUD_Implementation() {
 }
-bool AFSDPlayerController::Server_ResetHUD_Validate() {
-    return true;
+
+void AFSDPlayerController::Server_Relay_SetArmorIndexDestroyed_Implementation(USimpleArmorDamageComponent* ArmorComponent, int32 Index, EArmorDamageType DamageType) {
 }
 
 void AFSDPlayerController::Server_NewMessage_Implementation(const FString& Sender, const FString& Text, EChatSenderType SenderType) {
 }
-bool AFSDPlayerController::Server_NewMessage_Validate(const FString& Sender, const FString& Text, EChatSenderType SenderType) {
-    return true;
-}
 
 void AFSDPlayerController::Server_DrawProjectileDebugPath_Implementation(bool bDraw) {
-}
-
-void AFSDPlayerController::Server_ActivateTemporaryBuff_Implementation(UTemporaryBuff* buff) {
-}
-bool AFSDPlayerController::Server_ActivateTemporaryBuff_Validate(UTemporaryBuff* buff) {
-    return true;
 }
 
 void AFSDPlayerController::SendLevelUpStatistics(const int32 currentRank) {
@@ -106,9 +84,6 @@ void AFSDPlayerController::SendLevelUpStatistics(const int32 currentRank) {
 
 
 void AFSDPlayerController::ReadyToContinueFromEndScreen_Implementation() {
-}
-bool AFSDPlayerController::ReadyToContinueFromEndScreen_Validate() {
-    return true;
 }
 
 void AFSDPlayerController::OnSaveGamePlayerProgressChanged(int32 Rank, int32 Stars) {
@@ -128,10 +103,6 @@ void AFSDPlayerController::OnPlayerStateSelectedCharacterChanged(TSubclassOf<APl
 void AFSDPlayerController::HideTutorialHint(bool watched) {
 }
 
-bool AFSDPlayerController::HasPendingRewards() const {
-    return false;
-}
-
 bool AFSDPlayerController::GetUseToggleTerrainScanner() {
     return false;
 }
@@ -146,10 +117,6 @@ bool AFSDPlayerController::GetUseHoldToRun() {
 
 AActor* AFSDPlayerController::GetPlayerStart() {
     return NULL;
-}
-
-bool AFSDPlayerController::GetPendingRewards(FPendingRewardsStats& OutStats, FPendingRewards& OutRewards) const {
-    return false;
 }
 
 AFSDPlayerState* AFSDPlayerController::GetFSDPlayerState() const {
@@ -184,17 +151,4 @@ void AFSDPlayerController::Client_CollectTreasureSkin_Implementation(UTreasureRe
 void AFSDPlayerController::Client_CollectPickaxePart_Implementation(const UTreasureRewarder* rewarder, UPickaxePart* targetPart) {
 }
 
-void AFSDPlayerController::ApplyPendingRewards() {
-}
-
-AFSDPlayerController::AFSDPlayerController() {
-    this->PerkUsageComponent = CreateDefaultSubobject<UPerkUsageComponent>(TEXT("PerkUsageCompent"));
-    this->LateJoinComponent = CreateDefaultSubobject<UTerrainLatejoinComponent>(TEXT("TerrainLateJoin"));
-    this->IsOnSpaceRig = false;
-    this->bReceivedEndLevel = false;
-    this->ServerTravelDone = true;
-    this->WidgetEffects = CreateDefaultSubobject<UFSDWidgetEffectsComponent>(TEXT("WidgetEffects"));
-    this->SpacerigSpawnType = ESpacerigStartType::PlayerHub;
-    this->bDetectGravityChanges = false;
-}
 

@@ -1,8 +1,10 @@
 #include "WindowManager.h"
 #include "Templates/SubclassOf.h"
 
-class UUserWidget;
-class UWindowWidget;
+UWindowManager::UWindowManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->AudioWindowOpen = NULL;
+    this->ResolutionDownscaleActive = false;
+}
 
 void UWindowManager::SetSingletonWidgetVisibility(TSubclassOf<UUserWidget> WidgetClass, ESlateVisibility Visibility) {
 }
@@ -10,14 +12,14 @@ void UWindowManager::SetSingletonWidgetVisibility(TSubclassOf<UUserWidget> Widge
 void UWindowManager::ReplaceWindow(UWindowWidget* Window) {
 }
 
-UWindowWidget* UWindowManager::OpenWindowFromClass(TSubclassOf<UWindowWidget> windowClass, int32 ZOrder, bool ShowCursor) {
+UWindowWidget* UWindowManager::OpenWindowFromClass(TSubclassOf<UWindowWidget> WindowClass, int32 ZOrder, bool ShowCursor) {
     return NULL;
 }
 
 void UWindowManager::OpenWindow(UWindowWidget* Window, bool PlayAudio, bool ShowCursor) {
 }
 
-UWindowWidget* UWindowManager::OpenSingleUseWindow(TSubclassOf<UWindowWidget> windowClass, int32 ZOrder) {
+UWindowWidget* UWindowManager::OpenSingleUseWindow(TSubclassOf<UWindowWidget> WindowClass, int32 ZOrder) {
     return NULL;
 }
 
@@ -53,8 +55,4 @@ bool UWindowManager::AnyWindowsOpen() const {
     return false;
 }
 
-UWindowManager::UWindowManager() {
-    this->AudioWindowOpen = NULL;
-    this->ResolutionDownscaleActive = false;
-}
 

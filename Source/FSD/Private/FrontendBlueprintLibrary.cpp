@@ -1,5 +1,8 @@
 #include "FrontendBlueprintLibrary.h"
 
+UFrontendBlueprintLibrary::UFrontendBlueprintLibrary() {
+}
+
 void UFrontendBlueprintLibrary::OpenURLInExternalBrowser(const FString& URL) {
 }
 
@@ -7,10 +10,18 @@ bool UFrontendBlueprintLibrary::IsShippingBuild() {
     return false;
 }
 
+void UFrontendBlueprintLibrary::GetStringFromClipboard(FString& fromClipboard) {
+}
+
+bool UFrontendBlueprintLibrary::FSDTargetPlatformIsXSX() {
+    return false;
+}
+
 EFSDTargetPlatform UFrontendBlueprintLibrary::FSDTargetPlatform() {
     return EFSDTargetPlatform::Steam;
 }
 
-UFrontendBlueprintLibrary::UFrontendBlueprintLibrary() {
+void UFrontendBlueprintLibrary::CopyStringToClipboard(const FString& toClipboard) {
 }
+
 

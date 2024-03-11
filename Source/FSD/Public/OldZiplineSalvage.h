@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "GameFramework/Actor.h"
 #include "UObject/NoExportTypes.h"
+#include "GameFramework/Actor.h"
+#include "Templates/SubclassOf.h"
 #include "OldZiplineSalvage.generated.h"
 
 class AZipLineProjectile;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API AOldZiplineSalvage : public AActor {
     GENERATED_BODY()
 public:
@@ -19,7 +19,8 @@ protected:
     FVector RelativeDestinationLocation;
     
 public:
-    AOldZiplineSalvage();
+    AOldZiplineSalvage(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnMatchStarted();

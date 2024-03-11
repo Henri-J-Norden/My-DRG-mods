@@ -6,11 +6,12 @@
 class UMaterialInstanceDynamic;
 class UMaterialInterface;
 
-UCLASS(Abstract, BlueprintType, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class FSD_API UDynamicIcon : public UObject {
     GENERATED_BODY()
 public:
     UDynamicIcon();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UMaterialInterface* GetIconMaterial() const;
     

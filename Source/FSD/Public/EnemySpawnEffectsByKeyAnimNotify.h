@@ -5,7 +5,7 @@
 
 class UEnemySpawnEffectsKey;
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UEnemySpawnEffectsByKeyAnimNotify : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ protected:
     
 public:
     UEnemySpawnEffectsByKeyAnimNotify();
+
 };
 

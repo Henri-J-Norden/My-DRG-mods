@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Engine/DataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "VictoryPoseSettings.generated.h"
 
-class UVictoryPose;
-class UTexture2D;
-class UActorComponent;
 class AActor;
+class UActorComponent;
+class UTexture2D;
+class UVictoryPose;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UVictoryPoseSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -17,7 +17,7 @@ public:
     UTexture2D* GenericVictoryPoseIcon;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UVictoryPose*> LoadedVictoryPoses;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -31,6 +31,7 @@ protected:
     
 public:
     UVictoryPoseSettings();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<UVictoryPose*> GetVictoryPoses() const;
     

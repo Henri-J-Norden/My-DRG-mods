@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/DataAsset.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataAsset.h"
 #include "EventRewardType.generated.h"
 
 class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UEventRewardType : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -29,5 +29,6 @@ public:
     FLinearColor BackgroundTint;
     
     UEventRewardType();
+
 };
 

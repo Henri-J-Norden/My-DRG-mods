@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/DataAsset.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataAsset.h"
 #include "LayeredNoise.h"
 #include "FloodFillSettings.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UFloodFillSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -37,5 +37,6 @@ public:
     TArray<FLayeredNoise> NoiseLayers;
     
     UFloodFillSettings();
+
 };
 

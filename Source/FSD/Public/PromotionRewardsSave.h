@@ -7,8 +7,11 @@ USTRUCT(BlueprintType)
 struct FPromotionRewardsSave {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 PendingPromotionGifts;
+    
 protected:
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSet<FGuid> ClaimedRewards;
     
 public:

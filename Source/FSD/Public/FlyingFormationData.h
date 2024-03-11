@@ -3,7 +3,7 @@
 #include "FormationData.h"
 #include "FlyingFormationData.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UFlyingFormationData : public UFormationData {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UFlyingFormationData();
+
 };
 

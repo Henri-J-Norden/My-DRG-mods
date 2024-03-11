@@ -3,22 +3,23 @@
 #include "GameFramework/Actor.h"
 #include "FSDReverbVolume.generated.h"
 
-class USphereComponent;
 class UReverbEffect;
+class USphereComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFSDReverbVolume : public AActor {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USphereComponent* Collision;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UReverbEffect* Reverb;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     float Priority;
     
-    AFSDReverbVolume();
+    AFSDReverbVolume(const FObjectInitializer& ObjectInitializer);
+
 };
 

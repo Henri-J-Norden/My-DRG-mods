@@ -5,15 +5,16 @@
 
 class ASpaceRigBar;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UBarMenuWidget : public UWindowWidget {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<ASpaceRigBar> SpaceRigBar;
     
 public:
     UBarMenuWidget();
+
 };
 

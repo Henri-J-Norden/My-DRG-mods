@@ -1,13 +1,14 @@
 #include "PerkAsset.h"
 #include "Templates/SubclassOf.h"
 
-class APlayerController;
-class UPerkAsset;
-class UObject;
-class UPlayerCharacterID;
-class UPerkHUDIconWidget;
-class UPerkHUDActivationWidget;
-class UPerkDelegateItem;
+UPerkAsset::UPerkAsset() {
+    this->Icon = NULL;
+    this->bIsEquippable = true;
+    this->ShoutOnUseCharge = NULL;
+    this->MaxUseCharges = 0;
+    this->CoolDownBetweenUse = 0.00f;
+    this->bIsHighlighted = false;
+}
 
 bool UPerkAsset::UseCharge(APlayerController* PlayerController) {
     return false;
@@ -79,6 +80,10 @@ int32 UPerkAsset::GetMaxUseCharges(APlayerController* PlayerController) const {
     return 0;
 }
 
+int32 UPerkAsset::GetMaxRank() const {
+    return 0;
+}
+
 TSubclassOf<UPerkHUDIconWidget> UPerkAsset::GetHudIconWidgetClass() const {
     return NULL;
 }
@@ -107,6 +112,9 @@ bool UPerkAsset::Equip(UObject* WorldContext, UPlayerCharacterID* characterID) {
     return false;
 }
 
+void UPerkAsset::CheatSetCurrentRank(UObject* WorldContext, int32 InRank) {
+}
+
 bool UPerkAsset::CanUseCharge(APlayerController* PlayerController) const {
     return false;
 }
@@ -115,12 +123,4 @@ bool UPerkAsset::BuyPerkAtTier(UObject* WorldContext, int32 Tier) {
     return false;
 }
 
-UPerkAsset::UPerkAsset() {
-    this->Icon = NULL;
-    this->bIsEquippable = true;
-    this->ShoutOnUseCharge = NULL;
-    this->MaxUseCharges = 0;
-    this->CoolDownBetweenUse = 0.00f;
-    this->bIsHighlighted = false;
-}
 

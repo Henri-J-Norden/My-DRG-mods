@@ -5,15 +5,16 @@
 
 class UPickaxeIconSceneCaptureComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AIconGenerationPickaxe : public AIconGenerationBase {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     TArray<UPickaxeIconSceneCaptureComponent*> CaptureComponents;
     
 public:
-    AIconGenerationPickaxe();
+    AIconGenerationPickaxe(const FObjectInitializer& ObjectInitializer);
+
 };
 

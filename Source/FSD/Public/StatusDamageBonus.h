@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "DamageBonusBase.h"
+#include "Templates/SubclassOf.h"
 #include "StatusDamageBonus.generated.h"
 
-class UStatusEffect;
 class UDamageClass;
+class UStatusEffect;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UStatusDamageBonus : public UDamageBonusBase {
     GENERATED_BODY()
 public:
@@ -23,5 +23,6 @@ protected:
     
 public:
     UStatusDamageBonus();
+
 };
 

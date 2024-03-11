@@ -1,18 +1,18 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EnemyDeepPathfinderCharacter.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/EngineTypes.h"
+#include "EnemyDeepPathfinderCharacter.h"
 #include "FlyingEnemyDeepPathfinderCharacter.generated.h"
 
-class UPrimitiveComponent;
+class AActor;
+class UParticleSystem;
 class UPhysicalMaterial;
 class UPhysicsAsset;
-class UParticleSystem;
+class UPrimitiveComponent;
 class USoundCue;
-class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFlyingEnemyDeepPathfinderCharacter : public AEnemyDeepPathfinderCharacter {
     GENERATED_BODY()
 public:
@@ -30,7 +30,8 @@ protected:
     UParticleSystem* FrozenDeathparticles;
     
 public:
-    AFlyingEnemyDeepPathfinderCharacter();
+    AFlyingEnemyDeepPathfinderCharacter(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void TriggerFrozenRagdoll();

@@ -1,37 +1,38 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
-#include "WeaponFireOwner.h"
 #include "Steerable.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
+#include "WeaponFireOwner.h"
 #include "MountedGun.generated.h"
 
-class USkeletalMeshComponent;
 class APlayerCharacter;
-class UWeaponFireComponent;
 class UGunLogicComponent;
+class USkeletalMeshComponent;
+class UWeaponFireComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AMountedGun : public AActor, public ISteerable, public IWeaponFireOwner {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* Mesh;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UWeaponFireComponent* WeaponFire;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UGunLogicComponent* GunLogic;
     
 public:
-    AMountedGun();
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    AMountedGun(const FObjectInitializer& ObjectInitializer);
+
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_Test();
     
-    
+
     // Fix for true pure virtual functions not being implemented
     UFUNCTION(BlueprintCallable)
     APlayerCharacter* GetPlayerCharacter() const override PURE_VIRTUAL(GetPlayerCharacter, return NULL;);

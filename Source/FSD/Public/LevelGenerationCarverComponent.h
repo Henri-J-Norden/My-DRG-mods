@@ -5,12 +5,12 @@
 #include "ECarveFilterType.h"
 #include "LevelGenerationCarverComponent.generated.h"
 
-class UTerrainMaterialBase;
 class USTLMeshCarver;
 class UStaticMesh;
 class UStaticMeshCarver;
+class UTerrainMaterialBase;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class ULevelGenerationCarverComponent : public UPrimitiveComponent {
     GENERATED_BODY()
 public:
@@ -41,11 +41,21 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool CarvingDisabled;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool DestroyOwnerOnCarve;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool DestroySelfAndChilded;
+    
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool SelfActivate;
     
 public:
-    ULevelGenerationCarverComponent();
+    ULevelGenerationCarverComponent(const FObjectInitializer& ObjectInitializer);
+
+    UFUNCTION(BlueprintCallable)
+    void OnCarvedCallback();
+    
 };
 

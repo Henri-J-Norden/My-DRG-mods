@@ -6,7 +6,7 @@
 
 class AActor;
 
-UCLASS(Abstract, BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UTemperatureComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -15,7 +15,8 @@ protected:
     float FrozenDamageBonusScale;
     
 public:
-    UTemperatureComponent();
+    UTemperatureComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     static bool TryPushHeatSource(AActor* Target, float Temperature, ETemperatureIntensity Intensity);
     

@@ -1,10 +1,97 @@
 #include "FSDGameUserSettings.h"
 
-class UObject;
-class USoundClass;
-class APlayerController;
-class UDifficultySetting;
-class UFSDGameUserSettings;
+UFSDGameUserSettings::UFSDGameUserSettings() {
+    this->bUseVSync = true;
+    this->bJukeboxStreamerMode = true;
+    this->bGraphicSettingsChanged = false;
+    this->ServerSearchRegion = 3;
+    this->ServerSearchPasswordRequired = false;
+    this->volumeCharacterVoice = 99.17f;
+    this->volumeMissionControl = 101.09f;
+    this->volumeMaster = 37.16f;
+    this->volumeSFX = 99.43f;
+    this->volumeMusic = 107.30f;
+    this->CurrentAudioOutputDeviceId = TEXT("{0.0.0.00000000}.{e5f88e95-6344-4763-bd61-70b04ceb23f9}");
+    this->UseDefaultAudioOutputDevice = true;
+    this->Sharpening = 0.00f;
+    this->AntiAliasingType = 2;
+    this->TemporalAAUpsamplingEnabled = false;
+    this->volumeVoice = 99.74f;
+    this->UpscalingType = 0;
+    this->AmdFsrMode = 0;
+    this->AmdFsr2Mode = 2;
+    this->AmdFsrSharpness = 0.22f;
+    this->AmdFsr2Sharpness = 0.20f;
+    this->NvidiaDlssMode = UDLSSMode::Auto;
+    this->NvidiaDlssSharpness = 0.50f;
+    this->FSDResolutionScale = 1.00f;
+    this->ReflexMode = ENVidiaReflexMode::Disabled;
+    this->WeaponSpwayScale = 1.00f;
+    this->soundClassCharacterVoices = NULL;
+    this->soundClassMissionControl = NULL;
+    this->soundClassMaster = NULL;
+    this->soundClassSFX = NULL;
+    this->soundClassUI = NULL;
+    this->soundClassMusic = NULL;
+    this->soundClassVoice = NULL;
+    this->ChatFontSize = 14;
+    this->bUseVoiceChat = true;
+    this->bUsePushToTalk = true;
+    this->LocalGameServerName = TEXT("Verified Mods");
+    this->AppearOffline = false;
+    this->AutoRefreshServerlist = false;
+    this->MouseXSensitivity = 900.92f;
+    this->MouseYSensitivity = 600.00f;
+    this->UseSeperateSensetivity = false;
+    this->InvertMouse = false;
+    this->InvertScroolWheel = false;
+    this->UseHoldToRun = false;
+    this->UseToggleLaserpointer = false;
+    this->FOV = 100.89f;
+    this->HeadbobbingScale = 0.00f;
+    this->CameraShakeScale = 25.00f;
+    this->ChatFadeTime = 10.00f;
+    this->UseStreamerProgram = false;
+    this->SoundOnChatMessage = true;
+    this->PhotosensitiveMode = false;
+    this->ShowUIAnimations = true;
+    this->UseProfanityFilter = false;
+    this->ForceFeedbackScale = 1.00f;
+    this->InvertFlightControls = false;
+    this->EnableDx12ByDefault = false;
+    this->HDRColorGamma = 1.21f;
+    this->ConsoleGraphicsMode = EConsoleGraphicsMode::Fidelity;
+    this->StaticResoultionScale = 1.00f;
+    this->UseManuelGrahpicsMode = false;
+    this->DownedTurnDirection_Controller = 1.00f;
+    this->DownedTurnDirection_Mouse = -1.00f;
+    this->UIDPIScale = 80.63f;
+    this->EnableCustomUIScale = false;
+    this->CheckCursorOutOfBounds = false;
+    this->VSyncToBeApplied = false;
+    this->Dx12ToBeApplied = false;
+    this->InFullscreenModeToBeApplied = EWindowMode::Fullscreen;
+    this->InFullscreenModeToBeAppliedValid = false;
+    this->VSyncToBeAppliedValid = false;
+    this->Dx12ToBeAppliedValid = false;
+    this->ResolutionToBeAppliedValid = false;
+    this->EscMenuActive = false;
+    this->bShowUpgradeExtraDetails = false;
+    this->LastNiagaraShaderVerions = 63118;
+    this->HasKeyboardBeenConnected = false;
+    this->CurrentInputSource = EFSDInputSource::MouseAndKeyboard;
+    this->RequestedInputSource = EFSDInputSource::None;
+    this->SwapControllerThumbsticks = false;
+    this->bTutorialHintsEnabled = false;
+    this->bShowSubtitles = false;
+    this->bShowFPS = true;
+    this->ShowNetInfoLevel = 0;
+    this->bCanShowBlood = true;
+    this->PreventLatejoinCharacterDuplication = false;
+    this->TranslatorDebugModeEnabled = false;
+    this->SelectedDifficultyLevels.AddDefaulted(10);
+    this->DifficultyLevelsAddedByDefault.AddDefaulted(10);
+}
 
 void UFSDGameUserSettings::UpdateVolumeSettings(USoundClass* CharacterVoices, USoundClass* MissionControl, USoundClass* Master, USoundClass* Music, USoundClass* SFX, USoundClass* UI, USoundClass* Voice) {
 }
@@ -24,6 +111,9 @@ void UFSDGameUserSettings::ToggleModdingServerFilter(uint8 ServerFilter, bool En
 }
 
 void UFSDGameUserSettings::SetZiplineGunAutoSwitch(bool shouldAutoSwitch) {
+}
+
+void UFSDGameUserSettings::SetWeaponSwayScale(float Scale) {
 }
 
 void UFSDGameUserSettings::SetVSyncEnabledToBeApplied(bool bEnable) {
@@ -48,6 +138,9 @@ void UFSDGameUserSettings::SetUseSeparateSensitivity(bool newSetting) {
 }
 
 void UFSDGameUserSettings::SetUseProfanityFilter(bool shouldUse) {
+}
+
+void UFSDGameUserSettings::SetUseManualGraphicsMode(bool bEnabled) {
 }
 
 void UFSDGameUserSettings::SetUseHoldToRun(bool NewUseHoldToRun) {
@@ -80,6 +173,9 @@ void UFSDGameUserSettings::SetSwapControllerThumbsticks(bool InSwapThumbsticks) 
 void UFSDGameUserSettings::SetSteamSearchRegion(ESteamSearchRegion InRegion) {
 }
 
+void UFSDGameUserSettings::SetStaticResolutionScale(float percentage) {
+}
+
 void UFSDGameUserSettings::SetShowUIAnimations(bool shouldShow) {
 }
 
@@ -102,6 +198,9 @@ void UFSDGameUserSettings::SetServerSearchPasswordRequired(bool InPasswordRequir
 }
 
 void UFSDGameUserSettings::SetScreenResolutionToBeApplied(FIntPoint Resolution) {
+}
+
+void UFSDGameUserSettings::SetReflexMode(ENVidiaReflexMode NewReflexMode) {
 }
 
 void UFSDGameUserSettings::SetPushToTalk(bool bEnable) {
@@ -134,6 +233,9 @@ void UFSDGameUserSettings::SetMouseXSensitivity(float newSensitivity) {
 void UFSDGameUserSettings::SetModdingSortBy(uint8 SortField, bool SortAscending) {
 }
 
+void UFSDGameUserSettings::SetLensFlaresEnabled(bool Enabled) {
+}
+
 void UFSDGameUserSettings::SetJukeboxStreamerMode(bool InStreamerMode) {
 }
 
@@ -147,6 +249,12 @@ void UFSDGameUserSettings::SetInvertFlightControls(bool Invert) {
 }
 
 void UFSDGameUserSettings::SetInputSource(EFSDInputSource NewSource) {
+}
+
+void UFSDGameUserSettings::SetHoldToFire(bool HoldToFire) {
+}
+
+void UFSDGameUserSettings::SetHoldToBreakImmobilization(bool holdToBreak) {
 }
 
 void UFSDGameUserSettings::SetHeadBobbingScale(float NewHeadbobbingScale) {
@@ -194,6 +302,9 @@ void UFSDGameUserSettings::SetCurrentUserSaveSlotName(UObject* WorldContextObjec
 void UFSDGameUserSettings::SetConsoleGraphicsMode(EConsoleGraphicsMode Mode) {
 }
 
+void UFSDGameUserSettings::SetColorVisionDeficiency(EColorVisionDeficiency InType, float InSeverity) {
+}
+
 void UFSDGameUserSettings::SetCheckForOutOfBoundsEnabled(bool Enabled) {
 }
 
@@ -203,10 +314,16 @@ void UFSDGameUserSettings::SetChatFontSize(int32 inFontSize) {
 void UFSDGameUserSettings::SetChatFadeTime(float FadeTime) {
 }
 
+void UFSDGameUserSettings::SetChatEnabledOnController(bool InEnabled) {
+}
+
 void UFSDGameUserSettings::SetCanShowBlood(bool bloodAllowed) {
 }
 
 void UFSDGameUserSettings::SetCameraShakeScale(float NewCameraShakeScale) {
+}
+
+void UFSDGameUserSettings::SetBloomEnabled(bool Enabled) {
 }
 
 void UFSDGameUserSettings::SetAutoRefreshServerlist(bool Value) {
@@ -230,6 +347,12 @@ void UFSDGameUserSettings::SetAMDFSRSharpness(float Sharpness) {
 }
 
 void UFSDGameUserSettings::SetAMDFSRMode(int32 Mode) {
+}
+
+void UFSDGameUserSettings::SetAMDFSR2Sharpness(float Sharpness) {
+}
+
+void UFSDGameUserSettings::SetAMDFSR2Mode(int32 Mode) {
 }
 
 void UFSDGameUserSettings::SetAimSensitivity(float NewValue) {
@@ -258,6 +381,14 @@ bool UFSDGameUserSettings::IsUpscalingTypeSupported(int32 Type) const {
     return false;
 }
 
+bool UFSDGameUserSettings::IsNvReflexAvailable() {
+    return false;
+}
+
+bool UFSDGameUserSettings::IsManaulGraphicsModeAvailable() {
+    return false;
+}
+
 bool UFSDGameUserSettings::IsDx12Enabled() {
     return false;
 }
@@ -279,6 +410,10 @@ bool UFSDGameUserSettings::HasAudioOutputDeviceChanged(FString& AudioDeviceChang
 
 bool UFSDGameUserSettings::GetZiplineGunAutoSwitch() const {
     return false;
+}
+
+float UFSDGameUserSettings::GetWeaponSwayScale() const {
+    return 0.0f;
 }
 
 bool UFSDGameUserSettings::GetVSyncEnabledToBeApplied() {
@@ -306,6 +441,10 @@ bool UFSDGameUserSettings::GetUseSeparateSensitivity() const {
 }
 
 bool UFSDGameUserSettings::GetUseProfanityFilter() const {
+    return false;
+}
+
+bool UFSDGameUserSettings::GetUseManualGraphicsMode() {
     return false;
 }
 
@@ -345,6 +484,10 @@ ESteamSearchRegion UFSDGameUserSettings::GetSteamSearchRegion() const {
     return ESteamSearchRegion::Close;
 }
 
+float UFSDGameUserSettings::GetStaticResolutionScale() {
+    return 0.0f;
+}
+
 bool UFSDGameUserSettings::GetShowUIAnimations() const {
     return false;
 }
@@ -371,6 +514,10 @@ float UFSDGameUserSettings::GetSharpening() const {
 
 FIntPoint UFSDGameUserSettings::GetScreenResolutionToBeApplied() {
     return FIntPoint{};
+}
+
+ENVidiaReflexMode UFSDGameUserSettings::GetReflexMode() const {
+    return ENVidiaReflexMode::Disabled;
 }
 
 bool UFSDGameUserSettings::GetPushToTalk() const {
@@ -413,6 +560,10 @@ bool UFSDGameUserSettings::GetModdingServerFilterEnabled(uint8 ServerFilter) {
     return false;
 }
 
+bool UFSDGameUserSettings::GetLensFlaresEnabled() const {
+    return false;
+}
+
 bool UFSDGameUserSettings::GetIsDifficultySelected(UDifficultySetting* Difficulty) const {
     return false;
 }
@@ -431,6 +582,14 @@ bool UFSDGameUserSettings::GetInvertFlightControls() const {
 
 EFSDInputSource UFSDGameUserSettings::GetInputSource() {
     return EFSDInputSource::None;
+}
+
+bool UFSDGameUserSettings::GetHoldToFire() const {
+    return false;
+}
+
+bool UFSDGameUserSettings::GetHoldToBreakImmobilization() const {
+    return false;
 }
 
 float UFSDGameUserSettings::GetHeadBobbingScale() const {
@@ -513,8 +672,16 @@ float UFSDGameUserSettings::GetChatFadeTime() const {
     return 0.0f;
 }
 
+bool UFSDGameUserSettings::GetChatEnabledOnController() const {
+    return false;
+}
+
 float UFSDGameUserSettings::GetCameraShakeScale() const {
     return 0.0f;
+}
+
+bool UFSDGameUserSettings::GetBloomEnabled() const {
+    return false;
 }
 
 bool UFSDGameUserSettings::GetAvaliableAudioOutputDevices(UObject* WorldContextObject, TArray<FString>& AudioDevices) {
@@ -550,6 +717,14 @@ float UFSDGameUserSettings::GetAMDFSRSharpness() const {
 }
 
 int32 UFSDGameUserSettings::GetAMDFSRMode() const {
+    return 0;
+}
+
+float UFSDGameUserSettings::GetAMDFSR2Sharpness() const {
+    return 0.0f;
+}
+
+int32 UFSDGameUserSettings::GetAMDFSR2Mode() const {
     return 0;
 }
 
@@ -601,87 +776,4 @@ void UFSDGameUserSettings::ApplyGraphicsChanges() {
 void UFSDGameUserSettings::ApplyConsoleGraphicsMode() {
 }
 
-UFSDGameUserSettings::UFSDGameUserSettings() {
-    this->bJukeboxStreamerMode = false;
-    this->bGraphicSettingsChanged = false;
-    this->ServerSearchRegion = 3;
-    this->ServerSearchPasswordRequired = false;
-    this->volumeCharacterVoice = 98.51f;
-    this->volumeMissionControl = 95.95f;
-    this->volumeMaster = 19.78f;
-    this->volumeSFX = 200.00f;
-    this->volumeMusic = 94.21f;
-    this->CurrentAudioOutputDeviceId = TEXT("{0.0.0.00000000}.{2a5cebd2-74c5-49ee-b332-663973012ccd}");
-    this->UseDefaultAudioOutputDevice = true;
-    this->Sharpening = 0.00f;
-    this->AntiAliasingType = 1;
-    this->TemporalAAUpsamplingEnabled = true;
-    this->volumeVoice = 102.89f;
-    this->UpscalingType = 0;
-    this->AmdFsrMode = 1;
-    this->AmdFsrSharpness = 0.20f;
-    this->NvidiaDlssMode = UDLSSMode::Auto;
-    this->NvidiaDlssSharpness = 0.50f;
-    this->FSDResolutionScale = 1.00f;
-    this->soundClassCharacterVoices = NULL;
-    this->soundClassMissionControl = NULL;
-    this->soundClassMaster = NULL;
-    this->soundClassSFX = NULL;
-    this->soundClassUI = NULL;
-    this->soundClassMusic = NULL;
-    this->soundClassVoice = NULL;
-    this->ChatFontSize = 14;
-    this->bUseVoiceChat = false;
-    this->bUsePushToTalk = true;
-    this->AppearOffline = false;
-    this->AutoRefreshServerlist = true;
-    this->MouseXSensitivity = 900.92f;
-    this->MouseYSensitivity = 600.00f;
-    this->UseSeperateSensetivity = false;
-    this->InvertMouse = false;
-    this->InvertScroolWheel = false;
-    this->UseHoldToRun = false;
-    this->UseToggleLaserpointer = false;
-    this->FOV = 100.89f;
-    this->HeadbobbingScale = 100.00f;
-    this->CameraShakeScale = 100.00f;
-    this->ChatFadeTime = 10.00f;
-    this->UseStreamerProgram = false;
-    this->SoundOnChatMessage = true;
-    this->PhotosensitiveMode = false;
-    this->ShowUIAnimations = true;
-    this->UseProfanityFilter = false;
-    this->ForceFeedbackScale = 1.00f;
-    this->InvertFlightControls = false;
-    this->EnableDx12ByDefault = false;
-    this->HDRColorGamma = 1.00f;
-    this->ConsoleGraphicsMode = EConsoleGraphicsMode::Fidelity;
-    this->DownedTurnDirection_Controller = 1.00f;
-    this->DownedTurnDirection_Mouse = -1.00f;
-    this->UIDPIScale = 80.63f;
-    this->EnableCustomUIScale = false;
-    this->CheckCursorOutOfBounds = false;
-    this->VSyncToBeApplied = false;
-    this->Dx12ToBeApplied = false;
-    this->InFullscreenModeToBeApplied = EWindowMode::Fullscreen;
-    this->InFullscreenModeToBeAppliedValid = false;
-    this->VSyncToBeAppliedValid = false;
-    this->Dx12ToBeAppliedValid = false;
-    this->ResolutionToBeAppliedValid = false;
-    this->EscMenuActive = false;
-    this->bShowUpgradeExtraDetails = false;
-    this->LastNiagaraShaderVerions = 63118;
-    this->CurrentInputSource = EFSDInputSource::MouseAndKeyboard;
-    this->RequestedInputSource = EFSDInputSource::None;
-    this->SwapControllerThumbsticks = false;
-    this->bTutorialHintsEnabled = false;
-    this->bShowSubtitles = false;
-    this->bShowFPS = false;
-    this->ShowNetInfoLevel = 0;
-    this->bCanShowBlood = true;
-    this->PreventLatejoinCharacterDuplication = false;
-    this->TranslatorDebugModeEnabled = false;
-    this->SelectedDifficultyLevels.AddDefaulted(5);
-    this->DifficultyLevelsAddedByDefault.AddDefaulted(5);
-}
 

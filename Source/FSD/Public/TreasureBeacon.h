@@ -1,23 +1,24 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "GameFramework/Actor.h"
+#include "ActorTrackingCheatInterface.h"
+#include "Templates/SubclassOf.h"
 #include "TreasureBeacon.generated.h"
 
+class ATreasureContainer;
+class UCurveFloat;
+class UDebrisPositioning;
 class USceneComponent;
 class UTerrainPlacementComponent;
-class UDebrisPositioning;
-class UCurveFloat;
-class ATreasureContainer;
 
-UCLASS()
-class FSD_API ATreasureBeacon : public AActor {
+UCLASS(Blueprintable)
+class FSD_API ATreasureBeacon : public AActor, public IActorTrackingCheatInterface {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USceneComponent* RootComp;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UTerrainPlacementComponent* terrainPlacement;
     
 protected:
@@ -54,13 +55,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSubclassOf<ATreasureContainer> TreasureClass;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     ATreasureContainer* TreasureInstance;
     
 public:
-    ATreasureBeacon();
+    ATreasureBeacon(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintPure=false)
     void SpawnDebreeParts() const;
@@ -69,5 +71,7 @@ public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void ActivateTreasure();
     
+
+    // Fix for true pure virtual functions not being implemented
 };
 

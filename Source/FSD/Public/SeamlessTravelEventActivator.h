@@ -5,7 +5,7 @@
 
 class USeamlessTravelEventKey;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API USeamlessTravelEventActivator : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -14,6 +14,7 @@ protected:
     USeamlessTravelEventKey* EventKey;
     
 public:
-    USeamlessTravelEventActivator();
+    USeamlessTravelEventActivator(const FObjectInitializer& ObjectInitializer);
+
 };
 

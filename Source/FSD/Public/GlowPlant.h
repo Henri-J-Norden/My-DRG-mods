@@ -4,19 +4,19 @@
 #include "GlowPlant.generated.h"
 
 class UPointLightComponent;
-class UStaticMeshComponent;
 class UPrimitiveComponent;
+class UStaticMeshComponent;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AGlowPlant : public AActor {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UStaticMeshComponent* TrunkMesh;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, meta=(AllowPrivateAccess=true))
-    UPointLightComponent* MainLight;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UPointLightComponent* mainLight;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float IntensityBase;
@@ -64,7 +64,8 @@ protected:
     float EmissiveFadeOutTime;
     
 public:
-    AGlowPlant();
+    AGlowPlant(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void OnDeath();
     

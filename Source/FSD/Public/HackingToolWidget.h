@@ -3,12 +3,12 @@
 #include "Blueprint/UserWidget.h"
 #include "HackingToolWidget.generated.h"
 
-class USoundCue;
+class AHackingToolItem;
 class UDialogDataAsset;
 class UHackingUsableComponent;
-class AHackingToolItem;
+class USoundCue;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class FSD_API UHackingToolWidget : public UUserWidget {
     GENERATED_BODY()
 public:
@@ -17,27 +17,28 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FHackingFailDelegate, USoundCue*, InFailCue, UDialogDataAsset*, InShout);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHackingCompleteDelegate, bool, InSuccess);
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHackingFailDelegate OnHackingFail;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHackingStageCompletedDelegate OnHackingStageCompleted;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHackingCompleteDelegate OnHackingCompleted;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHackingUnequipDelegate OnRequestUnequipHackingTool;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, Transient, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<UHackingUsableComponent> HackingUsable;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<AHackingToolItem> HackingTool;
     
 public:
     UHackingToolWidget();
+
     UFUNCTION(BlueprintCallable)
     void StartHacking(UHackingUsableComponent* InHackingUsable, AHackingToolItem* InHackingTool);
     
@@ -52,7 +53,13 @@ protected:
     void ReceiveHackingStarted();
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void ReceiveClick();
+    void ReceiveActionReleased();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void ReceiveActionPressed();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void ReceiveActionClick();
     
     UFUNCTION(BlueprintCallable)
     void HackingStageComplete(int32 InNextStage, int32 InTotalStages);

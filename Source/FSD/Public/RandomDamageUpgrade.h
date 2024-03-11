@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ItemUpgrade.h"
 #include "RandRange.h"
+#include "Templates/SubclassOf.h"
 #include "UpgradeValues.h"
 #include "RandomDamageUpgrade.generated.h"
 
-class AFSDPlayerState;
 class AActor;
+class AFSDPlayerState;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class URandomDamageUpgrade : public UItemUpgrade {
     GENERATED_BODY()
 public:
@@ -19,6 +19,7 @@ protected:
     
 public:
     URandomDamageUpgrade();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FUpgradeValues GetUpgradedValue(TSubclassOf<AActor> Item, AFSDPlayerState* Player);
     

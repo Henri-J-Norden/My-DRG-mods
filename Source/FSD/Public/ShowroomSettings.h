@@ -4,10 +4,10 @@
 #include "ShowroomSettings.generated.h"
 
 class AShowroomStage;
-class UEnemyShowroomController;
 class UCharacterShowroomController;
+class UEnemyShowroomController;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UShowroomSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ public:
     TSoftClassPtr<AShowroomStage> CharacterStage;
     
     UShowroomSettings();
+
 };
 

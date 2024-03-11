@@ -1,6 +1,8 @@
 #include "TemperatureComponent.h"
 
-class AActor;
+UTemperatureComponent::UTemperatureComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->FrozenDamageBonusScale = 1.00f;
+}
 
 bool UTemperatureComponent::TryPushHeatSource(AActor* Target, float Temperature, ETemperatureIntensity Intensity) {
     return false;
@@ -20,7 +22,4 @@ float UTemperatureComponent::GetCurrentTemperature() const {
 void UTemperatureComponent::ChangeTemperature(float Degrees, AActor* Source) {
 }
 
-UTemperatureComponent::UTemperatureComponent() {
-    this->FrozenDamageBonusScale = 1.00f;
-}
 

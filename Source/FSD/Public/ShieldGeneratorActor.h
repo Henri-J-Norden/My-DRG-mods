@@ -3,7 +3,7 @@
 #include "ThrowableActor.h"
 #include "ShieldGeneratorActor.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AShieldGeneratorActor : public AThrowableActor {
     GENERATED_BODY()
 public:
@@ -21,8 +21,9 @@ protected:
     float GeneratorLifetime;
     
 public:
-    AShieldGeneratorActor();
+    AShieldGeneratorActor(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 };
 

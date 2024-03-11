@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGBase.h"
 #include "BinaryTerrainMaterialCombiner.h"
+#include "CSGBase.h"
 #include "SimpleMeshWithCachedTree.generated.h"
 
-UCLASS(Abstract, BlueprintType)
+UCLASS(Abstract, Blueprintable)
 class USimpleMeshWithCachedTree : public UCSGBase {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ public:
     bool InvertCSG;
     
     USimpleMeshWithCachedTree();
+
 };
 

@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ProjectileAttack.h"
+#include "Templates/SubclassOf.h"
 #include "BallisticProjectileAttack.generated.h"
 
 class AProjectile;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UBallisticProjectileAttack : public UProjectileAttack {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UBallisticProjectileAttack();
+
 };
 

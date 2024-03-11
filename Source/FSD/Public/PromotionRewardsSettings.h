@@ -2,10 +2,9 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "ClaimableRewardEntry.h"
-#include "PromotionRewardsRank.h"
 #include "PromotionRewardsSettings.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UPromotionRewardsSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -13,8 +12,9 @@ public:
     TArray<FClaimableRewardEntry> FirstPromotionRewards;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TMap<int32, FPromotionRewardsRank> PromotionRanks;
+    TArray<FClaimableRewardEntry> SubsequentPromotionRewards;
     
     UPromotionRewardsSettings();
+
 };
 

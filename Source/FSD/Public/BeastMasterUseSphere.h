@@ -3,10 +3,11 @@
 #include "Components/SphereComponent.h"
 #include "BeastMasterUseSphere.generated.h"
 
-UCLASS(EditInlineNew, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UBeastMasterUseSphere : public USphereComponent {
     GENERATED_BODY()
 public:
-    UBeastMasterUseSphere();
+    UBeastMasterUseSphere(const FObjectInitializer& ObjectInitializer);
+
 };
 

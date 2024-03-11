@@ -5,7 +5,7 @@
 
 class UFXSystemAsset;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UMuzzleEffectUpgradeElement : public UItemUpgradeElement {
     GENERATED_BODY()
 public:
@@ -18,5 +18,6 @@ protected:
     
 public:
     UMuzzleEffectUpgradeElement();
+
 };
 

@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Mutator.h"
+#include "Templates/SubclassOf.h"
 #include "CaveItemsMutator.generated.h"
 
 class UDebrisItemComponent;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UCaveItemsMutator : public UMutator {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ public:
     TSubclassOf<UDebrisItemComponent> Item;
     
     UCaveItemsMutator();
+
 };
 

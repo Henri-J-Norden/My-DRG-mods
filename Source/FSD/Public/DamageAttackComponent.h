@@ -5,7 +5,7 @@
 
 class UDamageComponent;
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UDamageAttackComponent : public UAttackBaseComponent {
     GENERATED_BODY()
 public:
@@ -14,6 +14,7 @@ protected:
     UDamageComponent* Damage;
     
 public:
-    UDamageAttackComponent();
+    UDamageAttackComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
 #include "Engine/DataAsset.h"
 #include "SoftReferenceProvider.h"
-#include "UObject/NoExportTypes.h"
 #include "PawnAffliction.generated.h"
 
-class UDialogDataAsset;
-class UTexture2D;
 class UAfflictionEffect;
+class UDialogDataAsset;
 class UPlayerAfflictionOverlay;
+class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UPawnAffliction : public UDataAsset, public ISoftReferenceProvider {
     GENERATED_BODY()
 public:
@@ -47,7 +47,8 @@ protected:
     
 public:
     UPawnAffliction();
-    
+
+
     // Fix for true pure virtual functions not being implemented
 };
 

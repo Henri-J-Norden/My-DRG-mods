@@ -1,35 +1,36 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Components/ActorComponent.h"
 #include "ActiveStatusEffectBank.h"
+#include "Templates/SubclassOf.h"
 #include "StatusEffectsComponent.generated.h"
 
 class AActor;
 class UHealthComponentBase;
-class UStatusEffectExclusiveKey;
-class UStatusEffect;
 class UObject;
+class UStatusEffect;
+class UStatusEffectExclusiveKey;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UStatusEffectsComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FActiveStatusEffectBank> ActiveStatusEffects;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UHealthComponentBase* OwnerHealth;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TSet<UStatusEffectExclusiveKey*> ActiveExclusiveKeys;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool IgnoreAll;
     
 public:
-    UStatusEffectsComponent();
+    UStatusEffectsComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     static bool TryPushActiveStatusEffect(TSubclassOf<UStatusEffect> StatusEffect, AActor* Target, AActor* Owner);
     
@@ -41,6 +42,9 @@ public:
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     bool PushActiveStatusEffect(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner);
+    
+    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
+    void PopAllActiveStatusEffectsOfType(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void PopAllActiveStatusEffects(AActor* Owner);
@@ -58,6 +62,12 @@ protected:
 public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure)
     bool HasActiveEffect(TSubclassOf<UStatusEffect> StatusEffect) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetStackAmount(TSubclassOf<UStatusEffect> StatusEffect, AActor* Owner) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetFullStackAmount(TSubclassOf<UStatusEffect> StatusEffect) const;
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     static UStatusEffect* CreateStatusEffectInstance(TSubclassOf<UStatusEffect> StatusEffect, UObject* Owner);

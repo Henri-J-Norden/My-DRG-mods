@@ -3,7 +3,7 @@
 #include "Components/ActorComponent.h"
 #include "AlignEnemyComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAlignEnemyComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -15,9 +15,10 @@ protected:
     bool IncludePitch;
     
 public:
-    UAlignEnemyComponent();
+    UAlignEnemyComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetRotateWhileStationary(bool Value);
     

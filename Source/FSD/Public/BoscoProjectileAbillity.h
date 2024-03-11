@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "BoscoAbillity.h"
+#include "Templates/SubclassOf.h"
 #include "BoscoProjectileAbillity.generated.h"
 
 class AProjectile;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBoscoProjectileAbillity : public UBoscoAbillity {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ public:
     TSubclassOf<AProjectile> ProjectileClass;
     
     UBoscoProjectileAbillity();
+
 };
 

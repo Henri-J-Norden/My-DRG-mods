@@ -2,14 +2,14 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "Components/ActorComponent.h"
+#include "PlayerProximityDelegateDelegate.h"
 #include "PlayerSphere.h"
 #include "ProximityTriggerItem.h"
-#include "PlayerProximityDelegateDelegate.h"
 #include "PlayerProximityTracker.generated.h"
 
 class UObject;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPlayerProximityTracker : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -20,21 +20,22 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float PlayerSpheresUpdateRatePerSecond;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FPlayerSphere> PlayerSpheres;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FProximityTriggerItem> LocalPlayerProximityTriggers;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FProximityTriggerItem> AnyPlayerProximityTriggers;
     
 public:
-    UPlayerProximityTracker();
-    UFUNCTION(BlueprintCallable)
+    UPlayerProximityTracker(const FObjectInitializer& ObjectInitializer);
+
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void Receive_RegisterForLocalPlayerProximity(UObject* WorldContextObject, const FVector& Location, float Distance, const FPlayerProximityDelegate& proximityCallback, bool triggerOnlyOnce);
     
-    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
+    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void Receive_RegisterForAnyPlayerProximity(UObject* WorldContextObject, const FVector& Location, float Distance, const FPlayerProximityDelegate& proximityCallback, bool triggerOnlyOnce);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

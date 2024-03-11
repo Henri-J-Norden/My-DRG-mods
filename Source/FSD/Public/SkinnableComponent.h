@@ -5,22 +5,23 @@
 #include "SkinnableComponent.generated.h"
 
 class AFSDPlayerState;
-class UItemSkin;
 class UItemID;
+class UItemSkin;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API USkinnableComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UItemSkin* EquippedSkinColor;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UItemSkin* EquippedSkinMesh;
     
 public:
-    USkinnableComponent();
+    USkinnableComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void UpdateSkin(AFSDPlayerState* Player);
     
@@ -30,7 +31,7 @@ protected:
     
 public:
     UFUNCTION(BlueprintCallable)
-    static TArray<UItemSkin*> GetSkinsForItem(UItemID* ItemID, EItemSkinType SkinType);
+    static TArray<UItemSkin*> GetSkinsForItem(UItemID* ItemID, EItemSkinType skinType);
     
     UFUNCTION(BlueprintCallable)
     static UItemSkin* GetEquippedSkinMesh(UItemID* ItemID, AFSDPlayerState* Player);
@@ -39,7 +40,7 @@ public:
     static UItemSkin* GetEquippedSkinColor(UItemID* ItemID, AFSDPlayerState* Player);
     
     UFUNCTION(BlueprintCallable)
-    static UItemSkin* GetEquippedSkin(UItemID* ItemID, EItemSkinType SkinType, AFSDPlayerState* Player);
+    static UItemSkin* GetEquippedSkin(UItemID* ItemID, EItemSkinType skinType, AFSDPlayerState* Player);
     
     UFUNCTION(BlueprintCallable)
     static TArray<UItemSkin*> GetEquippableColorSkins(UItemID* ItemID, AFSDPlayerState* Player);

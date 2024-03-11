@@ -3,11 +3,11 @@
 #include "VanityItem.h"
 #include "BeardVanityItem.generated.h"
 
-class USkeletalMesh;
 class UMaterialInterface;
+class USkeletalMesh;
 class UVanityAnimInstance;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UBeardVanityItem : public UVanityItem {
     GENERATED_BODY()
 public:
@@ -47,5 +47,6 @@ protected:
     
 public:
     UBeardVanityItem();
+
 };
 

@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "ECarveFilterType.h"
 #include "RandRange.h"
 #include "ResourceCreator.h"
-#include "ECarveFilterType.h"
 #include "VeinResourceCreator.generated.h"
 
 class UDebrisBase;
-class UVeinResourceData;
 class UDebrisPositioning;
 class UFloodFillSettings;
+class UVeinResourceData;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UVeinResourceCreator : public UResourceCreator {
     GENERATED_BODY()
 public:
@@ -50,5 +50,6 @@ protected:
     
 public:
     UVeinResourceCreator();
+
 };
 

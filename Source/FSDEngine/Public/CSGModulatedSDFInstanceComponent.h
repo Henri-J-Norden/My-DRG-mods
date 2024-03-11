@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGSDFModulatedInstanceProperties.h"
-#include "CSGBaseComponent.h"
 #include "BinaryTerrainMaterialCombiner.h"
+#include "CSGBaseComponent.h"
+#include "CSGSDFModulatedInstanceProperties.h"
 #include "CSGModulatedSDFInstanceComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSDENGINE_API UCSGModulatedSDFInstanceComponent : public UCSGBaseComponent {
     GENERATED_BODY()
 public:
@@ -15,6 +15,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FBinaryTerrainMaterialCombiner Materials;
     
-    UCSGModulatedSDFInstanceComponent();
+    UCSGModulatedSDFInstanceComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

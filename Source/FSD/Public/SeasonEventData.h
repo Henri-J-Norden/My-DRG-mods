@@ -5,7 +5,7 @@
 
 class UTexture2D;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API USeasonEventData : public USavableDataAsset {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ public:
     TSoftObjectPtr<UTexture2D> Icon;
     
     USeasonEventData();
+
 };
 

@@ -7,21 +7,21 @@ class AItem;
 class APlayerCharacter;
 class UItemAggregator;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UAmmoCountWidget : public UUserWidget {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     APlayerCharacter* Character;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AItem* Item;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UItemAggregator* Aggregator;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool ShowClipAndTotalAsOne;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -29,6 +29,7 @@ protected:
     
 public:
     UAmmoCountWidget();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnVisibleChanged(bool Visible, bool showClipCount);
@@ -49,7 +50,7 @@ protected:
     void OnItemAmountChanged(int32 Value);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void OnAmountChanged(int32 count);
+    void OnAmountChanged(int32 Count);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void DoItemEquipped();

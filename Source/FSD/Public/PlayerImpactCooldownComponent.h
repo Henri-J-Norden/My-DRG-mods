@@ -5,7 +5,7 @@
 
 class AActor;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UPlayerImpactCooldownComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -14,7 +14,8 @@ protected:
     float CoolDownTime;
     
 public:
-    UPlayerImpactCooldownComponent();
+    UPlayerImpactCooldownComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     bool CheckCanImpact(AActor* Actor);
     

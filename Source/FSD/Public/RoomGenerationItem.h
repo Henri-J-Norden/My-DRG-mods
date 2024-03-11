@@ -3,10 +3,11 @@
 #include "GenerationItem.h"
 #include "RoomGenerationItem.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class ARoomGenerationItem : public AGenerationItem {
     GENERATED_BODY()
 public:
-    ARoomGenerationItem();
+    ARoomGenerationItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

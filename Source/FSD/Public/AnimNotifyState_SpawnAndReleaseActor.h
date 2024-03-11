@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
+#include "Templates/SubclassOf.h"
 #include "AnimNotifyState_SpawnAndReleaseActor.generated.h"
 
 class AActor;
 
-UCLASS(CollapseCategories, EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, EditInlineNew, MinimalAPI)
 class UAnimNotifyState_SpawnAndReleaseActor : public UAnimNotifyState {
     GENERATED_BODY()
 public:
@@ -30,5 +30,6 @@ private:
     
 public:
     UAnimNotifyState_SpawnAndReleaseActor();
+
 };
 

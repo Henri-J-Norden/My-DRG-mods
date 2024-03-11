@@ -5,7 +5,7 @@
 
 class UDamageClass;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UDamageConversionBonus : public UDamageBonusBase {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ protected:
     
 public:
     UDamageConversionBonus();
+
 };
 

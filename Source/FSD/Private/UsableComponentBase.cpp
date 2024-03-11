@@ -1,9 +1,25 @@
 #include "UsableComponentBase.h"
 
-class APlayerCharacter;
-class UTexture2D;
+UUsableComponentBase::UUsableComponentBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->CallbackKeys = 1;
+    this->UseCooldown = 0.00f;
+    this->AnimationSettings = NULL;
+    this->Priority = 0;
+    this->RestrictToCollider = NULL;
+    this->UsableHidesPlaceables = true;
+    this->IsRayTraceTriggered = true;
+    this->ResetUsingOnCompletion = true;
+    this->IsClientPredictive = false;
+    this->ThirdPersonWhileUsing = false;
+}
+
+void UUsableComponentBase::SetUseRestrictions(UUseConditionSet* set) {
+}
 
 void UUsableComponentBase::SetRayTraceTriggered(bool rayTraceTriggered) {
+}
+
+void UUsableComponentBase::SetAnimationSettings(UUseAnimationSetting* Settings) {
 }
 
 FText UUsableComponentBase::GetUseText_Implementation(APlayerCharacter* User) {
@@ -40,15 +56,4 @@ void UUsableComponentBase::EndUse(APlayerCharacter* User) {
 void UUsableComponentBase::BeginUse(APlayerCharacter* User, EInputKeys Key) {
 }
 
-UUsableComponentBase::UUsableComponentBase() {
-    this->CallbackKeys = 1;
-    this->UseCooldown = 0.00f;
-    this->AnimationSettings = NULL;
-    this->Priority = 0;
-    this->RestrictToCollider = NULL;
-    this->IsRayTraceTriggered = true;
-    this->ResetUsingOnCompletion = true;
-    this->IsClientPredictive = false;
-    this->ThirdPersonWhileUsing = false;
-}
 

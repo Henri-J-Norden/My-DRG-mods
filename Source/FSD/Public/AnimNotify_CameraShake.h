@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Animation/AnimNotifies/AnimNotify.h"
+#include "Templates/SubclassOf.h"
 #include "AnimNotify_CameraShake.generated.h"
 
 class UCameraShakeBase;
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_CameraShake : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -23,5 +23,6 @@ public:
     TSubclassOf<UCameraShakeBase> CameraShake;
     
     UAnimNotify_CameraShake();
+
 };
 

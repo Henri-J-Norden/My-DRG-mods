@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "SavableDataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "PlayerCharacterID.generated.h"
 
 class APlayerCharacter;
 class UPlayerCharacterData;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UPlayerCharacterID : public USavableDataAsset {
     GENERATED_BODY()
 public:
@@ -26,6 +26,7 @@ protected:
     
 public:
     UPlayerCharacterID();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UPlayerCharacterData* GetCharacterData() const;
     

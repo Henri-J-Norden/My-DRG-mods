@@ -1,9 +1,5 @@
 #include "MissionResultInfo.h"
 
-float UMissionResultInfo::GetWarningBonusSum() {
-    return 0.0f;
-}
-
 UMissionResultInfo::UMissionResultInfo() {
     this->HasInfo = false;
     this->MissionTime = 0.00f;
@@ -15,6 +11,11 @@ UMissionResultInfo::UMissionResultInfo() {
     this->LenghtDots = 0;
     this->TotalCreditsSum = 0.00f;
     this->TotalXPSum = 0.00f;
-    this->WasSuccess = false;
+    this->wasSuccess = false;
 }
+
+float UMissionResultInfo::GetWarningBonusSum() {
+    return 0.0f;
+}
+
 

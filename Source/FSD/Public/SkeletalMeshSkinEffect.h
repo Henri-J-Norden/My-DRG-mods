@@ -5,7 +5,7 @@
 
 class USkeletalMesh;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class USkeletalMeshSkinEffect : public USkinEffect {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     USkeletalMeshSkinEffect();
+
 };
 

@@ -5,7 +5,7 @@
 
 class UUseAnimationSetting;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UPushingState : public UCharacterStateComponent {
     GENERATED_BODY()
 public:
@@ -14,6 +14,7 @@ private:
     UUseAnimationSetting* PushingAnimation;
     
 public:
-    UPushingState();
+    UPushingState(const FObjectInitializer& ObjectInitializer);
+
 };
 

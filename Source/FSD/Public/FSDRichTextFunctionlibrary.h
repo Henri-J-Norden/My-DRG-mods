@@ -4,11 +4,12 @@
 #include "RichTextParseResult.h"
 #include "FSDRichTextFunctionlibrary.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UFSDRichTextFunctionlibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UFSDRichTextFunctionlibrary();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static void SplitRichText(const FRichTextParseResult& Parser, int32 SplitIndex, bool bKeepLeftFormatting, bool bKeepRightFormatting, FText& OutLeftText, FText& OutRightText);
     
@@ -16,7 +17,7 @@ public:
     static FRichTextParseResult ParseRichText(const FText& InText);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static FText MidRichText(const FRichTextParseResult& Parser, int32 StartIndex, int32 count, bool bKeepFormatting);
+    static FText MidRichText(const FRichTextParseResult& Parser, int32 StartIndex, int32 Count, bool bKeepFormatting);
     
 };
 

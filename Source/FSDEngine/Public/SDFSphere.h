@@ -4,7 +4,7 @@
 #include "SDFSphereProperties.h"
 #include "SDFSphere.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSDENGINE_API USDFSphere : public USDFBaseWithTransform {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FSDFSphereProperties Properties;
     
     USDFSphere();
+
 };
 

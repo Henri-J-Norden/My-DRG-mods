@@ -1,12 +1,10 @@
 #include "CampaignRequirement.h"
 
-class AFSDPlayerController;
-class UCampaign;
+UCampaignRequirement::UCampaignRequirement() {
+}
 
 bool UCampaignRequirement::IsRequirementMet(AFSDPlayerController* Player, UCampaign* Campaign) const {
     return false;
 }
 
-UCampaignRequirement::UCampaignRequirement() {
-}
 

@@ -1,25 +1,30 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Kismet/BlueprintFunctionLibrary.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "GameModeFunctionLibrary.generated.h"
 
-class UObject;
 class AActor;
+class AFSDGameState;
+class UObject;
 class USeamlessTravelEventKey;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UGameModeFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UGameModeFunctionLibrary();
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    static FTransform FindRandomEscapePodLocation(UObject* WorldContextObject);
+
+private:
+    UFUNCTION(BlueprintCallable)
+    static bool IsCloseToImportantLocation(AFSDGameState* GameState, const FVector& Location);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+public:
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static FTransform FindEscapePodLocationAtDistance(UObject* WorldContextObject, float Distance, float aboveDistanceBias, AActor* optionalFrom);
     
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
     static void AddSeamlessTravelEventKey(UObject* WorldContextObject, USeamlessTravelEventKey* Key);
     
 };

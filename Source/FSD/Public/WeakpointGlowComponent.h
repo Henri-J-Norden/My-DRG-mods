@@ -1,18 +1,19 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "WeakpointChannel.h"
-#include "DamageData.h"
 #include "Curves/CurveFloat.h"
+#include "DamageData.h"
+#include "EWeakpointGlowMode.h"
+#include "WeakpointChannel.h"
 #include "WeakpointGlowComponent.generated.h"
 
 class UCurveFloat;
-class UMeshComponent;
-class UHealthComponentBase;
 class UFSDPhysicalMaterial;
+class UHealthComponentBase;
+class UMeshComponent;
 class USkeletalMeshComponent;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UWeakpointGlowComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -20,7 +21,7 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName EmissiveParam;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FWeakpointChannel> Channels;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -28,6 +29,9 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float CurveMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    EWeakpointGlowMode Mode;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UFSDPhysicalMaterial* WeakPointMaterial;
@@ -39,7 +43,8 @@ protected:
     int32 ReplaceMatIndex;
     
 public:
-    UWeakpointGlowComponent();
+    UWeakpointGlowComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     bool StopLoopingGlow(int32 aGlowID, bool aFade);
     

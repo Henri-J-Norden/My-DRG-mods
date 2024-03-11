@@ -3,19 +3,20 @@
 #include "GameFramework/Actor.h"
 #include "FSDPlayerStart.generated.h"
 
-class UPlayerCharacterID;
 class AFSDPlayerController;
+class UPlayerCharacterID;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFSDPlayerStart : public AActor {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UPlayerCharacterID* PrefferedClassID;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AFSDPlayerController* usedBy;
     
-    AFSDPlayerStart();
+    AFSDPlayerStart(const FObjectInitializer& ObjectInitializer);
+
 };
 

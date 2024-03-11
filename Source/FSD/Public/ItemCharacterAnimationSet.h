@@ -4,12 +4,12 @@
 #include "ItemLoadoutAnimations.h"
 #include "ItemCharacterAnimationSet.generated.h"
 
-class UBlendSpace1D;
 class UAnimMontage;
 class UAnimSequence;
+class UBlendSpace1D;
 class UItemCharacterAnimationSet;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UItemCharacterAnimationSet : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -146,5 +146,6 @@ public:
     UItemCharacterAnimationSet* ParentSet;
     
     UItemCharacterAnimationSet();
+
 };
 

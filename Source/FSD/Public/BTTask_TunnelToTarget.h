@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "UObject/NoExportTypes.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "BTTask_TunnelToTarget.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTTask_TunnelToTarget : public UBTTaskNode {
     GENERATED_BODY()
 public:
@@ -24,5 +24,6 @@ private:
     
 public:
     UBTTask_TunnelToTarget();
+
 };
 

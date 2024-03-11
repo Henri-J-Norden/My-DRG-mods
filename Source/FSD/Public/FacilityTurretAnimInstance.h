@@ -4,7 +4,7 @@
 #include "EnemyAnimInstance.h"
 #include "FacilityTurretAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UFacilityTurretAnimInstance : public UEnemyAnimInstance {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ protected:
     
 public:
     UFacilityTurretAnimInstance();
+
 };
 

@@ -5,7 +5,7 @@
 
 class USkeletalMesh;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API ULegacySettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ public:
     TArray<TSoftObjectPtr<USkeletalMesh>> ArmorMeshes;
     
     ULegacySettings();
+
 };
 

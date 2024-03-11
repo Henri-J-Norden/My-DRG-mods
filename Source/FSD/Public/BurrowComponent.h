@@ -5,11 +5,12 @@
 
 class UAnimMontage;
 
-UCLASS(Blueprintable, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UBurrowComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-    UBurrowComponent();
+    UBurrowComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintImplementableEvent)
     void Unburrow(UAnimMontage* customMontage);
     

@@ -3,13 +3,14 @@
 #include "CSGBase.h"
 #include "CSGDuplicateSingleChildBase.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGDuplicateSingleChildBase : public UCSGBase {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UCSGBase*> Children;
     
     UCSGDuplicateSingleChildBase();
+
 };
 

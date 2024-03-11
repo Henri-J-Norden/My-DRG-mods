@@ -4,15 +4,15 @@
 #include "FSDAIController.h"
 #include "FacilityTurretController.generated.h"
 
+class AActor;
 class UAIPerceptionComponent;
 class UHealthComponentBase;
-class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFacilityTurretController : public AFSDAIController {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UAIPerceptionComponent* Perception;
     
 private:
@@ -26,7 +26,8 @@ private:
     bool RespectAttack;
     
 public:
-    AFacilityTurretController();
+    AFacilityTurretController(const FObjectInitializer& ObjectInitializer);
+
 private:
     UFUNCTION(BlueprintCallable)
     void OnTurretsAttackingChanged(bool IsAttacking);

@@ -5,7 +5,7 @@
 
 class UFloatPerkComponent;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UCreateComponentPerkActivation : public UFloatPerkActivation {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UCreateComponentPerkActivation();
+
 };
 

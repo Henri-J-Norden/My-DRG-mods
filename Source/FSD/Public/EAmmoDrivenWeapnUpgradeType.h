@@ -2,13 +2,15 @@
 #include "CoreMinimal.h"
 #include "EAmmoDrivenWeapnUpgradeType.generated.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum class EAmmoDrivenWeapnUpgradeType : uint8 {
     MaxAmmo,
     ClipSize,
     RateOfFire,
     ReloadSpeed,
     RecoilMultiplier,
+    RecoilMultiplierV,
+    RecoilMultiplierH,
     BurstCount,
     BurstRateOfFire,
     ActivateBurstFireMode,
@@ -19,5 +21,6 @@ enum class EAmmoDrivenWeapnUpgradeType : uint8 {
     OverheatOnReload,
     ShotCost,
     CustomEvent1,
+    HeatReductionOnReload,
 };
 

@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "SDFSingleChildBase.h"
 #include "SDFModifierProperties.h"
+#include "SDFSingleChildBase.h"
 #include "SDFModifier.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSDENGINE_API USDFModifier : public USDFSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FSDFModifierProperties Properties;
     
     USDFModifier();
+
 };
 

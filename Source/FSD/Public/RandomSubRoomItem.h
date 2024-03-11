@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "GenerationItem.h"
 #include "GameplayTagContainer.h"
+#include "GenerationItem.h"
 #include "RandomSubRoomItem.generated.h"
 
 class URoomGeneratorGroup;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ARandomSubRoomItem : public AGenerationItem {
     GENERATED_BODY()
 public:
@@ -21,6 +21,7 @@ protected:
     int32 Layer;
     
 public:
-    ARandomSubRoomItem();
+    ARandomSubRoomItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -3,10 +3,10 @@
 #include "UnlockReward.h"
 #include "VictoryPoseReward.generated.h"
 
-class UVictoryPose;
 class UPlayerCharacterID;
+class UVictoryPose;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UVictoryPoseReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UVictoryPoseReward();
+
 };
 

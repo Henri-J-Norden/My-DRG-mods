@@ -5,7 +5,7 @@
 
 class UResourceData;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UResourceSchematicItem : public USchematicItem {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ protected:
     
 public:
     UResourceSchematicItem();
+
 };
 

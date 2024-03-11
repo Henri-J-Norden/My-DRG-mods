@@ -8,8 +8,11 @@ USTRUCT(BlueprintType)
 struct FGeneratedMissionGroup {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UGeneratedMission*> AvailableMissions;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool OptedOutOfSeasonContent;
     
     FSD_API FGeneratedMissionGroup();
 };

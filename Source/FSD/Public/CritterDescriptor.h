@@ -4,7 +4,7 @@
 #include "IRandRange.h"
 #include "CritterDescriptor.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCritterDescriptor : public UBaseCritterDescriptor {
     GENERATED_BODY()
 public:
@@ -20,5 +20,6 @@ protected:
     
 public:
     UCritterDescriptor();
+
 };
 

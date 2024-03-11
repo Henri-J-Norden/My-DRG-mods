@@ -1,10 +1,7 @@
 #include "FSDSplineLibrary.h"
 
-class USplineComponent;
-class AActor;
-class UObject;
-class UTerrainMaterial;
-class USplineMeshComponent;
+UFSDSplineLibrary::UFSDSplineLibrary() {
+}
 
 bool UFSDSplineLibrary::SplineComponentSphereTrace(USplineComponent*& SplineComponent, float Radius, TEnumAsByte<ETraceTypeQuery> TraceType, float StepSize, TArray<AActor*> IgnoreActors, FHitResult& OutHitResult, FVector Offset) {
     return false;
@@ -61,6 +58,4 @@ float UFSDSplineLibrary::ApproximateSplineDistanceAtWorldLocation(const USplineC
     return 0.0f;
 }
 
-UFSDSplineLibrary::UFSDSplineLibrary() {
-}
 

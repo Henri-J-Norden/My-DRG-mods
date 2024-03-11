@@ -1,24 +1,25 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "MusicHandle.h"
 #include "ActiveAudioItem.h"
+#include "MusicHandle.h"
 #include "MusicManager.generated.h"
 
-class UMusicLibrary;
 class UMusicCategory;
+class UMusicLibrary;
 class USoundBase;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UMusicManager : public UWorldSubsystem {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FMusicHandle, FActiveAudioItem> ActiveAudio;
     
 public:
     UMusicManager();
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void StopHandle(FMusicHandle Handle);
     
@@ -29,7 +30,7 @@ public:
     void SetIsPaused(bool IsPaused);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
-    FMusicHandle PlayLibrary(UMusicLibrary* library);
+    FMusicHandle PlayLibrary(UMusicLibrary* library, int32 musicIndex);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     FMusicHandle Play(USoundBase* Music, UMusicCategory* Category);

@@ -3,7 +3,7 @@
 #include "AttackerPositioningComponent.h"
 #include "PlayerAttackPositionComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPlayerAttackPositionComponent : public UAttackerPositioningComponent {
     GENERATED_BODY()
 public:
@@ -15,6 +15,10 @@ protected:
     float OnZiplineWalkingModifier;
     
 public:
-    UPlayerAttackPositionComponent();
+    UPlayerAttackPositionComponent(const FObjectInitializer& ObjectInitializer);
+
+    UFUNCTION(BlueprintCallable)
+    void SetGameplayModifier(float modifier);
+    
 };
 

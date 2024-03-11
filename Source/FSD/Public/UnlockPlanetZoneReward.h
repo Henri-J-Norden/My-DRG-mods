@@ -5,7 +5,7 @@
 
 class UPlanetZone;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUnlockPlanetZoneReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UUnlockPlanetZoneReward();
+
 };
 

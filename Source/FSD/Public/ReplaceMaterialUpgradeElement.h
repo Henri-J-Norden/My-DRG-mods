@@ -5,7 +5,7 @@
 
 class UMaterialInterface;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UReplaceMaterialUpgradeElement : public UItemUpgradeElement {
     GENERATED_BODY()
 public:
@@ -18,5 +18,6 @@ protected:
     
 public:
     UReplaceMaterialUpgradeElement();
+
 };
 

@@ -5,7 +5,7 @@
 
 class AActor;
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UKillNearbyCreaturePerkComponent : public UFloatPerkComponent {
     GENERATED_BODY()
 public:
@@ -14,6 +14,7 @@ protected:
     TSoftClassPtr<AActor> EnemyClass;
     
 public:
-    UKillNearbyCreaturePerkComponent();
+    UKillNearbyCreaturePerkComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

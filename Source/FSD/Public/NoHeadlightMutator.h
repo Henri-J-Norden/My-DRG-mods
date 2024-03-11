@@ -3,10 +3,11 @@
 #include "Mutator.h"
 #include "NoHeadlightMutator.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UNoHeadlightMutator : public UMutator {
     GENERATED_BODY()
 public:
     UNoHeadlightMutator();
+
 };
 

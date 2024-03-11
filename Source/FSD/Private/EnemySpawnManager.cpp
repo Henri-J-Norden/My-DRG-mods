@@ -1,11 +1,15 @@
 #include "EnemySpawnManager.h"
 #include "Templates/SubclassOf.h"
 
-class UStatusEffect;
-class APawn;
-class UEnemyDescriptor;
-class AActor;
-class UHealthComponentBase;
+UEnemySpawnManager::UEnemySpawnManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->SpawnEffects = NULL;
+    this->MaxActiveEnemies = 0;
+    this->MaxActiveSwarmers = 80;
+    this->MaxActiveCritters = 40;
+    this->MaxDistanceBeforeCleanup = 0.00f;
+    this->ProceduralSetup = NULL;
+    this->bDestroyingAllEnemies = false;
+}
 
 void UEnemySpawnManager::SpawnerDestroyed(APawn* Actor) {
 }
@@ -39,6 +43,14 @@ bool UEnemySpawnManager::GetSpawningEnabled() const {
     return false;
 }
 
+APawn* UEnemySpawnManager::FindEnemyByClass(TSubclassOf<APawn> PawnClass, bool isSwarmerEnemy) const {
+    return NULL;
+}
+
+TArray<APawn*> UEnemySpawnManager::FindEnemiesByClass(TSubclassOf<APawn> PawnClass, bool isSwarmerEnemy) const {
+    return TArray<APawn*>();
+}
+
 void UEnemySpawnManager::EnemyDestroyed(AActor* Actor) {
 }
 
@@ -55,13 +67,4 @@ bool UEnemySpawnManager::CanSpawn(UEnemyDescriptor* EnemyDescriptor) const {
 void UEnemySpawnManager::AddGlobalStatusEffect(TSubclassOf<UStatusEffect> StatusEffect) {
 }
 
-UEnemySpawnManager::UEnemySpawnManager() {
-    this->SpawnEffects = NULL;
-    this->MaxActiveEnemies = 0;
-    this->MaxActiveSwarmers = 80;
-    this->MaxActiveCritters = 40;
-    this->MaxDistanceBeforeCleanup = 0.00f;
-    this->ProceduralSetup = NULL;
-    this->bDestroyingAllEnemies = false;
-}
 

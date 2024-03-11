@@ -5,7 +5,7 @@
 
 class UFXSystemAsset;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTrailUpgradeElement : public UItemUpgradeElement {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UTrailUpgradeElement();
+
 };
 

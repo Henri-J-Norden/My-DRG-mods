@@ -3,7 +3,7 @@
 #include "UseConditionBase.h"
 #include "UseConditionItemBlockAction.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUseConditionItemBlockAction : public UUseConditionBase {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     bool Invert;
     
     UUseConditionItemBlockAction();
+
 };
 

@@ -3,10 +3,11 @@
 #include "SkinnableComponent.h"
 #include "DroneSkinnableComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UDroneSkinnableComponent : public USkinnableComponent {
     GENERATED_BODY()
 public:
-    UDroneSkinnableComponent();
+    UDroneSkinnableComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -3,7 +3,7 @@
 #include "EnemyGroupDescriptor.h"
 #include "AmberEventEnemyPool.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UAmberEventEnemyPool : public UEnemyGroupDescriptor {
     GENERATED_BODY()
 public:
@@ -23,5 +23,6 @@ public:
     int32 AmbersNeededOnePlayer;
     
     UAmberEventEnemyPool();
+
 };
 

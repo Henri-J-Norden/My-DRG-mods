@@ -1,8 +1,56 @@
 #include "DeepPathfinderMovement.h"
 #include "Net/UnrealNetwork.h"
 
-class AActor;
-class UFakeMoverSettings;
+UDeepPathfinderMovement::UDeepPathfinderMovement(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bUseAccelerationForPaths = true;
+    this->UseDormancy = false;
+    this->MaxPawnSpeed = 300.00f;
+    this->StrafeSpeed = 150.00f;
+    this->MinSlowdownAngle = 20.00f;
+    this->MaxSlowdownAngle = 90.00f;
+    this->MaxStrafeDistance = 200.00f;
+    this->AlignDirectionSpeed = 4.00f;
+    this->FleeSpeedBoostMultiplier = 1.50f;
+    this->MaxAcceleration = 500.00f;
+    this->MaxBrakingDeceleration = 200.00f;
+    this->AngleSpeedFilterFactor = 2.00f;
+    this->AIAvoidanceWeight = 10;
+    this->PathfinderType = DeepPathFinderType::Walk;
+    this->PathfinderSize = DeepPathFinderSize::Medium;
+    this->MovementPhysicsType = ETeleportType::TeleportPhysics;
+    this->PathfinderPreference = DeepPathFinderPreference::None;
+    this->AlignTowardsTargetIfStationary = false;
+    this->AlignToTargetMinRequiredAngle = 0.00f;
+    this->AllowSlowTickRateWhenNotVisible = true;
+    this->ForceAPathIfNoneFound = false;
+    this->DrawServerPath = false;
+    this->CSGWorld = NULL;
+    this->PathMovedDist = 0;
+    this->LocalPathMovedDist = 0;
+    this->MoveSettings = NULL;
+    this->TargetActor = NULL;
+    this->CurrentPathIndex = 0;
+    this->CurrentPathFraction = 0.00f;
+    this->DestinationActor = NULL;
+    this->AcceptanceRadius = 0.00f;
+    this->OnlyPartPath = false;
+    this->PauseMovementTime = 0.00f;
+    this->MoveMode = EDeepMovementMode::Normal;
+    this->PawnStats = NULL;
+    this->VerticalAngleSpeed = 0.00f;
+    this->HorizontalAngleSpeed = 0.00f;
+    this->IsStrafing = false;
+    this->HasOustandingPathRequest = false;
+    this->LastPathReachedPreciseDestination = true;
+    this->PostponedTickTime = 0.00f;
+    this->LastMoveSuccessful = false;
+    this->HandleRotation = true;
+    this->TickAfterOwnerDeath = false;
+    this->DampOmega = 2.00f;
+    this->UseMovementSpring = false;
+    this->SnapToPathfinderOnFirstMove = true;
+    this->FakeSyncTime = 0.00f;
+}
 
 void UDeepPathfinderMovement::UpdateTargetActor(AActor* NewTarget) {
 }
@@ -22,7 +70,7 @@ void UDeepPathfinderMovement::StopMove() {
 void UDeepPathfinderMovement::StopAttackStance() {
 }
 
-bool UDeepPathfinderMovement::StartMoveToActor(AActor* Dest, float NewAcceptanceRadius) {
+bool UDeepPathfinderMovement::StartMoveToActor(AActor* Dest, float NewAcceptanceRadius, bool ToCenterOfMass) {
     return false;
 }
 
@@ -52,6 +100,9 @@ void UDeepPathfinderMovement::SetSlowDownAngles(const float Min, const float Max
 void UDeepPathfinderMovement::SetMaxSpeed(const float Speed) {
 }
 
+void UDeepPathfinderMovement::SetMaxAcceleration(float Value) {
+}
+
 void UDeepPathfinderMovement::SetHandleRotation(const bool flag) {
 }
 
@@ -68,7 +119,7 @@ bool UDeepPathfinderMovement::PathExistTo(const FVector& Dest) {
     return false;
 }
 
-bool UDeepPathfinderMovement::PathExistsBetween(const FVector& From, const FVector& to) {
+bool UDeepPathfinderMovement::PathExistsBetween(const FVector& From, const FVector& To) {
     return false;
 }
 
@@ -115,6 +166,10 @@ EDeepMovementState UDeepPathfinderMovement::GetMovementState() const {
     return EDeepMovementState::Stationary;
 }
 
+float UDeepPathfinderMovement::GetMaxAcceleration() const {
+    return 0.0f;
+}
+
 bool UDeepPathfinderMovement::GetIsStrafing() {
     return false;
 }
@@ -123,8 +178,16 @@ float UDeepPathfinderMovement::GetHorizontalAngleSpeed() {
     return 0.0f;
 }
 
+FVector UDeepPathfinderMovement::GetCurrentMovePos() const {
+    return FVector{};
+}
+
 UFakeMoverSettings* UDeepPathfinderMovement::GetCurrentFakePhysicsMoveSet() {
     return NULL;
+}
+
+float UDeepPathfinderMovement::GetApproximatePathLength(FVector Start, FVector End) const {
+    return 0.0f;
 }
 
 bool UDeepPathfinderMovement::FlyToConnectedPosition(const FVector& destPos) {
@@ -183,53 +246,4 @@ void UDeepPathfinderMovement::GetLifetimeReplicatedProps(TArray<FLifetimePropert
     DOREPLIFETIME(UDeepPathfinderMovement, MoveMode);
 }
 
-UDeepPathfinderMovement::UDeepPathfinderMovement() {
-    this->UseDormancy = false;
-    this->MaxPawnSpeed = 300.00f;
-    this->StrafeSpeed = 150.00f;
-    this->MinSlowdownAngle = 20.00f;
-    this->MaxSlowdownAngle = 90.00f;
-    this->MaxStrafeDistance = 200.00f;
-    this->AlignDirectionSpeed = 4.00f;
-    this->FleeSpeedBoostMultiplier = 1.50f;
-    this->MaxAcceleration = 500.00f;
-    this->MaxBrakingDeceleration = 200.00f;
-    this->AngleSpeedFilterFactor = 2.00f;
-    this->AIAvoidanceWeight = 10;
-    this->PathfinderType = DeepPathFinderType::Walk;
-    this->PathfinderSize = DeepPathFinderSize::Medium;
-    this->MovementPhysicsType = ETeleportType::TeleportPhysics;
-    this->PathfinderPreference = DeepPathFinderPreference::None;
-    this->AlignTowardsTargetIfStationary = false;
-    this->AlignToTargetMinRequiredAngle = 0.00f;
-    this->AllowSlowTickRateWhenNotVisible = true;
-    this->ForceAPathIfNoneFound = false;
-    this->DrawServerPath = false;
-    this->CSGWorld = NULL;
-    this->PathMovedDist = 0;
-    this->LocalPathMovedDist = 0;
-    this->MoveSettings = NULL;
-    this->TargetActor = NULL;
-    this->CurrentPathIndex = 0;
-    this->CurrentPathFraction = 0.00f;
-    this->DestinationActor = NULL;
-    this->AcceptanceRadius = 0.00f;
-    this->OnlyPartPath = false;
-    this->PauseMovementTime = 0.00f;
-    this->MoveMode = EDeepMovementMode::Normal;
-    this->PawnStats = NULL;
-    this->VerticalAngleSpeed = 0.00f;
-    this->HorizontalAngleSpeed = 0.00f;
-    this->IsStrafing = false;
-    this->HasOustandingPathRequest = false;
-    this->LastPathReachedPreciseDestination = true;
-    this->PostponedTickTime = 0.00f;
-    this->LastMoveSuccessful = false;
-    this->HandleRotation = true;
-    this->TickAfterOwnerDeath = false;
-    this->DampOmega = 2.00f;
-    this->UseMovementSpring = false;
-    this->SnapToPathfinderOnFirstMove = true;
-    this->FakeSyncTime = 0.00f;
-}
 

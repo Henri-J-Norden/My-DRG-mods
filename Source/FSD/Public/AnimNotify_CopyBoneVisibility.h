@@ -3,7 +3,7 @@
 #include "Animation/AnimNotifies/AnimNotify.h"
 #include "AnimNotify_CopyBoneVisibility.generated.h"
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_CopyBoneVisibility : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ public:
     bool HideSourceBone;
     
     UAnimNotify_CopyBoneVisibility();
+
 };
 

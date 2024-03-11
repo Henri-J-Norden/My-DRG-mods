@@ -3,13 +3,13 @@
 #include "Components/ActorComponent.h"
 #include "WeaponHitCounterComponent.generated.h"
 
-class UWeaponHitCountEffect;
+class AActor;
+class UFSDPhysicalMaterial;
 class UHealthComponentBase;
 class UPrimitiveComponent;
-class UFSDPhysicalMaterial;
-class AActor;
+class UWeaponHitCountEffect;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UWeaponHitCounterComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -21,9 +21,10 @@ protected:
     bool RequiresWeakpointHit;
     
 public:
-    UWeaponHitCounterComponent();
+    UWeaponHitCounterComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_OnReloading();
     
     UFUNCTION(BlueprintCallable)

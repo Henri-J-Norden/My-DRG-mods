@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "Engine/DataAsset.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "PlayerAfflictionOverlay.generated.h"
 
-class UTexture2D;
-class USoundCue;
 class UPlayerAfflictionOverlayWidget;
+class USoundCue;
+class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UPlayerAfflictionOverlay : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -29,5 +29,6 @@ public:
     TSoftObjectPtr<USoundCue> Audio2D_OnBegin;
     
     UPlayerAfflictionOverlay();
+
 };
 

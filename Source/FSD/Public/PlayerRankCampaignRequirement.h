@@ -3,7 +3,7 @@
 #include "CampaignRequirement.h"
 #include "PlayerRankCampaignRequirement.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UPlayerRankCampaignRequirement : public UCampaignRequirement {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UPlayerRankCampaignRequirement();
+
 };
 

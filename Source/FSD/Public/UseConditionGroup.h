@@ -5,7 +5,7 @@
 
 class UUseConditionCollection;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUseConditionGroup : public UUseConditionBase {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ public:
     UUseConditionCollection* Collection;
     
     UUseConditionGroup();
+
 };
 

@@ -4,15 +4,19 @@
 #include "GameFramework/OnlineReplStructs.h"
 #include "FSDGameSession.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AFSDGameSession : public AGameSession {
     GENERATED_BODY()
 public:
 private:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TArray<FUniqueNetIdRepl> KickedPlayers;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FUniqueNetIdRepl> BannedPlayers;
     
 public:
-    AFSDGameSession();
+    AFSDGameSession(const FObjectInitializer& ObjectInitializer);
+
 };
 

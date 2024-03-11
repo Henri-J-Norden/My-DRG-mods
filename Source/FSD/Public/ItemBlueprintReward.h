@@ -5,7 +5,7 @@
 
 class UItemID;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UItemBlueprintReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UItemBlueprintReward();
+
 };
 

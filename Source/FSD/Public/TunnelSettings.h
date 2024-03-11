@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/DataAsset.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataAsset.h"
 #include "TunnelSettings.generated.h"
 
-class UTerrainMaterial;
 class UFloodFillSettings;
+class UTerrainMaterial;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UTunnelSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -48,5 +48,6 @@ public:
     FVector2D FloorNoiseRange;
     
     UTunnelSettings();
+
 };
 

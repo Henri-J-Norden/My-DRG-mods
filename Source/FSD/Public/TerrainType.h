@@ -6,7 +6,7 @@
 class UParticleSystem;
 class USoundCue;
 
-UCLASS(BlueprintType, MinimalAPI)
+UCLASS(Blueprintable, MinimalAPI)
 class UTerrainType : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -28,5 +28,6 @@ protected:
     
 public:
     UTerrainType();
+
 };
 

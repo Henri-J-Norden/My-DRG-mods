@@ -5,7 +5,7 @@
 
 class UTexture2D;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UBlankSchematicItem : public USchematicItem {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ protected:
     
 public:
     UBlankSchematicItem();
+
 };
 

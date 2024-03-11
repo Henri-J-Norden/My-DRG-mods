@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTDecorator.h"
-#include "RandRange.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
+#include "RandRange.h"
 #include "BTDecorator_SharedCooldown.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTDecorator_SharedCooldown : public UBTDecorator {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ public:
     FBlackboardKeySelector CooldownKey;
     
     UBTDecorator_SharedCooldown();
+
 };
 

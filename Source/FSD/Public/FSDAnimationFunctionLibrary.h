@@ -5,11 +5,12 @@
 
 class UAnimSequence;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UFSDAnimationFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UFSDAnimationFunctionLibrary();
+
     UFUNCTION(BlueprintCallable)
     static float GetAnimSequenceLength(const UAnimSequence* AnimSequence);
     

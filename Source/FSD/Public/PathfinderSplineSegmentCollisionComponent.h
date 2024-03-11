@@ -7,7 +7,7 @@
 
 class USplineComponent;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPathfinderSplineSegmentCollisionComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -17,7 +17,8 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     PFCollisionType CollisionType;
     
-    UPathfinderSplineSegmentCollisionComponent();
+    UPathfinderSplineSegmentCollisionComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void UpdateFromSpline(USplineComponent* SplineComponent, int32 StartIndex);
     

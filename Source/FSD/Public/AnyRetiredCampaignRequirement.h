@@ -3,10 +3,11 @@
 #include "CampaignRequirement.h"
 #include "AnyRetiredCampaignRequirement.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UAnyRetiredCampaignRequirement : public UCampaignRequirement {
     GENERATED_BODY()
 public:
     UAnyRetiredCampaignRequirement();
+
 };
 

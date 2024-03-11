@@ -5,13 +5,14 @@
 
 class UObject;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAsyncPathRequests : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<TWeakObjectPtr<UObject>> RequestListeners;
     
-    UAsyncPathRequests();
+    UAsyncPathRequests(const FObjectInitializer& ObjectInitializer);
+
 };
 

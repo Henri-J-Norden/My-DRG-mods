@@ -1,8 +1,8 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "ClaimableRewardEntry.generated.h"
 
+class UClaimableRewardEntryWidget;
 class UObject;
 class UReward;
 
@@ -17,13 +17,13 @@ public:
     FText Text;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UObject* Image;
+    TSoftObjectPtr<UObject> Image;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<UReward*> Rewards;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGuid SavegameID;
+    TSoftClassPtr<UClaimableRewardEntryWidget> EntryWidgetOverride;
     
     FSD_API FClaimableRewardEntry();
 };

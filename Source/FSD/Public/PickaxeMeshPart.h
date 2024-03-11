@@ -5,7 +5,7 @@
 
 class UStaticMesh;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UPickaxeMeshPart : public UPickaxePartItem {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UPickaxeMeshPart();
+
 };
 

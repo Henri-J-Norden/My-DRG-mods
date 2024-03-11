@@ -3,10 +3,11 @@
 #include "UObject/Object.h"
 #include "SpecialEventSpawner.generated.h"
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class USpecialEventSpawner : public UObject {
     GENERATED_BODY()
 public:
     USpecialEventSpawner();
+
 };
 

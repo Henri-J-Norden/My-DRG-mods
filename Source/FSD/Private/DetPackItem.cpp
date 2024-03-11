@@ -1,49 +1,10 @@
 #include "DetPackItem.h"
-#include "Net/UnrealNetwork.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "CapacityHoldingItemAggregator.h"
 #include "FirstPersonSkeletalMeshComponent.h"
-#include "Components/SkeletalMeshComponent.h"
+#include "Net/UnrealNetwork.h"
 
-void ADetPackItem::Simulate_ThrowGrenade_Implementation() {
-}
-
-void ADetPackItem::Server_ThrowGrenade_Implementation() {
-}
-bool ADetPackItem::Server_ThrowGrenade_Validate() {
-    return true;
-}
-
-void ADetPackItem::Server_Detonate_Implementation() {
-}
-bool ADetPackItem::Server_Detonate_Validate() {
-    return true;
-}
-
-void ADetPackItem::Server_CycleItem_Implementation() {
-}
-bool ADetPackItem::Server_CycleItem_Validate() {
-    return true;
-}
-
-
-void ADetPackItem::OnRep_IsDetonatorOut() {
-}
-
-void ADetPackItem::OnDetonatingFinished() {
-}
-
-int32 ADetPackItem::GetCurrentGrenades() const {
-    return 0;
-}
-
-void ADetPackItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    
-    DOREPLIFETIME(ADetPackItem, IsDetonatorOut);
-    DOREPLIFETIME(ADetPackItem, HasThrownPack);
-}
-
-ADetPackItem::ADetPackItem() {
+ADetPackItem::ADetPackItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->DetPackClass = NULL;
     this->LoadoutProxy = NULL;
     this->FPThrowMontage = NULL;
@@ -69,5 +30,38 @@ ADetPackItem::ADetPackItem() {
     this->CooldownLeft = 0.00f;
     this->IsDetonatorOut = false;
     this->HasThrownPack = false;
+    this->DetonatorFPMesh->SetupAttachment(RootComponent);
+    this->DetonatorTPMesh->SetupAttachment(RootComponent);
 }
+
+void ADetPackItem::Simulate_ThrowGrenade_Implementation() {
+}
+
+void ADetPackItem::Server_ThrowGrenade_Implementation() {
+}
+
+void ADetPackItem::Server_Detonate_Implementation() {
+}
+
+void ADetPackItem::Server_CycleItem_Implementation() {
+}
+
+
+void ADetPackItem::OnRep_IsDetonatorOut() {
+}
+
+void ADetPackItem::OnDetonatingFinished() {
+}
+
+int32 ADetPackItem::GetCurrentGrenades() const {
+    return 0;
+}
+
+void ADetPackItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(ADetPackItem, IsDetonatorOut);
+    DOREPLIFETIME(ADetPackItem, HasThrownPack);
+}
+
 

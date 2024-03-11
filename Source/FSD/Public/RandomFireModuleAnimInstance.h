@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "GunTowerModuleAnimInstance.h"
 #include "UObject/NoExportTypes.h"
+#include "GunTowerModuleAnimInstance.h"
 #include "RandomFireModuleAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class URandomFireModuleAnimInstance : public UGunTowerModuleAnimInstance {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FRotator OtherLookatRotation;
     
     URandomFireModuleAnimInstance();
+
 };
 

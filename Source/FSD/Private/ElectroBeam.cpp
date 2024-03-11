@@ -1,12 +1,25 @@
 #include "ElectroBeam.h"
-#include "Net/UnrealNetwork.h"
 #include "Components/AudioComponent.h"
-#include "Particles/ParticleSystemComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Net/UnrealNetwork.h"
 
-class USceneComponent;
-class AActor;
-class UHealthComponentBase;
+AElectroBeam::AElectroBeam(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("collider"));
+    this->collider = (UCapsuleComponent*)RootComponent;
+    this->DelaySource = NULL;
+    this->DelayTarget = NULL;
+    this->BeamEffect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("BeamEffect"));
+    this->ZappSound = CreateDefaultSubobject<UAudioComponent>(TEXT("ZappSound"));
+    this->MaxLitTime = 0.00f;
+    this->MinLitTime = 0.00f;
+    this->MaxUnlitTime = 0.00f;
+    this->MinUnlitTime = 0.00f;
+    this->ShouldFlicker = false;
+    this->IsLit = false;
+    this->BeamEffect->SetupAttachment(RootComponent);
+    this->ZappSound->SetupAttachment(RootComponent);
+}
 
 void AElectroBeam::SetTarget(USceneComponent* TargetPoint) {
 }
@@ -61,17 +74,4 @@ void AElectroBeam::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
     DOREPLIFETIME(AElectroBeam, IsLit);
 }
 
-AElectroBeam::AElectroBeam() {
-    this->collider = CreateDefaultSubobject<UCapsuleComponent>(TEXT("collider"));
-    this->DelaySource = NULL;
-    this->DelayTarget = NULL;
-    this->BeamEffect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("BeamEffect"));
-    this->ZappSound = CreateDefaultSubobject<UAudioComponent>(TEXT("ZappSound"));
-    this->MaxLitTime = 0.00f;
-    this->MinLitTime = 0.00f;
-    this->MaxUnlitTime = 0.00f;
-    this->MinUnlitTime = 0.00f;
-    this->ShouldFlicker = false;
-    this->IsLit = false;
-}
 

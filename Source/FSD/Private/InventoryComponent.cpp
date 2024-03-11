@@ -2,9 +2,27 @@
 #include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
 
-class AItem;
-class AActor;
-class ARecallableSentryGunItem;
+UInventoryComponent::UInventoryComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->InventoryList = NULL;
+    this->ThrownGrenadeClass = NULL;
+    this->flareClass = NULL;
+    this->OutOfFlaresSound = NULL;
+    this->OutOfFlaresShout = NULL;
+    this->FlareAngle = 0.00f;
+    this->FlareCooldown = 0.00f;
+    this->FlareProductionTime = 0.00f;
+    this->FlareProductionTimeLeft = 0.00f;
+    this->MaxFlares = 0;
+    this->Flares = 0;
+    this->FlareCooldownRemaining = 0.00f;
+    this->bItemsLoaded = false;
+    this->MiningItem = NULL;
+    this->GrenadeItem = NULL;
+    this->LaserPointerItem = NULL;
+    this->TerrainScannerItem = NULL;
+    this->ResupplyItem = NULL;
+    this->RecallableSentryGunItem = NULL;
+}
 
 void UInventoryComponent::UpdateFromSaveGameInSlot(EItemCategory Category) {
 }
@@ -16,6 +34,9 @@ void UInventoryComponent::Server_ThrowItem_Implementation(AActor* Item, FVector 
 }
 
 void UInventoryComponent::Server_ThrowFlare_Implementation() {
+}
+
+void UInventoryComponent::ResupplyGrenades(float percentage) {
 }
 
 void UInventoryComponent::Resupply(float percentage) {
@@ -48,6 +69,10 @@ int32 UInventoryComponent::GetTotalAmmoLeft() const {
 }
 
 ARecallableSentryGunItem* UInventoryComponent::GetRecallableSentryGunItem() const {
+    return NULL;
+}
+
+AItem* UInventoryComponent::GetOrCreateUnlistedItem(TSubclassOf<AItem> ItemType) {
     return NULL;
 }
 
@@ -88,31 +113,13 @@ void UInventoryComponent::AnimationNotify1() {
 void UInventoryComponent::All_PlayThrowMontage_Implementation(AActor* Item) {
 }
 
+void UInventoryComponent::AddItemClass(TSubclassOf<AItem> itemClass) {
+}
+
 void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
     DOREPLIFETIME(UInventoryComponent, flareClass);
 }
 
-UInventoryComponent::UInventoryComponent() {
-    this->InventoryList = NULL;
-    this->ThrownGrenadeClass = NULL;
-    this->flareClass = NULL;
-    this->OutOfFlaresSound = NULL;
-    this->OutOfFlaresShout = NULL;
-    this->FlareAngle = 0.00f;
-    this->FlareCooldown = 0.00f;
-    this->FlareProductionTime = 0.00f;
-    this->FlareProductionTimeLeft = 0.00f;
-    this->MaxFlares = 0;
-    this->Flares = 0;
-    this->FlareCooldownRemaining = 0.00f;
-    this->bItemsLoaded = false;
-    this->MiningItem = NULL;
-    this->GrenadeItem = NULL;
-    this->LaserPointerItem = NULL;
-    this->TerrainScannerItem = NULL;
-    this->ResupplyItem = NULL;
-    this->RecallableSentryGunItem = NULL;
-}
 

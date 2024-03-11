@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
 #include "UObject/NoExportTypes.h"
+#include "GameFramework/Actor.h"
 #include "PathObstacle.h"
 #include "NoisyPathfinderTest.generated.h"
 
-class UTunnelSegmentSetting;
 class ADeepCSGWorld;
-class UTunnelParameters;
 class UFloodFillSettings;
+class UTunnelParameters;
+class UTunnelSegmentSetting;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ANoisyPathfinderTest : public AActor {
     GENERATED_BODY()
 public:
@@ -73,6 +73,7 @@ protected:
     ADeepCSGWorld* CSGWorld;
     
 public:
-    ANoisyPathfinderTest();
+    ANoisyPathfinderTest(const FObjectInitializer& ObjectInitializer);
+
 };
 

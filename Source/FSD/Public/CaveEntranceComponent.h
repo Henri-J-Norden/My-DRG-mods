@@ -5,7 +5,7 @@
 #include "ECaveEntranceType.h"
 #include "CaveEntranceComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UCaveEntranceComponent : public UPrimitiveComponent {
     GENERATED_BODY()
 public:
@@ -17,6 +17,7 @@ protected:
     ECaveEntrancePriority Priority;
     
 public:
-    UCaveEntranceComponent();
+    UCaveEntranceComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

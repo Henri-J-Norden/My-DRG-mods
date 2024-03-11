@@ -6,7 +6,7 @@
 class AActor;
 class UFSDPhysicalMaterial;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ARevoler : public AAmmoDrivenWeapon {
     GENERATED_BODY()
 public:
@@ -18,7 +18,8 @@ protected:
     float OnKillFearRange;
     
 public:
-    ARevoler();
+    ARevoler(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnTargetKilled(AActor* Target, UFSDPhysicalMaterial* PhysMat, bool wasDirectHit);

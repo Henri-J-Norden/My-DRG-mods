@@ -3,10 +3,10 @@
 #include "AfflictionEffect.h"
 #include "BoneParticlesAfflictionEffect.generated.h"
 
-class USoundCue;
 class UParticleSystem;
+class USoundCue;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class UBoneParticlesAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UBoneParticlesAfflictionEffect();
+
 };
 

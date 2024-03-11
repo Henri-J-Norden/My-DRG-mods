@@ -3,11 +3,11 @@
 #include "Blueprint/UserWidget.h"
 #include "PerkHUDWidget.generated.h"
 
-class UPerkAsset;
 class AFSDPlayerState;
 class APlayerCharacter;
+class UPerkAsset;
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UPerkHUDWidget : public UUserWidget {
     GENERATED_BODY()
 public:
@@ -17,6 +17,7 @@ protected:
     
 public:
     UPerkHUDWidget();
+
     UFUNCTION(BlueprintCallable)
     void SetPerkAsset(UPerkAsset* InPerk);
     

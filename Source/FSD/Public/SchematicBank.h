@@ -5,7 +5,7 @@
 
 class USchematic;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API USchematicBank : public USchematicBankBase {
     GENERATED_BODY()
 public:
@@ -15,6 +15,7 @@ protected:
     
 public:
     USchematicBank();
+
     UFUNCTION(BlueprintCallable)
     void AddSchematic(USchematic* Schematic);
     

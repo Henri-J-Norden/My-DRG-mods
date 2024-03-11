@@ -1,17 +1,15 @@
 #include "MultiHitscanComponent.h"
 
-void UMultiHitscanComponent::Server_RegisterHit_Implementation(const FMultiHitScanHits& hitResults) {
+UMultiHitscanComponent::UMultiHitscanComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->BulletsPerShot = 0;
+    this->GeneralImpactAudioVolume = 1.00f;
+    this->CountMultiHits = false;
 }
-bool UMultiHitscanComponent::Server_RegisterHit_Validate(const FMultiHitScanHits& hitResults) {
-    return true;
+
+void UMultiHitscanComponent::Server_RegisterHit_Implementation(const FMultiHitScanHits& hitResults) {
 }
 
 void UMultiHitscanComponent::All_ShowHit_Implementation(const FMultiHitScanHits& hitResults) {
 }
 
-UMultiHitscanComponent::UMultiHitscanComponent() {
-    this->BulletsPerShot = 0;
-    this->GeneralImpactAudioVolume = 1.00f;
-    this->CountMultiHits = false;
-}
 

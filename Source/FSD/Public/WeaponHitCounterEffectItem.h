@@ -4,11 +4,11 @@
 
 class AActor;
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FWeaponHitCounterEffectItem {
     GENERATED_BODY()
 public:
-    UPROPERTY(meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<AActor> Target;
     
     FSD_API FWeaponHitCounterEffectItem();

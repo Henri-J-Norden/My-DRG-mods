@@ -4,7 +4,7 @@
 #include "UpgradeCostItem.h"
 #include "UpgradeSettings.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UUpgradeSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -53,5 +53,6 @@ protected:
     
 public:
     UUpgradeSettings();
+
 };
 

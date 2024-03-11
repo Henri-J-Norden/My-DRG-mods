@@ -1,20 +1,20 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "ResourceCreator.h"
-#include "IRandRange.h"
 #include "CarveOptionsCellSize.h"
 #include "ECarveFilterType.h"
-#include "UDebrisCarveMesh.h"
+#include "IRandRange.h"
+#include "ResourceCreator.h"
 #include "ResourceDebris.h"
+#include "Templates/SubclassOf.h"
+#include "UDebrisCarveMesh.h"
 #include "CarvedResourceCreator.generated.h"
 
+class AActor;
 class UCarvedResourceData;
 class UDebrisPositioning;
-class AActor;
 class UTerrainMaterial;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UCarvedResourceCreator : public UResourceCreator {
     GENERATED_BODY()
 public:
@@ -58,5 +58,6 @@ public:
     TArray<FResourceDebris> Debris;
     
     UCarvedResourceCreator();
+
 };
 

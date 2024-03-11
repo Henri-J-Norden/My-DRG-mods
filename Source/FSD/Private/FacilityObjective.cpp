@@ -2,19 +2,24 @@
 #include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
 
-class UCappedResource;
-class AActor;
-class AProceduralSetup;
-class UDebrisPositioning;
-class UEncounterManager;
-class ATetherStation;
-class APawn;
-class ARessuplyPod;
-
-void UFacilityObjective::SpawnFacilityEncounters(AProceduralSetup* setup, UEncounterManager* Encounters, UDebrisPositioning* Positioning) {
+UFacilityObjective::UFacilityObjective(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->GeneratorCount = 3;
+    this->ObjectivesStage = 0;
+    this->EncounterDifficulty = 10.00f;
+    this->MinimumTurretEncounters = 0;
+    this->mainFacility = NULL;
+    this->MainFacilityRoom = -1;
+    this->HasRemovedMainShield = false;
+    this->GoalResource = NULL;
+    this->AmountRequired = 1.00f;
+    this->AmountCollected = 0.00f;
+    this->GeneratorsActivated = 0;
 }
 
-TArray<FTransform> UFacilityObjective::SpawnEndBattleTurrets(int32 amountOfTurrets, AProceduralSetup* setup, UDebrisPositioning* DebrisPositioning, TSubclassOf<AActor> terrainPlacement, const TArray<AActor*>& existingTurrets, bool& success) {
+void UFacilityObjective::SpawnFacilityEncounters(AProceduralSetup* Setup, UEncounterManager* Encounters, UDebrisPositioning* Positioning) {
+}
+
+TArray<FTransform> UFacilityObjective::SpawnEndBattleTurrets(int32 amountOfTurrets, AProceduralSetup* Setup, UDebrisPositioning* DebrisPositioning, TSubclassOf<AActor> terrainPlacement, const TArray<AActor*>& existingTurrets, bool& success) {
     return TArray<FTransform>();
 }
 
@@ -31,7 +36,7 @@ void UFacilityObjective::SecondGeneratorEncounterSpawn(APawn* spawned) {
 void UFacilityObjective::ProgressCurrentObjective() {
 }
 
-AActor* UFacilityObjective::PlaceObjectInRoom(AProceduralSetup* setup, const FRoomNode& RoomNode, UDebrisPositioning* Positioning, TSubclassOf<AActor> placementActor) {
+AActor* UFacilityObjective::PlaceObjectInRoom(AProceduralSetup* Setup, const FRoomNode& RoomNode, UDebrisPositioning* Positioning, TSubclassOf<AActor> placementActor, FRandomStream RandomStream, const bool checkImportantLocations) {
     return NULL;
 }
 
@@ -55,7 +60,7 @@ bool UFacilityObjective::IsSubObjectiveComplete(int32 objectiveIndex) const {
 void UFacilityObjective::InitGeneratorCount(int32 generators) {
 }
 
-FTransform UFacilityObjective::GetTurretGoal(AProceduralSetup* setup, const FVector& Origin, float idealRange, UDebrisPositioning* DebrisPositioning, TSubclassOf<AActor> terrainPlacement, bool& success) {
+FTransform UFacilityObjective::GetTurretGoal(AProceduralSetup* Setup, const FVector& Origin, float idealRange, UDebrisPositioning* DebrisPositioning, TSubclassOf<AActor> terrainPlacement, bool& success) {
     return FTransform{};
 }
 
@@ -65,6 +70,9 @@ TArray<AActor*> UFacilityObjective::GetShieldGenerators() {
 
 int32 UFacilityObjective::GetShieldGeneratorCount() const {
     return 0;
+}
+
+void UFacilityObjective::GetObjectTransformInRoom(FTransform& Transform, AProceduralSetup* Setup, const FRoomNode& RoomNode, UDebrisPositioning* Positioning, TSubclassOf<AActor> placementActor, FRandomStream RandomStream, const bool checkImportantLocations) {
 }
 
 int32 UFacilityObjective::GetFacilityRoomIndex() const {
@@ -85,7 +93,7 @@ void UFacilityObjective::GeneratorActivated() {
 void UFacilityObjective::FirstGeneratorEncounterSpawn(APawn* spawned) {
 }
 
-void UFacilityObjective::DropOverCharger(AProceduralSetup* setup, int32 roomIndex, const FVector& facilityLocation, float idealRange, float idealZDistance, UDebrisPositioning* DebrisPositioning, TSubclassOf<ARessuplyPod> NewGeneratorClass) {
+void UFacilityObjective::DropOverCharger(AProceduralSetup* Setup, int32 roomIndex, const FVector& facilityLocation, float idealRange, float idealZDistance, UDebrisPositioning* DebrisPositioning, TSubclassOf<ARessuplyPod> NewGeneratorClass, bool AddImportantLocation) {
 }
 
 void UFacilityObjective::ChangeObjective() {
@@ -102,17 +110,4 @@ void UFacilityObjective::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
     DOREPLIFETIME(UFacilityObjective, GeneratorsActivated);
 }
 
-UFacilityObjective::UFacilityObjective() {
-    this->GeneratorCount = 3;
-    this->ObjectivesStage = 0;
-    this->EncounterDifficulty = 10.00f;
-    this->MinimumTurretEncounters = 0;
-    this->mainFacility = NULL;
-    this->MainFacilityRoom = -1;
-    this->HasRemovedMainShield = false;
-    this->GoalResource = NULL;
-    this->AmountRequired = 1.00f;
-    this->AmountCollected = 0.00f;
-    this->GeneratorsActivated = 0;
-}
 

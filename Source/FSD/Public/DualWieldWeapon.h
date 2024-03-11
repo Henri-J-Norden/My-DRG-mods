@@ -3,20 +3,20 @@
 #include "AmmoDrivenWeapon.h"
 #include "DualWieldWeapon.generated.h"
 
-class UFirstPersonSkeletalMeshComponent;
-class UFXSystemAsset;
-class USkeletalMeshComponent;
 class UAnimMontage;
+class UFXSystemAsset;
+class UFirstPersonSkeletalMeshComponent;
+class USkeletalMeshComponent;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class ADualWieldWeapon : public AAmmoDrivenWeapon {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UFirstPersonSkeletalMeshComponent* FPMeshLeft;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* TPMeshLeft;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -32,6 +32,7 @@ protected:
     FName MuzzleLeft;
     
 public:
-    ADualWieldWeapon();
+    ADualWieldWeapon(const FObjectInitializer& ObjectInitializer);
+
 };
 

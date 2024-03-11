@@ -6,7 +6,7 @@
 
 class UPawnAffliction;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UHealingStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -28,5 +28,6 @@ protected:
     
 public:
     UHealingStatusEffectItem();
+
 };
 

@@ -1,8 +1,7 @@
 #include "SpecialEventBlueprintLibrary.h"
 
-class UObject;
-class USchematic;
-class UPlayerCharacterID;
+USpecialEventBlueprintLibrary::USpecialEventBlueprintLibrary() {
+}
 
 USchematic* USpecialEventBlueprintLibrary::TryGivePendingReward(UObject* WorldContextObject) {
     return NULL;
@@ -29,6 +28,4 @@ USchematic* USpecialEventBlueprintLibrary::FindRandomSchematicForCharacter(UObje
 void USpecialEventBlueprintLibrary::ClearPendingReward(UObject* WorldContextObject) {
 }
 
-USpecialEventBlueprintLibrary::USpecialEventBlueprintLibrary() {
-}
 

@@ -3,10 +3,11 @@
 #include "FloatPerkActivation.h"
 #include "SetCooldownPerkActivation.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class USetCooldownPerkActivation : public UFloatPerkActivation {
     GENERATED_BODY()
 public:
     USetCooldownPerkActivation();
+
 };
 

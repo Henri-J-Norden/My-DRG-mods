@@ -1,9 +1,12 @@
 #include "OutlineComponent.h"
 
-class UPrimitiveComponent;
-class UHealthComponentBase;
-class AItem;
-class AActor;
+UOutlineComponent::UOutlineComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->DefaultOutline = EOutline::OL_NEUTRAL;
+    this->ActiveOnHoldTAB = false;
+    this->CustomLaserPointDuration = 0.00f;
+    this->LockCounter = 0;
+    this->CurrentOutline = EOutline::OL_NONE;
+}
 
 void UOutlineComponent::UnlockOutline() {
 }
@@ -35,17 +38,13 @@ void UOutlineComponent::LockOutline() {
 void UOutlineComponent::EnableActivateOnHoldTab() {
 }
 
+void UOutlineComponent::DisableActiveOnHoldTab() {
+}
+
 void UOutlineComponent::AddToOutline(UPrimitiveComponent* Component) {
 }
 
 void UOutlineComponent::AddActorToOutline(AActor* Actor) {
 }
 
-UOutlineComponent::UOutlineComponent() {
-    this->DefaultOutline = EOutline::OL_NEUTRAL;
-    this->ActiveOnHoldTAB = false;
-    this->CustomLaserPointDuration = 0.00f;
-    this->LockCounter = 0;
-    this->CurrentOutline = EOutline::OL_NONE;
-}
 

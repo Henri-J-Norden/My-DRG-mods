@@ -4,11 +4,11 @@
 #include "DeepPathFinderType.h"
 #include "BaseCritterDescriptor.generated.h"
 
-class UDebrisPositioning;
 class AFSDPawn;
 class UBiome;
+class UDebrisPositioning;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class UBaseCritterDescriptor : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -27,5 +27,6 @@ protected:
     
 public:
     UBaseCritterDescriptor();
+
 };
 

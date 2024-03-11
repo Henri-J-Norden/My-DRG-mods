@@ -1,42 +1,43 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
 #include "GameFramework/PlayerController.h"
+#include "EDisconnectReason.h"
+#include "EHUDVisibilityReason.h"
+#include "EMinersManualSection.h"
+#include "EMinersManualSinglePage.h"
 #include "LocalVoiceStatusDelegate.h"
 #include "PlatformComponent.h"
-#include "EHUDVisibilityReason.h"
-#include "EMinersManualSinglePage.h"
-#include "EMinersManualSection.h"
-#include "UObject/NoExportTypes.h"
-#include "EDisconnectReason.h"
 #include "FSDPlayerControllerBase.generated.h"
 
-class UWindowManager;
+class UEscapeMenuWindow;
 class UMaterialParameterCollection;
 class UPlayerCharacterID;
-class UEscapeMenuWindow;
+class UWindowManager;
 
-UCLASS()
+UCLASS(Blueprintable, Config=Engine)
 class AFSDPlayerControllerBase : public APlayerController {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMaterialParameterCollection* GlobalMaterialParameterCollection;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FLocalVoiceStatus OnPlayerVoiceStatusChanged;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bStartWithBlackScreen;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UWindowManager* WindowManager;
     
-    UPROPERTY(BlueprintReadWrite, Config, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FPlatformComponent> PlatformComponentClasses;
     
 public:
-    AFSDPlayerControllerBase();
+    AFSDPlayerControllerBase(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void ToggleAnalogCursor(bool Visible);
@@ -70,6 +71,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OpenStandaloneMinersManual(EMinersManualSection Section, const FGuid& ID);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsPlayerBlocked(const FString& UserId);
     
     UFUNCTION(BlueprintCallable)
     bool IsHUDVisibleFlagSet(EHUDVisibilityReason reason);

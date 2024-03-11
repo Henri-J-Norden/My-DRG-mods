@@ -1,36 +1,38 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "UObject/NoExportTypes.h"
+#include "ChatOpenedDelegateDelegate.h"
+#include "EArmorDamageType.h"
+#include "EChatSenderType.h"
+#include "ESpacerigStartType.h"
 #include "FSDPlayerControllerBase.h"
 #include "OnPlayerCharacterPossesedDelegate.h"
-#include "PendingRewardsStats.h"
-#include "ChatOpenedDelegateDelegate.h"
-#include "ESpacerigStartType.h"
-#include "EChatSenderType.h"
-#include "PendingRewards.h"
+#include "Templates/SubclassOf.h"
 #include "FSDPlayerController.generated.h"
 
-class UTexture2D;
-class APlayerCharacter;
-class UTutorialContentWidget;
-class AFSDPlayerState;
-class UVanityItem;
-class UPerkUsageComponent;
-class UTerrainLatejoinComponent;
-class USoundMix;
-class UFSDWidgetEffectsComponent;
 class AActor;
+class AFSDPlayerState;
+class AHUD;
+class APlayerCharacter;
+class UDamageComponent;
 class UFSDAchievement;
-class UTemporaryBuff;
-class UPlayerCharacterID;
-class USoundCue;
-class UTreasureRewarder;
-class UVictoryPose;
-class UItemSkin;
+class UFSDWidgetEffectsComponent;
 class UItemID;
+class UItemSkin;
+class UPerkUsageComponent;
 class UPickaxePart;
+class UPlayerCharacterID;
+class USimpleArmorDamageComponent;
+class USoundCue;
+class USoundMix;
+class UTerrainLatejoinComponent;
+class UTexture2D;
+class UTreasureRewarder;
+class UTutorialContentWidget;
+class UVanityItem;
+class UVictoryPose;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API AFSDPlayerController : public AFSDPlayerControllerBase {
     GENERATED_BODY()
 public:
@@ -42,38 +44,41 @@ public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeTutorialHintDuration, float, NewDuration);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLevelFinishedSignature);
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FReceivedEndLevelDelegate OnEndLevelReceived;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FReceivingVoiceSignature OnReceiveVoiceChanged;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FReceivingVoiceSignature OnTransmitVoiceChanged;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FLevelFinishedSignature OnLevelFinished;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnShowTutorialHint OnShowTutorialHint;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnChangeTutorialWidget OnShowTutorialWidget;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnChangeTutorialHintDuration OnChangeTutorialHintDuration;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnHideTutorialHint OnHideCurrentTutorialHint;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnPlayerCharacterPossesed OnPlayerCharacterPossesed;
     
+    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FChatOpenedDelegate OnChatOpened;
+    
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPerkUsageComponent* PerkUsageComponent;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UTerrainLatejoinComponent* LateJoinComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -85,25 +90,29 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<USoundMix*> InitialSoundMixes;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool ServerTravelDone;
     
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
-    FChatOpenedDelegate OnChatOpened;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UFSDWidgetEffectsComponent* WidgetEffects;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ESpacerigStartType SpacerigSpawnType;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bDetectGravityChanges;
     
 public:
-    AFSDPlayerController();
+    AFSDPlayerController(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void ToggleVoiceOn(bool Enabled);
+    
+    UFUNCTION(BlueprintCallable)
+    void SpawnHUDLocal(TSubclassOf<AHUD> hudClass);
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void SpawnHUDAsync();
     
     UFUNCTION(BlueprintCallable)
     void ShowTutorialWidget(TSubclassOf<UTutorialContentWidget> TutorialWidget, bool ignoreQueue);
@@ -117,45 +126,46 @@ public:
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void SetAchievementProgressFromServer(UFSDAchievement* AchievementToSet, float Progress);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void ServerSetUserHoldToRun(bool Value);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_TravelDone();
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void Server_TakeDamageFrom(UDamageComponent* Damage, FVector Location);
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetLateJoinDone();
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetGenerationStatus(const FString& Status, float Fraction);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetGenerationFraction(float Fraction);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetGenerationDone();
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetExtraEndScreenTime(float extraTime);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetControllerReady();
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_ResetHUD();
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void Server_Relay_SetArmorIndexDestroyed(USimpleArmorDamageComponent* ArmorComponent, int32 Index, EArmorDamageType DamageType);
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_NewMessage(const FString& Sender, const FString& Text, EChatSenderType SenderType);
     
 protected:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_DrawProjectileDebugPath(bool bDraw);
     
-public:
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
-    void Server_ActivateTemporaryBuff(UTemporaryBuff* buff);
-    
-protected:
     UFUNCTION(BlueprintCallable)
     void SendLevelUpStatistics(const int32 currentRank);
     
@@ -172,7 +182,7 @@ protected:
     void Receive_EndLevel_WaitForData(bool areObjectivesCompleted, int32 numberOfPlayersInPod);
     
 public:
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void ReadyToContinueFromEndScreen();
     
 protected:
@@ -199,9 +209,6 @@ public:
     void HideTutorialHint(bool watched);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool HasPendingRewards() const;
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetUseToggleTerrainScanner();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -212,9 +219,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     AActor* GetPlayerStart();
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    bool GetPendingRewards(FPendingRewardsStats& OutStats, FPendingRewards& OutRewards) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     AFSDPlayerState* GetFSDPlayerState() const;
@@ -249,9 +253,6 @@ public:
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void Client_CollectPickaxePart(const UTreasureRewarder* rewarder, UPickaxePart* targetPart);
-    
-    UFUNCTION(BlueprintCallable)
-    void ApplyPendingRewards();
     
 };
 

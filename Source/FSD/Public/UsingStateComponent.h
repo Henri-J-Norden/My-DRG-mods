@@ -3,10 +3,11 @@
 #include "CharacterStateComponent.h"
 #include "UsingStateComponent.generated.h"
 
-UCLASS(MinimalAPI, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, MinimalAPI, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UUsingStateComponent : public UCharacterStateComponent {
     GENERATED_BODY()
 public:
-    UUsingStateComponent();
+    UUsingStateComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

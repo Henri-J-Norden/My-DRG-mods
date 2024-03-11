@@ -6,7 +6,7 @@
 class UDebrisBase;
 class UObject;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class ULevelGenerationDebris : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -24,6 +24,7 @@ protected:
     bool SelfActivate;
     
 public:
-    ULevelGenerationDebris();
+    ULevelGenerationDebris(const FObjectInitializer& ObjectInitializer);
+
 };
 

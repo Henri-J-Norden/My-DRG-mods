@@ -5,11 +5,11 @@
 #include "ProjectileSpawnData.h"
 #include "MultiprojectileSpawner.generated.h"
 
+class AActor;
 class UDataAsset;
 class UMultiprojectileSpawner;
-class AActor;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UMultiprojectileSpawner : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -21,7 +21,8 @@ protected:
     bool ProjectilesIgnoreEachOther;
     
 public:
-    UMultiprojectileSpawner();
+    UMultiprojectileSpawner(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool GetIsFiring() const;
     

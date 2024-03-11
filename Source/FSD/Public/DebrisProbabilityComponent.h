@@ -4,7 +4,7 @@
 #include "RandRange.h"
 #include "DebrisProbabilityComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UDebrisProbabilityComponent : public UDebrisActorComponent {
     GENERATED_BODY()
 public:
@@ -16,6 +16,7 @@ protected:
     bool IsProbabilityShared;
     
 public:
-    UDebrisProbabilityComponent();
+    UDebrisProbabilityComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

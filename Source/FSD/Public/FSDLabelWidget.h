@@ -1,15 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Components/TextBlock.h"
 #include "Framework/Text/TextLayout.h"
 #include "Layout/Margin.h"
+#include "Components/TextBlock.h"
 #include "FSDLabelWidget.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UFSDLabelWidget : public UTextBlock {
     GENERATED_BODY()
 public:
     UFSDLabelWidget();
+
     UFUNCTION(BlueprintCallable)
     void SetWrapTextAt(float WrapAt);
     

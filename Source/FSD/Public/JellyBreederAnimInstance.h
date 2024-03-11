@@ -3,7 +3,7 @@
 #include "FlyingBugAnimInstance.h"
 #include "JellyBreederAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UJellyBreederAnimInstance : public UFlyingBugAnimInstance {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UJellyBreederAnimInstance();
+
 };
 

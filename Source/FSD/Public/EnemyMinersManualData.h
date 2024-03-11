@@ -1,20 +1,20 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "EnemyAttackDescription.h"
-#include "EEnemyType.h"
-#include "EEnemyFamily.h"
 #include "EArmorType.h"
-#include "EnemyMinersManualStats.h"
 #include "EDamageType.h"
+#include "EEnemyFamily.h"
+#include "EEnemyType.h"
+#include "EnemyAttackDescription.h"
+#include "EnemyMinersManualStats.h"
 #include "EnemyMinersManualData.generated.h"
 
-class UEnemyID;
-class UAnimSequenceBase;
-class UTexture2D;
 class AEnemyShowroomItem;
+class UAnimSequenceBase;
+class UEnemyID;
+class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UEnemyMinersManualData : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -81,6 +81,7 @@ protected:
     
 public:
     UEnemyMinersManualData();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UTexture2D* GetEnemyIcon() const;
     

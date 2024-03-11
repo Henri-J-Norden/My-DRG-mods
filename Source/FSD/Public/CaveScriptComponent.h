@@ -3,10 +3,11 @@
 #include "Components/ActorComponent.h"
 #include "CaveScriptComponent.generated.h"
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UCaveScriptComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-    UCaveScriptComponent();
+    UCaveScriptComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

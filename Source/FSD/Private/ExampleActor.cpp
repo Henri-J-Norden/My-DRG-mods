@@ -1,9 +1,10 @@
 #include "ExampleActor.h"
 
-void AExampleActor::Server_ExampleFunction_Implementation() {
+AExampleActor::AExampleActor(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Field = 0.00f;
 }
-bool AExampleActor::Server_ExampleFunction_Validate() {
-    return true;
+
+void AExampleActor::Server_ExampleFunction_Implementation() {
 }
 
 void AExampleActor::Client_ExampleFunction_Implementation() {
@@ -12,7 +13,4 @@ void AExampleActor::Client_ExampleFunction_Implementation() {
 void AExampleActor::All_ExampleFunction_Implementation() {
 }
 
-AExampleActor::AExampleActor() {
-    this->Field = 0.00f;
-}
 

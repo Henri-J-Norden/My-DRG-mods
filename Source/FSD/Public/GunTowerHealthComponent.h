@@ -3,10 +3,11 @@
 #include "EnemyHealthComponent.h"
 #include "GunTowerHealthComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UGunTowerHealthComponent : public UEnemyHealthComponent {
     GENERATED_BODY()
 public:
-    UGunTowerHealthComponent();
+    UGunTowerHealthComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

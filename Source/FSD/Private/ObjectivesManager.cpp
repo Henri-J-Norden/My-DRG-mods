@@ -1,8 +1,21 @@
 #include "ObjectivesManager.h"
 
-class UObjective;
+UObjectivesManager::UObjectivesManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Objective = NULL;
+    this->ObjectivesInitialized = false;
+    this->ObjectivesStarted = false;
+    this->bCheatObjectivesCompleted = false;
+}
 
 void UObjectivesManager::OnObjectiveChanged(UObjective* obj) {
+}
+
+bool UObjectivesManager::HasRequiredSecondaryObjective() const {
+    return false;
+}
+
+TArray<UObjective*> UObjectivesManager::GetSecondaryObjectives() const {
+    return TArray<UObjective*>();
 }
 
 UObjective* UObjectivesManager::GetSecondaryObjective() const {
@@ -22,10 +35,8 @@ void UObjectivesManager::ExitPodArrived() {
 void UObjectivesManager::DropPodExited() {
 }
 
-UObjectivesManager::UObjectivesManager() {
-    this->Objective = NULL;
-    this->ObjectivesInitialized = false;
-    this->ObjectivesStarted = false;
-    this->bCheatObjectivesCompleted = false;
+bool UObjectivesManager::AreRequiredSecondariesComplete() const {
+    return false;
 }
+
 

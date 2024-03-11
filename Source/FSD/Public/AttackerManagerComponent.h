@@ -5,15 +5,16 @@
 
 class UAttackerPositioningComponent;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAttackerManagerComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     TArray<UAttackerPositioningComponent*> Components;
     
 public:
-    UAttackerManagerComponent();
+    UAttackerManagerComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

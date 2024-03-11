@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "AmmoDrivenWeapon.h"
+#include "Templates/SubclassOf.h"
 #include "AutoShotgun.generated.h"
 
-class UPrimitiveComponent;
-class UStatusEffect;
 class AActor;
 class UFSDPhysicalMaterial;
 class UHealthComponentBase;
+class UPrimitiveComponent;
+class UStatusEffect;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AAutoShotgun : public AAmmoDrivenWeapon {
     GENERATED_BODY()
 public:
@@ -19,7 +19,8 @@ protected:
     TSubclassOf<UStatusEffect> CQCKillBuff;
     
 public:
-    AAutoShotgun();
+    AAutoShotgun(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnTargetKilled(AActor* Target, UFSDPhysicalMaterial* PhysicalMaterial, bool wasDirectHit);

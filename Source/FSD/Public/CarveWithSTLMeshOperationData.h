@@ -1,10 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EPreciousMaterialOptions.h"
 #include "ECarveFilterType.h"
+#include "EPreciousMaterialOptions.h"
 #include "MatrixWithExactSync.h"
 #include "CarveWithSTLMeshOperationData.generated.h"
 
+class ULevelGenerationCarverComponent;
 class USTLMeshCarver;
 class UStaticMeshCarver;
 class UTerrainMaterial;
@@ -33,6 +34,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FMatrixWithExactSync Transform;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    ULevelGenerationCarverComponent* LevelGenerationComponent;
     
     FSD_API FCarveWithSTLMeshOperationData();
 };

@@ -3,19 +3,20 @@
 #include "TreasureRewarder.h"
 #include "VictoryPoseRewarder.generated.h"
 
-class UVictoryPose;
 class UPlayerCharacterID;
+class UVictoryPose;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UVictoryPoseRewarder : public UTreasureRewarder {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UVictoryPose* GivenPose;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UPlayerCharacterID* GivenCharacterID;
     
-    UVictoryPoseRewarder();
+    UVictoryPoseRewarder(const FObjectInitializer& ObjectInitializer);
+
 };
 

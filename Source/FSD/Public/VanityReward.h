@@ -3,10 +3,10 @@
 #include "UnlockReward.h"
 #include "VanityReward.generated.h"
 
-class UVanityItem;
 class UPlayerCharacterID;
+class UVanityItem;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UVanityReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UVanityReward();
+
 };
 

@@ -1,6 +1,7 @@
 #include "PathfinderFunctionLibrary.h"
 
-class UObject;
+UPathfinderFunctionLibrary::UPathfinderFunctionLibrary() {
+}
 
 FVector UPathfinderFunctionLibrary::SnapToGrid(UObject* WorldContextObject, const FVector& Origin, DeepPathFinderType PathType, DeepPathFinderSize PathSize, float maxSnapDistance) {
     return FVector{};
@@ -22,6 +23,4 @@ FVector UPathfinderFunctionLibrary::FindPointAlongPathTo(UObject* WorldContextOb
     return FVector{};
 }
 
-UPathfinderFunctionLibrary::UPathfinderFunctionLibrary() {
-}
 

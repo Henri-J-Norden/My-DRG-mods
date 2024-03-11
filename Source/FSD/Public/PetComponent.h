@@ -5,7 +5,7 @@
 
 class APlayerCharacter;
 
-UCLASS(Blueprintable, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPetComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -14,9 +14,10 @@ protected:
     TWeakObjectPtr<APlayerCharacter> OwningPlayer;
     
 public:
-    UPetComponent();
+    UPetComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ReceiveOwningPlayerChanged();

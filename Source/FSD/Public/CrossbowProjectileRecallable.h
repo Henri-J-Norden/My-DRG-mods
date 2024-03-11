@@ -1,38 +1,47 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/ActorComponent.h"
 #include "CrossbowProjectileRecallable.generated.h"
 
 class APlayerCharacter;
+class UInstantUsable;
+class UInterpolatedFirstPersonStaticMeshComponent;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
-class FSD_API UCrossbowProjectileRecallable : public UActorComponent {
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
+class UCrossbowProjectileRecallable : public UActorComponent {
     GENERATED_BODY()
 public:
 private:
-    UPROPERTY(BlueprintReadWrite, ReplicatedUsing=OnRep_SetRecallTarget, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UInstantUsable* Usable;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     APlayerCharacter* RecallTarget;
     
-    UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float RecallStartTime;
     
-    UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float RecallSpeed;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     FTransform StartTransform;
     
-public:
-    UCrossbowProjectileRecallable();
-    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    UInterpolatedFirstPersonStaticMeshComponent* FPMeshComponent;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
+    bool IsRecallable;
+    
+public:
+    UCrossbowProjectileRecallable(const FObjectInitializer& ObjectInitializer);
+
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
 private:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetRecallTarget(APlayerCharacter* Player, const FTransform& startTrans);
-    
-    UFUNCTION(BlueprintCallable)
-    void OnRep_SetRecallTarget();
     
 };
 

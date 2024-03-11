@@ -4,7 +4,7 @@
 #include "EDirectDamageConditionEnum.h"
 #include "DirectDamageCondition.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UDirectDamageCondition : public UDamageCondition {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UDirectDamageCondition();
+
 };
 

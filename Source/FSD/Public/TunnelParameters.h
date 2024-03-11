@@ -5,7 +5,7 @@
 
 class UFloodFillSettings;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UTunnelParameters : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -31,5 +31,6 @@ public:
     bool PickBestMatchingEntrance;
     
     UTunnelParameters();
+
 };
 

@@ -3,10 +3,11 @@
 #include "DLCBase.h"
 #include "AlwaysLockedDLC.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UAlwaysLockedDLC : public UDLCBase {
     GENERATED_BODY()
 public:
     UAlwaysLockedDLC();
+
 };
 

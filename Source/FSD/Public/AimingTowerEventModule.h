@@ -1,23 +1,24 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "TowerEventModule.h"
 #include "UObject/NoExportTypes.h"
+#include "TowerEventModule.h"
 #include "AimingTowerEventModule.generated.h"
 
 class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AAimingTowerEventModule : public ATowerEventModule {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FRotator AimRotation;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AActor* CurrentTarget;
     
 public:
-    AAimingTowerEventModule();
+    AAimingTowerEventModule(const FObjectInitializer& ObjectInitializer);
+
 };
 

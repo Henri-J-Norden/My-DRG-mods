@@ -1,56 +1,57 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "EOnProjectileImpactBehaviourEnum.h"
+#include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
-#include "ProjectileImpact.h"
 #include "Engine/EngineTypes.h"
 #include "Engine/NetSerialization.h"
-#include "UObject/NoExportTypes.h"
 #include "Engine/NetSerialization.h"
+#include "EOnProjectileImpactBehaviourEnum.h"
+#include "ProjectileImpact.h"
 #include "ProjectileBase.generated.h"
 
+class AProjectileBase;
+class UDamageComponent;
+class UFSDPhysicalMaterial;
+class UItemUpgrade;
+class UPrimitiveComponent;
 class UProjectileUpgradeElement;
 class USoundCue;
 class USphereComponent;
 class UTerrainMaterial;
-class UPrimitiveComponent;
-class AProjectileBase;
-class UDamageComponent;
-class UItemUpgrade;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AProjectileBase : public AActor {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_ProjectileImpact, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_ProjectileImpact, meta=(AllowPrivateAccess=true))
     FProjectileImpact ProjectileImpact;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     bool IsSpawnedFromWeapon;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool Exploded;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool DoOnImpact;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool DoOnImpact2;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool DoOnImpact3;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool DoOnSpawnVar;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float GravityMultiplier;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_IsDorment, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IsDorment, meta=(AllowPrivateAccess=true))
     bool IsDorment;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleDefaultsOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USphereComponent* CollisionComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -77,13 +78,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float WhizByStartDistance;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     EOnProjectileImpactBehaviourEnum EOnImpactBehaviour;
     
 public:
-    AProjectileBase();
+    AProjectileBase(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UTerrainMaterial* TryGetTerrainMaterial() const;
     
@@ -91,13 +93,13 @@ public:
     void StopMovement();
     
 protected:
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetState(FVector_NetQuantize Position, FVector_NetQuantize Velocity);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_Penetrated(const FProjectileImpact& Impact);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_Impacted(const FProjectileImpact& Impact);
     
 public:
@@ -151,7 +153,7 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
-    void DamageArmor(UDamageComponent* DamageComponent, const FHitResult& HitResult);
+    UFSDPhysicalMaterial* DamageArmor(UDamageComponent* DamageComponent, const FHitResult& HitResult);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void CustomEvent(const UItemUpgrade* Event);

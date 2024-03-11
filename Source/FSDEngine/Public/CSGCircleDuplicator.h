@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGDuplicateSingleChildBase.h"
 #include "CSGCircleDuplicatorProperties.h"
+#include "CSGDuplicateSingleChildBase.h"
 #include "CSGCircleDuplicator.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCSGCircleDuplicator : public UCSGDuplicateSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FCSGCircleDuplicatorProperties Properties;
     
     UCSGCircleDuplicator();
+
 };
 

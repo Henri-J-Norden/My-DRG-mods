@@ -7,7 +7,7 @@
 
 class USkeletalMesh;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AVanityTestCharacter : public ACharacter {
     GENERATED_BODY()
 public:
@@ -28,7 +28,8 @@ protected:
     USkeletalMesh* WeaponMesh;
     
 public:
-    AVanityTestCharacter();
+    AVanityTestCharacter(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void SetupVanity();
     

@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Projectile.h"
+#include "Templates/SubclassOf.h"
 #include "FlameWallProjectile.generated.h"
 
-class AFlameWallSegment;
 class AActor;
+class AFlameWallSegment;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AFlameWallProjectile : public AProjectile {
     GENERATED_BODY()
 public:
@@ -25,6 +25,7 @@ protected:
     TSubclassOf<AActor> ImpactClass;
     
 public:
-    AFlameWallProjectile();
+    AFlameWallProjectile(const FObjectInitializer& ObjectInitializer);
+
 };
 

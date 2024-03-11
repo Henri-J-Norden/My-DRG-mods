@@ -3,10 +3,11 @@
 #include "Animation/AnimNotifies/AnimNotify.h"
 #include "StopLeadingNotify.generated.h"
 
-UCLASS(CollapseCategories)
+UCLASS(Blueprintable, CollapseCategories)
 class UStopLeadingNotify : public UAnimNotify {
     GENERATED_BODY()
 public:
     UStopLeadingNotify();
+
 };
 

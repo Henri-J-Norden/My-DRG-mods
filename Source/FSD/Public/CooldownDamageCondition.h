@@ -3,7 +3,7 @@
 #include "DamageCondition.h"
 #include "CooldownDamageCondition.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UCooldownDamageCondition : public UDamageCondition {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UCooldownDamageCondition();
+
 };
 

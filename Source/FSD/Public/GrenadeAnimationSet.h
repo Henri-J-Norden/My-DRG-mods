@@ -5,7 +5,7 @@
 
 class UAnimMontage;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UGrenadeAnimationSet : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ public:
     UAnimMontage* TP_ThrowAnimation;
     
     UGrenadeAnimationSet();
+
 };
 

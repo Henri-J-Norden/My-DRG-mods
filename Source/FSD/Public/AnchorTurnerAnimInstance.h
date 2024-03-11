@@ -3,7 +3,7 @@
 #include "Animation/AnimInstance.h"
 #include "AnchorTurnerAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UAnchorTurnerAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
@@ -20,5 +20,6 @@ public:
     bool IsFinished;
     
     UAnchorTurnerAnimInstance();
+
 };
 

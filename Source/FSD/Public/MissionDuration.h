@@ -4,7 +4,7 @@
 #include "Engine/DataAsset.h"
 #include "MissionDuration.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UMissionDuration : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -17,9 +17,10 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 NumberOfDots;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGuid SavegameID;
     
     UMissionDuration();
+
 };
 

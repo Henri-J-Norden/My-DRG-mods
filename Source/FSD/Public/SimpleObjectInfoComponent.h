@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ObjectInfoComponent.h"
 #include "SimpleObjectInfoData.h"
+#include "Templates/SubclassOf.h"
 #include "SimpleObjectInfoComponent.generated.h"
 
-class UTexture2D;
-class UDialogDataAsset;
 class UActorContextWidget;
+class UDialogDataAsset;
 class USceneComponent;
+class UTexture2D;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USimpleObjectInfoComponent : public UObjectInfoComponent {
     GENERATED_BODY()
 public:
@@ -24,11 +24,20 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDialogDataAsset* LookAtShout;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bHasMissionControlLookAtShout;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UDialogDataAsset* MissionControlLookAtShout;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UDialogDataAsset* LookAtShoutOverride;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UTexture2D* Icon;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UTexture2D* IconOverride;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsPingableByLaserpointer;
@@ -39,11 +48,12 @@ protected:
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<TWeakObjectPtr<USceneComponent>, FSimpleObjectInfoData> ComponentMap;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UActorContextWidget* ContextWidget;
     
 public:
-    USimpleObjectInfoComponent();
+    USimpleObjectInfoComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void SetInGameName(const FString& GameName);
     
@@ -58,6 +68,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void OverrideLookAtShout(UDialogDataAsset* InShout);
+    
+    UFUNCTION(BlueprintCallable)
+    void OverrideIcon(UTexture2D* InTexture);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UDialogDataAsset* GetDefaultLookAtShout() const;

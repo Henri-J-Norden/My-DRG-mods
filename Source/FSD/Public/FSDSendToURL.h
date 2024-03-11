@@ -3,10 +3,11 @@
 #include "UObject/Object.h"
 #include "FSDSendToURL.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UFSDSendToURL : public UObject {
     GENERATED_BODY()
 public:
     UFSDSendToURL();
+
 };
 

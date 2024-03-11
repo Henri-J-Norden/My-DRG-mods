@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGBaseComponent.h"
 #include "BinaryTerrainMaterialCombiner.h"
+#include "CSGBaseComponent.h"
 #include "SimpleMeshWithCachedTreeComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USimpleMeshWithCachedTreeComponent : public UCSGBaseComponent {
     GENERATED_BODY()
 public:
@@ -14,6 +14,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool InvertCSG;
     
-    USimpleMeshWithCachedTreeComponent();
+    USimpleMeshWithCachedTreeComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

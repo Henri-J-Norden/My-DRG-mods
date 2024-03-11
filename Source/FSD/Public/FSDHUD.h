@@ -4,31 +4,32 @@
 #include "EHUDVisibilityReason.h"
 #include "FSDHUD.generated.h"
 
-class APlayerCharacter;
 class AFSDHUD;
+class APlayerCameraDrone;
+class APlayerCharacter;
 class APlayerController;
 class URadarPointComponent;
-class APlayerCameraDrone;
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class AFSDHUD : public AHUD {
     GENERATED_BODY()
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSetObjectivesVisible, bool, InVisible, bool, animate);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHudVisibilityChanged, bool, InHudVisible);
     
-    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintCallable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSetObjectivesVisible SetObjectivesVisible;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FHudVisibilityChanged OnHUDVisibilityChanged;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint8 IsVisibleFlags;
     
 public:
-    AFSDHUD();
+    AFSDHUD(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     bool ToggleHUDVisibility(EHUDVisibilityReason reason);
     

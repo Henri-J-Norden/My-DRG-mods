@@ -3,27 +3,27 @@
 #include "GameEvent.h"
 #include "AmberEvent.generated.h"
 
-class UHealthComponentBase;
-class UDamageComponent;
+class AFSDPawn;
 class APawn;
 class UAmberEventEnemyPool;
-class AFSDPawn;
+class UDamageComponent;
+class UHealthComponentBase;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AAmberEvent : public AGameEvent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UDamageComponent* EndExplosionDamage;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UAmberEventEnemyPool*> EnemyPools;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<AFSDPawn*> spawnedEnemies;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<UAmberEventEnemyPool> CurrentPool;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -33,9 +33,10 @@ protected:
     float MaxSpawnRange;
     
 public:
-    AAmberEvent();
+    AAmberEvent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnSpawnedDeath(UHealthComponentBase* spawnedHealthComponent);

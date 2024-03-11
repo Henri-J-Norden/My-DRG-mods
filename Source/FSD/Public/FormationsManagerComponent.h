@@ -3,21 +3,22 @@
 #include "Components/ActorComponent.h"
 #include "FormationsManagerComponent.generated.h"
 
-class UFormationData;
 class UEnemySpawnManager;
+class UFormationData;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UFormationsManagerComponent : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UEnemySpawnManager* SpawnManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UFormationData*> FormationData;
     
 public:
-    UFormationsManagerComponent();
+    UFormationsManagerComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

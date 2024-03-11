@@ -5,22 +5,23 @@
 
 class ACrossbowProjectileStuck;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ACrossbowElectroBeam : public AElectroBeam {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Replicated, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     float MaxRange;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     ACrossbowProjectileStuck* Arrow0;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     ACrossbowProjectileStuck* Arrow1;
     
-    ACrossbowElectroBeam();
+    ACrossbowElectroBeam(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void RecalculateMovingBeam();
     

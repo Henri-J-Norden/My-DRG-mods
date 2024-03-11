@@ -1,28 +1,34 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Kismet/BlueprintFunctionLibrary.h"
-#include "DamageData.h"
 #include "UObject/NoExportTypes.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "Engine/EngineTypes.h"
+#include "DamageData.h"
 #include "DamageFunctionLibrary.generated.h"
 
-class UObject;
-class UDamageTag;
-class UPawnStatsComponent;
-class UDamageClass;
 class AActor;
+class UDamageClass;
 class UDamageImpulse;
-class USkeletalMeshComponent;
+class UDamageTag;
+class UFSDPhysicalMaterial;
 class ULimbDismembermentList;
+class UObject;
+class UPawnStatsComponent;
+class USkeletalMeshComponent;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UDamageFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UDamageFunctionLibrary();
+
+    UFUNCTION(BlueprintCallable)
+    static void SetPhysicalMaterialOnHit(UFSDPhysicalMaterial* PhysMat, UPARAM(Ref) FHitResult& Hit);
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsGibbedDeath(const TArray<UDamageTag*>& Tags);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContext"))
     static bool IsExplosiveDeath(UObject* WorldContext, UPawnStatsComponent* PawnStats, const TArray<UDamageTag*>& Tags);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

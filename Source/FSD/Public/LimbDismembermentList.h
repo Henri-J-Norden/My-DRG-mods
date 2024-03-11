@@ -3,7 +3,7 @@
 #include "Engine/DataAsset.h"
 #include "LimbDismembermentList.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class ULimbDismembermentList : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     TArray<FName> Bones;
     
     ULimbDismembermentList();
+
 };
 

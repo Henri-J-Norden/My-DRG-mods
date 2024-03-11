@@ -5,36 +5,37 @@
 #include "YesNoPromptWidget.h"
 #include "YesNoPromptAction.generated.h"
 
-class UYesNoPromptWidget;
-class UYesNoPromptAction;
-class UResourceData;
 class UObject;
+class UResourceData;
+class UYesNoPromptAction;
+class UYesNoPromptWidget;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UYesNoPromptAction : public UBlueprintAsyncActionBase {
     GENERATED_BODY()
 public:
     DECLARE_DYNAMIC_MULTICAST_DELEGATE(FYesNoOutputPin);
     
 protected:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYesNoOutputPin Yes;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FYesNoOutputPin No;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UYesNoPromptWidget::FOnYesNoClickedDelegate YesNoDelegate;
     
-    UPROPERTY(BlueprintReadWrite, Export, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, meta=(AllowPrivateAccess=true))
     TWeakObjectPtr<UYesNoPromptWidget> ActivePrompt;
     
 public:
     UYesNoPromptAction();
-    UFUNCTION(BlueprintCallable)
+
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static UYesNoPromptAction* PromptYesNo(UObject* WorldContext, FYesNoPromptSettings Prompt);
     
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContext"))
     static UYesNoPromptAction* PromptPurchase(UObject* WorldContext, FYesNoPromptSettings Prompt, const TMap<UResourceData*, int32>& Resources);
     
 protected:

@@ -3,7 +3,7 @@
 #include "Engine/DataAsset.h"
 #include "PricingTier.generated.h"
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class UPricingTier : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     FString PriceKey;
     
     UPricingTier();
+
 };
 

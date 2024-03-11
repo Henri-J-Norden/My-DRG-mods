@@ -2,8 +2,9 @@
 #include "CoreMinimal.h"
 #include "SeasonalEventEntry.generated.h"
 
-class USpecialEvent;
 class UMissionTemplate;
+class UMutator;
+class USpecialEvent;
 
 USTRUCT(BlueprintType)
 struct FSeasonalEventEntry {
@@ -14,6 +15,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<UMissionTemplate*> BannedMissions;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UMutator*> BannedMutators;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 RequiredMainCampaignProgress;
     
     FSD_API FSeasonalEventEntry();
 };

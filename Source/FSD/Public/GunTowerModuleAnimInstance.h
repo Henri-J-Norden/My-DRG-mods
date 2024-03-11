@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Animation/AnimInstance.h"
 #include "UObject/NoExportTypes.h"
+#include "Animation/AnimInstance.h"
 #include "GunTowerModuleAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UGunTowerModuleAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
@@ -21,5 +21,6 @@ public:
     bool AreWeakpointsExposed;
     
     UGunTowerModuleAnimInstance();
+
 };
 

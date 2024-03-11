@@ -3,10 +3,11 @@
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "TickableActionBase.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UTickableActionBase : public UBlueprintAsyncActionBase {
     GENERATED_BODY()
 public:
     UTickableActionBase();
+
 };
 

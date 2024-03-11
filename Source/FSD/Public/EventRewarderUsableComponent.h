@@ -3,7 +3,7 @@
 #include "SingleUsableComponent.h"
 #include "EventRewarderUsableComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UEventRewarderUsableComponent : public USingleUsableComponent {
     GENERATED_BODY()
 public:
@@ -12,7 +12,8 @@ protected:
     FText RewardUseText;
     
 public:
-    UEventRewarderUsableComponent();
+    UEventRewarderUsableComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     FText CreateUseText(int32 blankSchematicCount) const;

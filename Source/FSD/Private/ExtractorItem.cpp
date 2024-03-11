@@ -1,95 +1,16 @@
 #include "ExtractorItem.h"
-#include "Net/UnrealNetwork.h"
-#include "Particles/ParticleSystemComponent.h"
-#include "FSDAudioComponent.h"
 #include "Components/BoxComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Components/PointLightComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "FSDAudioComponent.h"
+#include "Net/UnrealNetwork.h"
 
-class AResourceChunk;
-
-
-void AExtractorItem::Server_StopMining_Implementation() {
-}
-bool AExtractorItem::Server_StopMining_Validate() {
-    return true;
-}
-
-void AExtractorItem::Server_StartMining_Implementation() {
-}
-bool AExtractorItem::Server_StartMining_Validate() {
-    return true;
-}
-
-void AExtractorItem::Server_SetReadyToExtract_Implementation(bool IsReady) {
-}
-bool AExtractorItem::Server_SetReadyToExtract_Validate(bool IsReady) {
-    return true;
-}
-
-void AExtractorItem::Server_DigBlock_Implementation(FVector_NetQuantize Start, FVector_NetQuantize End) {
-}
-bool AExtractorItem::Server_DigBlock_Validate(FVector_NetQuantize Start, FVector_NetQuantize End) {
-    return true;
-}
-
-void AExtractorItem::Server_CollectChunk_Implementation(AResourceChunk* chunk) {
-}
-bool AExtractorItem::Server_CollectChunk_Validate(AResourceChunk* chunk) {
-    return true;
-}
-
-void AExtractorItem::ResetCurrentLoad() {
-}
-
-
-
-
-
-void AExtractorItem::OnRep_SimulatingMining() {
-}
-
-void AExtractorItem::OnRep_IsGunslinging() {
-}
-
-void AExtractorItem::OnRep_CurrentLoad() {
-}
-
-
-void AExtractorItem::OnChunkCooldownOver() {
-}
-
-bool AExtractorItem::IsFull() const {
-    return false;
-}
-
-UBoxComponent* AExtractorItem::GetRootCollider() const {
-    return NULL;
-}
-
-void AExtractorItem::All_SimulateDigBlock_Implementation(FVector_NetQuantize Position, bool spawnParticles, int32 Material) {
-}
-
-void AExtractorItem::All_ChunkSplat_Implementation(AResourceChunk* chunk) {
-}
-
-void AExtractorItem::AddResource(float Amount) {
-}
-
-void AExtractorItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    
-    DOREPLIFETIME(AExtractorItem, IsMining);
-    DOREPLIFETIME(AExtractorItem, IsGunslinging);
-    DOREPLIFETIME(AExtractorItem, ReadyToExtract);
-    DOREPLIFETIME(AExtractorItem, CurrentLoad);
-}
-
-AExtractorItem::AExtractorItem() {
-    this->DroppedCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("Root"));
+AExtractorItem::AExtractorItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UBoxComponent>(TEXT("Root"))) {
+    this->DroppedCollider = (UBoxComponent*)RootComponent;
     this->DroppedMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("DropppedMesh"));
     this->FP_DrillParticles = NULL;
-    this->AudioComponent = CreateDefaultSubobject<UFSDAudioComponent>(TEXT("Audio"));
+    this->AudioComponent = CreateDefaultSubobject<UFSDAudioComponent>(TEXT("audio"));
     this->SurfaceLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("SurfaceLight"));
     this->MeltingParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("MeltingEffect"));
     this->InvalidSurfaceParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("InvalidSurfaceParticles"));
@@ -133,5 +54,74 @@ AExtractorItem::AExtractorItem() {
     this->SurfaceLightMinIntensity = 100.00f;
     this->SurfaceLightMaxIntensity = 1000.00f;
     this->CurrentLoad = 0.00f;
+    this->DroppedMesh->SetupAttachment(RootComponent);
+    this->AudioComponent->SetupAttachment(RootComponent);
+    this->FPMuzzleParticles->SetupAttachment(FPMesh);
+    this->FPMuzzleInvalidParticles->SetupAttachment(FPMesh);
+    this->TPMuzzleParticles->SetupAttachment(TPMesh);
+    this->TPMuzzleInvalidParticles->SetupAttachment(TPMesh);
 }
+
+
+void AExtractorItem::Server_StopMining_Implementation() {
+}
+
+void AExtractorItem::Server_StartMining_Implementation() {
+}
+
+void AExtractorItem::Server_SetReadyToExtract_Implementation(bool IsReady) {
+}
+
+void AExtractorItem::Server_DigBlock_Implementation(FVector_NetQuantize Start, FVector_NetQuantize End) {
+}
+
+void AExtractorItem::Server_CollectChunk_Implementation(AResourceChunk* chunk) {
+}
+
+void AExtractorItem::ResetCurrentLoad() {
+}
+
+
+
+
+
+void AExtractorItem::OnRep_SimulatingMining() {
+}
+
+void AExtractorItem::OnRep_IsGunslinging() {
+}
+
+void AExtractorItem::OnRep_CurrentLoad() {
+}
+
+
+void AExtractorItem::OnChunkCooldownOver() {
+}
+
+bool AExtractorItem::IsFull() const {
+    return false;
+}
+
+UBoxComponent* AExtractorItem::GetRootCollider() const {
+    return NULL;
+}
+
+void AExtractorItem::All_SimulateDigBlock_Implementation(FVector_NetQuantize Position, bool SpawnParticles, int32 Material) {
+}
+
+void AExtractorItem::All_ChunkSplat_Implementation(AResourceChunk* chunk) {
+}
+
+void AExtractorItem::AddResource(float Amount) {
+}
+
+void AExtractorItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(AExtractorItem, IsMining);
+    DOREPLIFETIME(AExtractorItem, IsGunslinging);
+    DOREPLIFETIME(AExtractorItem, ReadyToExtract);
+    DOREPLIFETIME(AExtractorItem, CurrentLoad);
+}
+
 

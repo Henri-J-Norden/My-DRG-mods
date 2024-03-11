@@ -5,7 +5,7 @@
 
 class UEnemyDescriptor;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UEnemyRarityMutator : public UMutator {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ public:
     UEnemyDescriptor* EnemyDescriptor;
     
     UEnemyRarityMutator();
+
 };
 

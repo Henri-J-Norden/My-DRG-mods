@@ -4,7 +4,7 @@
 #include "BehaviorTree/BehaviorTreeTypes.h"
 #include "BTTask_FaceTarget.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTTask_FaceTarget : public UBTTaskNode {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ private:
     
 public:
     UBTTask_FaceTarget();
+
 };
 

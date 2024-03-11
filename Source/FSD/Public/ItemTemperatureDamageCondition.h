@@ -3,7 +3,7 @@
 #include "DamageCondition.h"
 #include "ItemTemperatureDamageCondition.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UItemTemperatureDamageCondition : public UDamageCondition {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ protected:
     
 public:
     UItemTemperatureDamageCondition();
+
 };
 

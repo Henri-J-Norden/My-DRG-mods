@@ -1,31 +1,8 @@
 #include "TrackMovementStateComponent.h"
 #include "Net/UnrealNetwork.h"
 
-void UTrackMovementStateComponent::ServerExitMode_Implementation(EExitTrackMode eMode) {
-}
-bool UTrackMovementStateComponent::ServerExitMode_Validate(EExitTrackMode eMode) {
-    return true;
-}
-
-void UTrackMovementStateComponent::ServerAddTemporaryAcceration_Implementation(float Acceleration, float Duration) {
-}
-bool UTrackMovementStateComponent::ServerAddTemporaryAcceration_Validate(float Acceleration, float Duration) {
-    return true;
-}
-
-void UTrackMovementStateComponent::OnRep_TrackMovementdata(FPipelineMovementData& oldState) {
-}
-
-void UTrackMovementStateComponent::JumpPressed() {
-}
-
-void UTrackMovementStateComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    
-    DOREPLIFETIME(UTrackMovementStateComponent, TrackMovementData);
-}
-
-UTrackMovementStateComponent::UTrackMovementStateComponent() {
+UTrackMovementStateComponent::UTrackMovementStateComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->StateId = 16;
     this->AudioStartComponent = NULL;
     this->AudioDuringComponent = NULL;
     this->AudioStopComponent = NULL;
@@ -50,4 +27,23 @@ UTrackMovementStateComponent::UTrackMovementStateComponent() {
     this->Connector = NULL;
     this->ExitMode = EExitTrackMode::None;
 }
+
+void UTrackMovementStateComponent::ServerExitMode_Implementation(EExitTrackMode eMode) {
+}
+
+void UTrackMovementStateComponent::ServerAddTemporaryAcceration_Implementation(float Acceleration, float Duration) {
+}
+
+void UTrackMovementStateComponent::OnRep_TrackMovementdata(FPipelineMovementData& oldState) {
+}
+
+void UTrackMovementStateComponent::JumpPressed() {
+}
+
+void UTrackMovementStateComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(UTrackMovementStateComponent, TrackMovementData);
+}
+
 

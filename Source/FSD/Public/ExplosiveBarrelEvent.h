@@ -5,13 +5,14 @@
 
 class UDamageComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AExplosiveBarrelEvent : public AGameEvent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UDamageComponent* EndDamage;
     
-    AExplosiveBarrelEvent();
+    AExplosiveBarrelEvent(const FObjectInitializer& ObjectInitializer);
+
 };
 

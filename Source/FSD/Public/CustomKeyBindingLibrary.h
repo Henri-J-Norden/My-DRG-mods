@@ -3,10 +3,11 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "CustomKeyBindingLibrary.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCustomKeyBindingLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UCustomKeyBindingLibrary();
+
 };
 

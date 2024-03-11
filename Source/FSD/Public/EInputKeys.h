@@ -2,11 +2,11 @@
 #include "CoreMinimal.h"
 #include "EInputKeys.generated.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum class EInputKeys : uint8 {
     Use,
     Fire,
     Mine,
-    EInputKeys_MAX = 0xFF,
+    EInputKeys_MAX = 255 UMETA(Hidden),
 };
 

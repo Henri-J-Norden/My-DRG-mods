@@ -8,25 +8,26 @@
 
 class UCampaignNotification;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API UNotificationSubSystem : public UGameInstanceSubsystem {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDelegate OnNewSpaceRigNotificationEvent;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FCampaignNotificationSignature OnCampaignNotification;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FSpaceRigNotification> SpaceRigNotifications;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UCampaignNotification* CampaignNotification;
     
 public:
     UNotificationSubSystem();
+
     UFUNCTION(BlueprintCallable)
     bool GetNextSpaceRigNotification(FSpaceRigNotification& NextNotification);
     

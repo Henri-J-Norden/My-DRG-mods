@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "DebrisCapsule.h"
-#include "Components/SceneComponent.h"
-#include "TerrainPlacementBox.h"
-#include "EDebrisColliderType.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/SceneComponent.h"
+#include "DebrisCapsule.h"
+#include "EDebrisColliderType.h"
+#include "TerrainPlacementBox.h"
 #include "TerrainPlacementComponent.generated.h"
 
 class AProceduralSetup;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UTerrainPlacementComponent : public USceneComponent {
     GENERATED_BODY()
 public:
@@ -22,10 +22,11 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDebrisCapsule Capsule;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     int32 BlockerIDHack;
     
-    UTerrainPlacementComponent();
+    UTerrainPlacementComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void RemoveBlockers();
     

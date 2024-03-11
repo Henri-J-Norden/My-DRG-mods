@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "RunningMissionBP.h"
 #include "GameplayTagContainer.h"
 #include "EliteEnemyEntry.h"
+#include "RunningMissionBP.h"
 #include "HeroEnemies.generated.h"
 
-class UEnemyDescriptor;
 class APawn;
+class UEnemyDescriptor;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class UHeroEnemies : public URunningMissionBP {
     GENERATED_BODY()
 public:
@@ -21,6 +21,7 @@ protected:
     
 public:
     UHeroEnemies();
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnEnemySpawned(APawn* enemy, UEnemyDescriptor* descriptor);

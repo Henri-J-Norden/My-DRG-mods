@@ -3,10 +3,11 @@
 #include "Components/ActorComponent.h"
 #include "ProceduralObjectColliders.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UProceduralObjectColliders : public UActorComponent {
     GENERATED_BODY()
 public:
-    UProceduralObjectColliders();
+    UProceduralObjectColliders(const FObjectInitializer& ObjectInitializer);
+
 };
 

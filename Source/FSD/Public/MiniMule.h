@@ -5,16 +5,17 @@
 
 class AGem;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class FSD_API AMiniMule : public AMULE {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<AGem*> LostLegs;
     
 public:
-    AMiniMule();
+    AMiniMule(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetLegsVisibleOnScanner();
@@ -25,6 +26,9 @@ protected:
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<AGem*> FindLegsInLevelSortedByDistance() const;
+    
+    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintImplementableEvent)
+    void CheatRepair();
     
 };
 

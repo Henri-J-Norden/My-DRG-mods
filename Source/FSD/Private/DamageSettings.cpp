@@ -11,11 +11,14 @@ UDamageSettings::UDamageSettings() {
     this->PlayerOnFireStatusEffect = NULL;
     this->TemperatureShockFromFrozenStatusEffect = NULL;
     this->TemperatureShockFromBurningStatusEffect = NULL;
+    this->InfectionPerDamagePoint = 0.00f;
     this->ArmorShatterDamage = NULL;
     this->ChemicalExplosionDamage = NULL;
     this->ArmorShatterEmitter = NULL;
     this->ArmorShatterSound = NULL;
     this->ImpactDecals.AddDefaulted(3);
+    this->RadialHealthArmorDamageFalloff = 0.25f;
+    this->HealthArmorBonesAffectedByRadialDamage = 4;
     this->DetonateFrozen = NULL;
     this->DetonateOnFire = NULL;
     this->DirectHit = NULL;
@@ -28,4 +31,5 @@ UDamageSettings::UDamageSettings() {
     this->DoTDamageImpulse = NULL;
     this->RagdollGlobalForceMultiplier = 8000.00f;
 }
+
 

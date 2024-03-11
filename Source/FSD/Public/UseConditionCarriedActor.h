@@ -5,7 +5,7 @@
 
 class AActor;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUseConditionCarriedActor : public UUseConditionBase {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ public:
     TArray<TSoftClassPtr<AActor>> Actors;
     
     UUseConditionCarriedActor();
+
 };
 

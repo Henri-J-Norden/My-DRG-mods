@@ -3,7 +3,7 @@
 #include "Animation/AnimInstance.h"
 #include "CoreInfuserAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UCoreInfuserAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
@@ -19,6 +19,7 @@ protected:
     
 public:
     UCoreInfuserAnimInstance();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnRewardSelected();

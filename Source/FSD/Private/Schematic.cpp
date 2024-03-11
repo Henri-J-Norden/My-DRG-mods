@@ -1,14 +1,27 @@
 #include "Schematic.h"
 
-class UResourceData;
-class USchematicItem;
-class UObject;
-class UTexture;
+USchematic::USchematic() {
+    this->Category = NULL;
+    this->PricingTier = NULL;
+    this->Rarity = NULL;
+    this->UsedByCharacter = NULL;
+    this->Item = NULL;
+    this->CostIsLocked = false;
+}
 
 void USchematic::SetCraftingMaterialCost() {
 }
 
 void USchematic::SetCostLocked(bool IsLocked) {
+}
+
+void USchematic::ResetGivenReward(UFSDSaveGame* SaveGame) {
+}
+
+void USchematic::RemoveSchematicFromPlayerInventory(UObject* WorldContext) {
+}
+
+void USchematic::GiveRewardForFree(UFSDSaveGame* SaveGame) {
 }
 
 FText USchematic::GetTitle() const {
@@ -49,12 +62,4 @@ void USchematic::BuildSchematic(UObject* WorldContext) {
 void USchematic::AddSchematicToPlayerInventory(UObject* WorldContext) {
 }
 
-USchematic::USchematic() {
-    this->Category = NULL;
-    this->PricingTier = NULL;
-    this->Rarity = NULL;
-    this->UsedByCharacter = NULL;
-    this->Item = NULL;
-    this->CostIsLocked = false;
-}
 

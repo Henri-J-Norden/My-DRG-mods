@@ -7,5 +7,9 @@ USeasonSettings::USeasonSettings() {
     this->XPToPerforcemancePointsCurve = NULL;
     this->TreeOfVanitySnapSize = 0;
     this->SpecialChallengeChange = 0.00f;
+    this->HeartsColledtedStat = NULL;
+    this->HeartsPerScrip = 4;
+    this->NumberOfScriptsFromPlague = 10;
 }
+
 

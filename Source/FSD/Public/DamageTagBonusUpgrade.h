@@ -5,7 +5,7 @@
 
 class UDamageTag;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class UDamageTagBonusUpgrade : public UItemUpgrade {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UDamageTagBonusUpgrade();
+
 };
 

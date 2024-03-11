@@ -11,5 +11,6 @@ Git symlinks must be enabled to clone correctly (`git config --global core.symli
 ### Update with 
 `git submodule update --init --remote --merge --recursive`
 
-
-Repository originally cloned from [ArcticEcho's](https://github.com/ArcticEcho/My-DRG-Mods).
+## Other credits
+* Repository originally cloned from [ArcticEcho's](https://github.com/ArcticEcho/My-DRG-Mods).
+* [DRG Community Modkit Project](https://github.com/DRG-Modding/Community-Modkit)

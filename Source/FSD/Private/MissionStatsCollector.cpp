@@ -1,11 +1,10 @@
 #include "MissionStatsCollector.h"
 
-class UCappedResource;
+UMissionStatsCollector::UMissionStatsCollector(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Character = NULL;
+}
 
 void UMissionStatsCollector::OnResourceIncremented(UCappedResource* Resource, float Amount) {
 }
 
-UMissionStatsCollector::UMissionStatsCollector() {
-    this->Character = NULL;
-}
 

@@ -5,7 +5,7 @@
 
 class AActor;
 
-UCLASS(MinimalAPI, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, MinimalAPI, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UParalyzedStateComponent : public UCharacterStateComponent {
     GENERATED_BODY()
 public:
@@ -20,6 +20,7 @@ protected:
     float CameraArmSpeed;
     
 public:
-    UParalyzedStateComponent();
+    UParalyzedStateComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

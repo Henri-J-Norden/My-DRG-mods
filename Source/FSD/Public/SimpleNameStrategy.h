@@ -3,10 +3,11 @@
 #include "ValidatorStrategy.h"
 #include "SimpleNameStrategy.generated.h"
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class FSD_API USimpleNameStrategy : public UValidatorStrategy {
     GENERATED_BODY()
 public:
     USimpleNameStrategy();
+
 };
 

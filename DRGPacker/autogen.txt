@@ -1,1 +1,1 @@
-"C:\Users\henri\Desktop\DRG\FSD\DRGPacker\Input\*.*" "..\..\..\FSD\*.*" 
+"C:\Users\henri\Desktop\DRG\FSD-new\DRGPacker\Input\*.*" "..\..\..\FSD\*.*" 

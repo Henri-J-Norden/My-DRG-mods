@@ -5,13 +5,14 @@
 
 class UIconGenerationCameraKey;
 
-UCLASS(EditInlineNew, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UIconSceneCaptureComponent : public USceneCaptureComponent2D {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UIconGenerationCameraKey* CameraKey;
     
-    UIconSceneCaptureComponent();
+    UIconSceneCaptureComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

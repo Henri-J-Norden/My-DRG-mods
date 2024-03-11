@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "DynamicIcon.h"
 #include "UObject/NoExportTypes.h"
+#include "DynamicIcon.h"
 #include "TwoFacetDynamicIcon.generated.h"
 
 class UMaterialInstanceDynamic;
 class UTexture2D;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UTwoFacetDynamicIcon : public UDynamicIcon {
     GENERATED_BODY()
 public:
@@ -47,6 +47,7 @@ protected:
     
 public:
     UTwoFacetDynamicIcon();
+
 protected:
     UFUNCTION(BlueprintCallable)
     void UpdatePreview();

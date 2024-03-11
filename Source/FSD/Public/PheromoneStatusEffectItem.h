@@ -3,10 +3,11 @@
 #include "StatusEffectItem.h"
 #include "PheromoneStatusEffectItem.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UPheromoneStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
     UPheromoneStatusEffectItem();
+
 };
 

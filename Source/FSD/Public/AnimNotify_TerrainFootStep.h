@@ -5,7 +5,7 @@
 
 class UParticleSystem;
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_TerrainFootStep : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ public:
     FName BoneName;
     
     UAnimNotify_TerrainFootStep();
+
 };
 

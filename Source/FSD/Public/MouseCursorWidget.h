@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "FSDUserWidget.h"
 #include "EFSDInputSource.h"
+#include "FSDUserWidget.h"
 #include "MouseCursorWidget.generated.h"
 
-UCLASS(Abstract, EditInlineNew)
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class UMouseCursorWidget : public UFSDUserWidget {
     GENERATED_BODY()
 public:
@@ -12,11 +12,12 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EFSDInputSource TargetInput;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsHovering;
     
 public:
     UMouseCursorWidget();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnUnhover();

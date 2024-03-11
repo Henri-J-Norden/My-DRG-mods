@@ -6,18 +6,19 @@
 class UMaterialInterface;
 class USceneCaptureComponent2D;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AIconGenerationBase : public AActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USceneCaptureComponent2D* ActiveCaptureComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMaterialInterface* DownScaleMaterial;
     
 public:
-    AIconGenerationBase();
+    AIconGenerationBase(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,9 +1,8 @@
 #include "CharacterShowroomController.h"
 
-class UShowroomCameraKey;
-class UObject;
-class UPlayerCharacterID;
-class UCharacterShowroomController;
+UCharacterShowroomController::UCharacterShowroomController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->CharacterInstance = NULL;
+}
 
 
 
@@ -11,7 +10,4 @@ UCharacterShowroomController* UCharacterShowroomController::DisplayCharacter(UOb
     return NULL;
 }
 
-UCharacterShowroomController::UCharacterShowroomController() {
-    this->CharacterInstance = NULL;
-}
 

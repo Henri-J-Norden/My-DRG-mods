@@ -3,10 +3,11 @@
 #include "ResourceData.h"
 #include "VeinResourceData.generated.h"
 
+class AProceduralSetup;
 class UTerrainMaterial;
 class UVeinResourceCreator;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UVeinResourceData : public UResourceData {
     GENERATED_BODY()
 public:
@@ -25,8 +26,12 @@ protected:
     
 public:
     UVeinResourceData();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UTerrainMaterial* GetTerrainMaterial() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    float GetDesiredAmount(AProceduralSetup* pls) const;
     
 };
 

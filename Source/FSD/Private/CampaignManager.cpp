@@ -1,12 +1,13 @@
 #include "CampaignManager.h"
 #include "Templates/SubclassOf.h"
 
-class UCampaign;
-class AFSDPlayerController;
-class UObject;
-class UFSDSaveGame;
-class UGeneratedMission;
-class UDifficultySetting;
+UCampaignManager::UCampaignManager() {
+    this->MainCampaign = NULL;
+    this->ActiveCampaign = NULL;
+    this->NumFailedRequests = 0;
+    this->WeeklyBackendDataValid = false;
+    this->WeeklyBackendSeed = -1;
+}
 
 void UCampaignManager::StartNewCampaign(TSubclassOf<UCampaign> campaignClass, UFSDSaveGame* SaveGame) {
 }
@@ -41,6 +42,10 @@ TArray<TSubclassOf<UCampaign>> UCampaignManager::GetUncompletedCampaigns(AFSDPla
     return TArray<TSubclassOf<UCampaign>>();
 }
 
+TArray<TSubclassOf<UCampaign>> UCampaignManager::GetCompletedSideCampaigns(AFSDPlayerController* Player) const {
+    return TArray<TSubclassOf<UCampaign>>();
+}
+
 UGeneratedMission* UCampaignManager::GetCampaingMissionFromSeeds(UObject* WorldContextObject, int32 GlobalSeed, int32 MissionSeed) const {
     return NULL;
 }
@@ -49,14 +54,10 @@ UGeneratedMission* UCampaignManager::GetCampaingMission(const TArray<UGeneratedM
     return NULL;
 }
 
+void UCampaignManager::CompleteCampaignWithNoMissions(TSubclassOf<UCampaign> campaignClass, UFSDSaveGame* SaveGame) {
+}
+
 void UCampaignManager::AbortActiveCampaign(UFSDSaveGame* SaveGame) {
 }
 
-UCampaignManager::UCampaignManager() {
-    this->MainCampaign = NULL;
-    this->ActiveCampaign = NULL;
-    this->NumFailedRequests = 0;
-    this->WeeklyBackendDataValid = false;
-    this->WeeklyBackendSeed = -1;
-}
 

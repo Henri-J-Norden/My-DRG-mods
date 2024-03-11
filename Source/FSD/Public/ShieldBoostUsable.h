@@ -1,16 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "InstantUsable.h"
 #include "EInputKeys.h"
+#include "InstantUsable.h"
 #include "ShieldBoostUsable.generated.h"
 
 class APlayerCharacter;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UShieldBoostUsable : public UInstantUsable {
     GENERATED_BODY()
 public:
-    UShieldBoostUsable();
+    UShieldBoostUsable(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnCharacterBoosted(APlayerCharacter* User, EInputKeys Key);

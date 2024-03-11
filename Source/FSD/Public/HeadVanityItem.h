@@ -1,15 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "VanityItem.h"
 #include "ECharacterHeadMesh.h"
 #include "EHeadVanityType.h"
+#include "VanityItem.h"
 #include "HeadVanityItem.generated.h"
 
-class USkeletalMesh;
+class UArmorVanityItem;
 class UMaterialInterface;
+class UPlayerCharacterID;
+class USkeletalMesh;
 class UVanityAnimInstance;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UHeadVanityItem : public UVanityItem {
     GENERATED_BODY()
 public:
@@ -38,7 +40,13 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool HideAll;
     
-    UPROPERTY(BlueprintReadWrite, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool RequiresSlimArmor;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<UArmorVanityItem*> ForceThickAmorsHack;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool HideHead;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -47,7 +55,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<UMaterialInterface> MaterialOverride;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<UPlayerCharacterID*, TSoftObjectPtr<UMaterialInterface>> ClassMaterials;
+    
 public:
     UHeadVanityItem();
+
 };
 

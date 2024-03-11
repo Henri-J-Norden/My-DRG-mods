@@ -3,7 +3,7 @@
 #include "AfflictionEffect.h"
 #include "StaggeredAfflictionEffect.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UStaggeredAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UStaggeredAfflictionEffect();
+
 };
 

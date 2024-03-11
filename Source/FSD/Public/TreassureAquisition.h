@@ -5,7 +5,7 @@
 
 class UItemAquisitionSource;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UTreassureAquisition : public UItemAquisitionBase {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UTreassureAquisition();
+
 };
 

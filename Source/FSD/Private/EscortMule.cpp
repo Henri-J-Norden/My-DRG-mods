@@ -1,13 +1,30 @@
 #include "EscortMule.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "DeepPathfinderSceneComponent.h"
+#include "FriendlyHealthComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "OutlineComponent.h"
 #include "RestrictedResourceBank.h"
 #include "SimpleObjectInfoComponent.h"
-#include "FriendlyHealthComponent.h"
-#include "Components/SkeletalMeshComponent.h"
-#include "OutlineComponent.h"
 
-class APlayerCharacter;
-class UInstantUsable;
+AEscortMule::AEscortMule(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<UDeepPathfinderSceneComponent>(TEXT("SceneComponent"));
+    this->HealthComponent = CreateDefaultSubobject<UFriendlyHealthComponent>(TEXT("HealthComponent2"));
+    this->ObjectInfo = CreateDefaultSubobject<USimpleObjectInfoComponent>(TEXT("ObjectInfo"));
+    this->ResourceBank = CreateDefaultSubobject<URestrictedResourceBank>(TEXT("RestrictedResourceBank"));
+    this->State = EEscortMissionState::InGarage;
+    this->EscortObjective = NULL;
+    this->SpeedModifier = 1.00f;
+    this->Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+    this->OutlineComponent = CreateDefaultSubobject<UOutlineComponent>(TEXT("OutlineComponent"));
+    this->HealPerTickNormal = 0.00f;
+    this->HealPerTickUnderAttack = 0.00f;
+    this->CannisterVisible_Left = false;
+    this->CannisterVisible_Right = false;
+    this->IsCarvingTunnel = false;
+    this->FullCanisters = 0;
+    this->Mesh->SetupAttachment(RootComponent);
+}
 
 bool AEscortMule::TryHeal(APlayerCharacter* User, float Amount) {
     return false;
@@ -45,7 +62,7 @@ void AEscortMule::OnRep_ExtractorSlots() {
 
 
 
-void AEscortMule::ObjectiveStateChange_Implementation(EEscortMissionState NewState) {
+void AEscortMule::ObjectiveStateChange(EEscortMissionState NewState) {
 }
 
 EEscortExtractorState AEscortMule::GetExtractorState(UInstantUsable* Usable) const {
@@ -58,6 +75,7 @@ void AEscortMule::ActivateMule() {
 void AEscortMule::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
+    DOREPLIFETIME(AEscortMule, State);
     DOREPLIFETIME(AEscortMule, MovementState);
     DOREPLIFETIME(AEscortMule, SpeedModifier);
     DOREPLIFETIME(AEscortMule, CannisterVisible_Left);
@@ -67,18 +85,4 @@ void AEscortMule::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
     DOREPLIFETIME(AEscortMule, ExtractorSlots);
 }
 
-AEscortMule::AEscortMule() {
-    this->HealthComponent = CreateDefaultSubobject<UFriendlyHealthComponent>(TEXT("HealthComponent2"));
-    this->ObjectInfo = CreateDefaultSubobject<USimpleObjectInfoComponent>(TEXT("ObjectInfo"));
-    this->ResourceBank = CreateDefaultSubobject<URestrictedResourceBank>(TEXT("RestrictedResourceBank"));
-    this->SpeedModifier = 1.00f;
-    this->Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
-    this->OutlineComponent = CreateDefaultSubobject<UOutlineComponent>(TEXT("OutlineComponent"));
-    this->HealPerTickNormal = 0.00f;
-    this->HealPerTickUnderAttack = 0.00f;
-    this->CannisterVisible_Left = false;
-    this->CannisterVisible_Right = false;
-    this->IsCarvingTunnel = false;
-    this->FullCanisters = 0;
-}
 

@@ -1,23 +1,25 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "FSDPhysicsActor.h"
-#include "SaveGameIDInterface.h"
-#include "ItemIDInterface.h"
-#include "LoadoutItem.h"
-#include "UpgradableGear.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/EngineTypes.h"
+#include "FSDPhysicsActor.h"
+#include "ItemIDInterface.h"
+#include "LoadoutItem.h"
+#include "SaveGameIDInterface.h"
+#include "Templates/SubclassOf.h"
+#include "UpgradableGear.h"
 #include "Flare.generated.h"
 
-class AItem;
 class AActor;
-class UItemID;
-class USoundCue;
 class AFlare;
+class AItem;
+class UCurveFloat;
+class UItemID;
+class ULightComponent;
+class USoundCue;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AFlare : public AFSDPhysicsActor, public ISaveGameIDInterface, public IItemIDInterface, public ILoadoutItem, public IUpgradableGear {
     GENERATED_BODY()
 public:
@@ -43,10 +45,10 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FLinearColor ChromaColor;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_IsFlareOn, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IsFlareOn, meta=(AllowPrivateAccess=true))
     bool IsFlareOn;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AActor* DamageCauser;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -62,8 +64,12 @@ protected:
     USoundCue* ImpactGroundSound;
     
 public:
-    AFlare();
+    AFlare(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+    UFUNCTION(BlueprintCallable)
+    void StartLightFunction(ULightComponent* mainLight, TArray<ULightComponent*> spotLights, UCurveFloat* flutterCurve, UCurveFloat* fadeInCurve);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnUpdateShadowRadius();
@@ -73,7 +79,7 @@ protected:
     void OnRep_IsFlareOn();
     
 public:
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    UFUNCTION(BlueprintCallable)
     void OnFlareSpawnCompleted();
     
 protected:
@@ -86,6 +92,9 @@ protected:
 public:
     UFUNCTION(BlueprintCallable)
     void Inhibit();
+    
+    UFUNCTION(BlueprintCallable)
+    float ImmidiateFadeLight();
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TSubclassOf<AActor> GetWeaponViewClass() const;
@@ -101,7 +110,7 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ActivateFlare();
     
-    
+
     // Fix for true pure virtual functions not being implemented
     UFUNCTION(BlueprintCallable)
     TSubclassOf<AItem> GetLoadoutItemClass() const override PURE_VIRTUAL(GetLoadoutItemClass, return NULL;);

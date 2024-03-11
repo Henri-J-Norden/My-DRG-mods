@@ -5,7 +5,7 @@
 
 class UTexture2D;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UMissionStatCategory : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -18,5 +18,6 @@ protected:
     
 public:
     UMissionStatCategory();
+
 };
 

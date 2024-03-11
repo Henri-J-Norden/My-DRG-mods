@@ -1,17 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "UObject/NoExportTypes.h"
 #include "ChallengeVariation.h"
 #include "SavableDataAsset.h"
-#include "UObject/NoExportTypes.h"
+#include "Templates/SubclassOf.h"
 #include "TrackedStatInfo.h"
 #include "SeasonChallenge.generated.h"
 
-class UTexture2D;
-class USeasonChallenge;
 class UCampaign;
+class USeasonChallenge;
+class UTexture2D;
 
-UCLASS()
+UCLASS(Blueprintable)
 class USeasonChallenge : public USavableDataAsset {
     GENERATED_BODY()
 public:
@@ -52,6 +52,7 @@ public:
     TArray<TSubclassOf<UCampaign>> RequiredCampaigns;
     
     USeasonChallenge();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UTexture2D* GetIconOutlined();
     

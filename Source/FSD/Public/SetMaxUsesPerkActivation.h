@@ -3,10 +3,11 @@
 #include "FloatPerkActivation.h"
 #include "SetMaxUsesPerkActivation.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class USetMaxUsesPerkActivation : public UFloatPerkActivation {
     GENERATED_BODY()
 public:
     USetMaxUsesPerkActivation();
+
 };
 

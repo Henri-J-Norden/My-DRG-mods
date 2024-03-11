@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "StatusEffectItem.h"
 #include "ETemperatureIntensity.h"
+#include "StatusEffectItem.h"
 #include "HeatSourceStatusEffectItem.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UHeatSourceStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ protected:
     
 public:
     UHeatSourceStatusEffectItem();
+
 };
 

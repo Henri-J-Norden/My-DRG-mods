@@ -1,7 +1,8 @@
 #include "VictoryPose.h"
 
-class UObject;
-class UPlayerCharacterID;
+UVictoryPose::UVictoryPose() {
+    this->Aquisition = NULL;
+}
 
 void UVictoryPose::Unlock(UObject* WorldContextObject, UPlayerCharacterID* characterID) const {
 }
@@ -20,8 +21,4 @@ bool UVictoryPose::IsUnlocked(UObject* WorldContextObject, UPlayerCharacterID* c
 void UVictoryPose::Equip(UObject* WorldContextObject, UPlayerCharacterID* characterID) const {
 }
 
-UVictoryPose::UVictoryPose() {
-    this->Aquisition = NULL;
-    this->UnlockedFromStart = false;
-}
 

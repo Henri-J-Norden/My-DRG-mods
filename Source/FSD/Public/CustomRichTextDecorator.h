@@ -5,15 +5,16 @@
 
 class URichTextBlock;
 
-UCLASS(Abstract, BlueprintType, HideDropdown)
+UCLASS(Abstract, Blueprintable, HideDropdown)
 class UCustomRichTextDecorator : public URichTextBlockDecorator {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     URichTextBlock* RichTextBlock;
     
 public:
     UCustomRichTextDecorator();
+
 };
 

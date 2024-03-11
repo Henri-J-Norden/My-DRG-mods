@@ -5,14 +5,14 @@
 class APlayerCharacter;
 class USphereComponent;
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FPushPoint {
     GENERATED_BODY()
 public:
-    UPROPERTY(Export, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USphereComponent* collider;
     
-    UPROPERTY(meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     APlayerCharacter* Character;
     
     FSD_API FPushPoint();

@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "CSGSingleChildBase.h"
 #include "CSGRandomDisableProperties.h"
+#include "CSGSingleChildBase.h"
 #include "CSGRandomDisable.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCSGRandomDisable : public UCSGSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FCSGRandomDisableProperties Properties;
     
     UCSGRandomDisable();
+
 };
 

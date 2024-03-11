@@ -3,10 +3,11 @@
 #include "FSDAIController.h"
 #include "EnemyAIController.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class AEnemyAIController : public AFSDAIController {
     GENERATED_BODY()
 public:
-    AEnemyAIController();
+    AEnemyAIController(const FObjectInitializer& ObjectInitializer);
+
 };
 

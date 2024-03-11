@@ -5,7 +5,7 @@
 
 class UDialogDataAsset;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCharacterShoutAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UCharacterShoutAfflictionEffect();
+
 };
 

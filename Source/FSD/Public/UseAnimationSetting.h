@@ -5,7 +5,7 @@
 
 class UAnimMontage;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UUseAnimationSetting : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -34,7 +34,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool BlockUseWhileActive;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float BlockUseWhileActiveDuration;
+    
 public:
     UUseAnimationSetting();
+
 };
 

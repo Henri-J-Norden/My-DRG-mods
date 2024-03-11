@@ -5,15 +5,16 @@
 
 class ARedeployableSentryGun;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ASentryElectroBeam : public AElectroBeam {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<ARedeployableSentryGun*> Sentries;
     
 public:
-    ASentryElectroBeam();
+    ASentryElectroBeam(const FObjectInitializer& ObjectInitializer);
+
 };
 

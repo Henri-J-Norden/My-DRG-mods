@@ -3,7 +3,7 @@
 #include "UnlockReward.h"
 #include "PureTextReward.generated.h"
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UPureTextReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     UPureTextReward();
+
 };
 

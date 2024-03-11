@@ -3,7 +3,7 @@
 #include "EnemyAnimInstance.h"
 #include "FacilityTentacleHeadAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UFacilityTentacleHeadAnimInstance : public UEnemyAnimInstance {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UFacilityTentacleHeadAnimInstance();
+
 };
 

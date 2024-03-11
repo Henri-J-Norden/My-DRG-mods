@@ -7,7 +7,7 @@
 class AActor;
 class UItemUpgrade;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UPermanentItemUpgradeReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -20,5 +20,6 @@ protected:
     
 public:
     UPermanentItemUpgradeReward();
+
 };
 

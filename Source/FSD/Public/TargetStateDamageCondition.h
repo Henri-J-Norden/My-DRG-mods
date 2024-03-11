@@ -4,7 +4,7 @@
 #include "ETargetStateDamageBonusType.h"
 #include "TargetStateDamageCondition.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTargetStateDamageCondition : public UDamageCondition {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UTargetStateDamageCondition();
+
 };
 

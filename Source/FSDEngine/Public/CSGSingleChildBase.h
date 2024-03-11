@@ -3,13 +3,14 @@
 #include "CSGBase.h"
 #include "CSGSingleChildBase.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGSingleChildBase : public UCSGBase {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UCSGBase* Child;
     
     UCSGSingleChildBase();
+
 };
 

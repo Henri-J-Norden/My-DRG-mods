@@ -6,7 +6,7 @@
 
 class UDamageClass;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTargetStateDamageBonus : public UDamageBonusBase {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UTargetStateDamageBonus();
+
 };
 

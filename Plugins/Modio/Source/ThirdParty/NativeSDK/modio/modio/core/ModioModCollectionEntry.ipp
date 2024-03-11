@@ -46,9 +46,12 @@ namespace Modio
 	void ModCollectionEntry::UpdateModProfile(ModInfo ProfileData)
 	{
 		// check version in metadata and set pending install if need be
-		if (ModProfile.FileInfo.MetadataId != ProfileData.FileInfo.MetadataId)
+		if (ModProfile.FileInfo.has_value() && ProfileData.FileInfo.has_value())
 		{
-			SetModState(ModState::UpdatePending);
+			if (ModProfile.FileInfo.value().MetadataId != ProfileData.FileInfo.value().MetadataId)
+			{
+				SetModState(ModState::UpdatePending);
+			}
 		}
 		ModProfile = ProfileData;
 	}
@@ -404,7 +407,7 @@ namespace Modio
 	{
 		std::vector<std::shared_ptr<Modio::ModCollectionEntry>> SortedEntries;
 		// Copy the entries to the vector
-		for (const std::pair<Modio::ModID, std::shared_ptr<Modio::ModCollectionEntry>>& Elem : ModEntries)
+		for (const std::pair<const Modio::ModID, std::shared_ptr<Modio::ModCollectionEntry>>& Elem : ModEntries)
 		{
 			SortedEntries.push_back(Elem.second);
 		}

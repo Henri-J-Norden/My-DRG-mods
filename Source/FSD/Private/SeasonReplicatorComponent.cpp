@@ -1,10 +1,9 @@
 #include "SeasonReplicatorComponent.h"
 
-class USeasonEventData;
+USeasonReplicatorComponent::USeasonReplicatorComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+}
 
 void USeasonReplicatorComponent::CompleteSeasonEvent_Implementation(USeasonEventData* inEvent) {
 }
 
-USeasonReplicatorComponent::USeasonReplicatorComponent() {
-}
 

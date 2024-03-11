@@ -1,5 +1,12 @@
 #include "MessagingSubSystem.h"
 
+UMessagingSubSystem::UMessagingSubSystem() {
+}
+
+FString UMessagingSubSystem::MessageSenderIdAsString(const FFSDChatMessage& Msg) {
+    return TEXT("");
+}
+
 float UMessagingSubSystem::MessageAge(const FFSDChatMessage& Msg) {
     return 0.0f;
 }
@@ -10,6 +17,4 @@ void UMessagingSubSystem::LatestMessages(int32 Num, bool resetAge, TArray<FFSDCh
 void UMessagingSubSystem::ClearMessages() {
 }
 
-UMessagingSubSystem::UMessagingSubSystem() {
-}
 

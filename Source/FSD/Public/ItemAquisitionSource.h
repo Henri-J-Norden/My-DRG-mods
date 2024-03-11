@@ -3,10 +3,11 @@
 #include "SavableDataAsset.h"
 #include "ItemAquisitionSource.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UItemAquisitionSource : public USavableDataAsset {
     GENERATED_BODY()
 public:
     UItemAquisitionSource();
+
 };
 

@@ -1,42 +1,43 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ResourceFullSignatureDelegate.h"
 #include "Components/ActorComponent.h"
-#include "ResourceChangedSignatureDelegate.h"
-#include "ResourceAddedSignatureDelegate.h"
 #include "ResourceAddedDelegate.h"
+#include "ResourceAddedSignatureDelegate.h"
+#include "ResourceChangedSignatureDelegate.h"
+#include "ResourceFullSignatureDelegate.h"
 #include "ResourcesComponent.generated.h"
 
 class UCappedResource;
 class UResourceData;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UResourcesComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FResourceChangedSignature OnResourceChanged;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FResourceAddedSignature OnResourceIncreased;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FResourceFullSignature OnResourceFull;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FResourceAdded OnResourceAdded;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, ReplicatedUsing=OnRep_Resources, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Resources, meta=(AllowPrivateAccess=true))
     TArray<UCappedResource*> Resources;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ResourceCap;
     
 public:
-    UResourcesComponent();
+    UResourcesComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable)
     void ResourceIncreased(UCappedResource* Resource, float Delta);

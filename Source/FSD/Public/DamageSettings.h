@@ -1,19 +1,19 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "Engine/DataAsset.h"
 #include "Curves/CurveFloat.h"
 #include "DecalData.h"
-#include "Engine/DataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "DamageSettings.generated.h"
 
-class UStatusEffect;
 class UDamageComponent;
+class UDamageImpulse;
+class UDamageTag;
 class UNiagaraSystem;
 class USoundCue;
-class UDamageTag;
-class UDamageImpulse;
+class UStatusEffect;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UDamageSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -47,6 +47,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSubclassOf<UStatusEffect> TemperatureShockFromBurningStatusEffect;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float InfectionPerDamagePoint;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UDamageComponent* ArmorShatterDamage;
     
@@ -64,6 +67,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FRuntimeFloatCurve ArmorToArmorDamageBreakingCurve;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float RadialHealthArmorDamageFalloff;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 HealthArmorBonesAffectedByRadialDamage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDamageTag* DetonateFrozen;
@@ -99,5 +108,6 @@ public:
     float RagdollGlobalForceMultiplier;
     
     UDamageSettings();
+
 };
 

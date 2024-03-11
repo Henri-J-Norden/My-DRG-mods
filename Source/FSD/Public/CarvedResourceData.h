@@ -3,9 +3,10 @@
 #include "ResourceData.h"
 #include "CarvedResourceData.generated.h"
 
+class AProceduralSetup;
 class UCarvedResourceCreator;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UCarvedResourceData : public UResourceData {
     GENERATED_BODY()
 public:
@@ -18,8 +19,15 @@ protected:
     
 public:
     UCarvedResourceData();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UCarvedResourceCreator* LoadResourceCreator() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    float GetUnitsPerCarver() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    float GetTargetAmount(AProceduralSetup* pls) const;
     
 };
 

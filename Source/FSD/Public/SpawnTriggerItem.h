@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "GenerationItem.h"
+#include "Templates/SubclassOf.h"
 #include "SpawnTriggerItem.generated.h"
 
 class AActor;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class ASpawnTriggerItem : public AGenerationItem {
     GENERATED_BODY()
 public:
@@ -18,6 +18,7 @@ protected:
     FName Message;
     
 public:
-    ASpawnTriggerItem();
+    ASpawnTriggerItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

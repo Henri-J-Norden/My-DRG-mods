@@ -4,11 +4,11 @@
 #include "RepairObjective.generated.h"
 
 class AActor;
-class UGemResourceData;
 class UDebrisPositioning;
+class UGemResourceData;
 class URepairableComponent;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class URepairObjective : public UObjective {
     GENERATED_BODY()
 public:
@@ -37,13 +37,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float MinRepairObjectiveDistanceToLandingZone;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<AActor*> RepairedObjectivesList;
     
 public:
-    URepairObjective();
+    URepairObjective(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable)
     void OnRep_RepairedObjectives();

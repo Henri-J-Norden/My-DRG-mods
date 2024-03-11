@@ -5,16 +5,17 @@
 
 class UItemPlacerAggregator;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class FSD_API AFuelLineBuilderItem : public ATrackBuilderItem {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UItemPlacerAggregator* SegmentPlacer;
     
 public:
-    AFuelLineBuilderItem();
+    AFuelLineBuilderItem(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ReceivePlacementUpdated(bool InCanPlace, bool InConnecting, float InDistanceProgress);

@@ -1,28 +1,28 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "EVeteranScaling.h"
-#include "Engine/DataAsset.h"
-#include "ECreatureSize.h"
-#include "EEnemySignificance.h"
 #include "UObject/NoExportTypes.h"
-#include "EnemyDebris.h"
+#include "Engine/DataAsset.h"
 #include "DeepPathFinderType.h"
 #include "GameplayTagContainer.h"
-#include "SpawnRarityItem.h"
+#include "ECreatureSize.h"
 #include "EEnemyDescriptorCheatClass.h"
+#include "EEnemySignificance.h"
+#include "EVeteranScaling.h"
+#include "EnemyDebris.h"
+#include "SpawnRarityItem.h"
+#include "Templates/SubclassOf.h"
 #include "EnemyDescriptor.generated.h"
 
-class UMissionTemplate;
-class UEnemyID;
+class AActor;
 class APawn;
 class UBiome;
-class UEnemyDescriptor;
-class UDebrisPositioning;
 class UCaveInfluencer;
-class AActor;
+class UDebrisPositioning;
+class UEnemyDescriptor;
+class UEnemyID;
+class UMissionTemplate;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API UEnemyDescriptor : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -57,14 +57,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool UsesSpawnEffects;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     ECreatureSize CreatureSize;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UDebrisPositioning* Positioning;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    int32 PlacementCategories;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UCaveInfluencer* CaveInfluencer;
@@ -125,8 +122,9 @@ protected:
     
 public:
     UEnemyDescriptor();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    TSubclassOf<APawn> GetEnemyClass(UBiome* Biome, bool isElite) const;
+    TSubclassOf<APawn> GetEnemyClass(UBiome* Biome, bool IsElite) const;
     
     UFUNCTION(BlueprintCallable)
     static TArray<UEnemyDescriptor*> FindDescriptorsForCheatMenu(EEnemyDescriptorCheatClass NewCheatClass);

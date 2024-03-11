@@ -1,15 +1,15 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ItemUpgrade.h"
+#include "Templates/SubclassOf.h"
 #include "UpgradeValues.h"
 #include "LockCountSTEBonusUpgrade.generated.h"
 
-class UStatusEffect;
 class AActor;
 class AFSDPlayerState;
+class UStatusEffect;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class ULockCountSTEBonusUpgrade : public UItemUpgrade {
     GENERATED_BODY()
 public:
@@ -25,6 +25,7 @@ protected:
     
 public:
     ULockCountSTEBonusUpgrade();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FUpgradeValues GetUpgradedValue(TSubclassOf<AActor> Item, AFSDPlayerState* Player, TSubclassOf<UStatusEffect> NewStatusEffect);
     

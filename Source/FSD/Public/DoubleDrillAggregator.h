@@ -3,10 +3,11 @@
 #include "CapacityBasedItemAggregator.h"
 #include "DoubleDrillAggregator.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UDoubleDrillAggregator : public UCapacityBasedItemAggregator {
     GENERATED_BODY()
 public:
-    UDoubleDrillAggregator();
+    UDoubleDrillAggregator(const FObjectInitializer& ObjectInitializer);
+
 };
 

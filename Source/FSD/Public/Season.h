@@ -1,20 +1,22 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "SavableDataAsset.h"
 #include "Curves/CurveFloat.h"
+#include "SavableDataAsset.h"
 #include "SeasonLevel.h"
-#include "UnassignedReward.h"
 #include "SeasonalEventEntry.h"
-#include "UObject/NoExportTypes.h"
+#include "SeasonalEventEntryChance.h"
+#include "UnassignedReward.h"
+#include "WaveEntry.h"
 #include "Season.generated.h"
 
-class UTreeOfVanity;
 class UGameDLC;
 class UMissionStat;
 class UMissionWarning;
 class UReward;
+class UTexture2D;
+class UTreeOfVanity;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API USeason : public USavableDataAsset {
     GENERATED_BODY()
 public:
@@ -23,6 +25,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 SeasonNumber;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<UTexture2D> SeasonIcon;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSeasonLevel> Levels;
@@ -43,7 +48,16 @@ public:
     FRuntimeFloatCurve SpawnChanceByMissionLength;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FRuntimeFloatCurve MinorSpawnChanceByMissionLenght;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSeasonalEventEntry> SeasonalEvents;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSeasonalEventEntry> MinorSeasonalEvents;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSeasonalEventEntryChance> SpawnChanceSeasonalEvents;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 NumberOfScripChallenges;
@@ -52,12 +66,16 @@ public:
     TArray<UMissionStat*> ScripChallenges;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FWaveEntry> SeasonSpecificWaves;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SeasonWaveInMissionChance;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMissionWarning* SeasonWarning;
     
-    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
-    FInt32Interval SeasonWarningCount;
-    
     USeason();
+
 protected:
     UFUNCTION(BlueprintCallable)
     void AddUnassignedReward(int32 Index, UReward* Reward);

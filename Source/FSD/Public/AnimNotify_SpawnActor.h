@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Animation/AnimNotifies/AnimNotify.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
+#include "Templates/SubclassOf.h"
 #include "AnimNotify_SpawnActor.generated.h"
 
 class AActor;
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_SpawnActor : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -25,5 +25,6 @@ public:
     FRotator RotationOffset;
     
     UAnimNotify_SpawnActor();
+
 };
 

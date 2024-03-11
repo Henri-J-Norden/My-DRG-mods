@@ -5,11 +5,12 @@
 
 class AActor;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UTentacleBusyComponent : public UEnemyLineOfSightComponent {
     GENERATED_BODY()
 public:
-    UTentacleBusyComponent();
+    UTentacleBusyComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void ReleasedActor(AActor* Escape, bool fullGrab);

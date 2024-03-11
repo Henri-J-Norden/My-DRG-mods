@@ -1,31 +1,31 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "GameFramework/Actor.h"
+#include "Templates/SubclassOf.h"
 #include "VanityCharacter.generated.h"
 
-class UEyeBrowsVanityItem;
-class UChildActorComponent;
-class USideburnsVanityItem;
-class UAnimSequenceBase;
-class USkinColorVanityItem;
-class UHeadVanityItem;
-class UBeardColorVanityItem;
 class AItem;
-class UMoustacheVanityItem;
-class UBeardVanityItem;
-class UArmorVanityItem;
+class UAnimSequenceBase;
 class UArmorMaterialVanityItem;
-class USkeletalMeshComponent;
-class UMaterialInterface;
+class UArmorVanityItem;
+class UBeardColorVanityItem;
+class UBeardVanityItem;
+class UChildActorComponent;
+class UEyeBrowsVanityItem;
+class UHeadVanityItem;
 class UItemSkin;
+class UMaterialInterface;
+class UMoustacheVanityItem;
+class USideburnsVanityItem;
+class USkeletalMeshComponent;
+class USkinColorVanityItem;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AVanityCharacter : public AActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UChildActorComponent* ChildActorComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -61,10 +61,10 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UArmorMaterialVanityItem* ArmorColor;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* Mesh;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USkeletalMeshComponent* BodyMesh;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -83,7 +83,8 @@ protected:
     UItemSkin* Paintjob;
     
 public:
-    AVanityCharacter();
+    AVanityCharacter(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void DisplayVanity();
     

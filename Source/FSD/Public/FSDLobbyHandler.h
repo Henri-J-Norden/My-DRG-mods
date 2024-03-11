@@ -3,10 +3,11 @@
 #include "UObject/Object.h"
 #include "FSDLobbyHandler.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UFSDLobbyHandler : public UObject {
     GENERATED_BODY()
 public:
     UFSDLobbyHandler();
+
 };
 

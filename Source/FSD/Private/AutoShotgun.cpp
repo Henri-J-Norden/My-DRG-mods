@@ -1,9 +1,8 @@
 #include "AutoShotgun.h"
 
-class AActor;
-class UFSDPhysicalMaterial;
-class UHealthComponentBase;
-class UPrimitiveComponent;
+AAutoShotgun::AAutoShotgun(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->CQCKillBuff = NULL;
+}
 
 void AAutoShotgun::OnTargetKilled(AActor* Target, UFSDPhysicalMaterial* PhysicalMaterial, bool wasDirectHit) {
 }
@@ -11,7 +10,4 @@ void AAutoShotgun::OnTargetKilled(AActor* Target, UFSDPhysicalMaterial* Physical
 void AAutoShotgun::OnTargetDamaged(UHealthComponentBase* Health, float Amount, UPrimitiveComponent* HitComponent, UFSDPhysicalMaterial* PhysicalMaterial) {
 }
 
-AAutoShotgun::AAutoShotgun() {
-    this->CQCKillBuff = NULL;
-}
 

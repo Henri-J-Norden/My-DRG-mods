@@ -3,10 +3,11 @@
 #include "ConvexMeshWithCachedTree.h"
 #include "CSGPlane.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGPlane : public UConvexMeshWithCachedTree {
     GENERATED_BODY()
 public:
     UCSGPlane();
+
 };
 

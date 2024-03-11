@@ -1,8 +1,7 @@
 #include "FSDOnlineSystemUtils.h"
 
-class UObject;
-class UFSDGameInstance;
-class APlayerState;
+UFSDOnlineSystemUtils::UFSDOnlineSystemUtils() {
+}
 
 void UFSDOnlineSystemUtils::TryToResolvePrivilege(const APlayerState* PlayerState, EBlueprintableUserPrivileges Privilege, EBlueprintablePrivilegeResults reason) {
 }
@@ -14,6 +13,9 @@ void UFSDOnlineSystemUtils::ShowAccountPicker(UFSDGameInstance* gInstance, const
 }
 
 void UFSDOnlineSystemUtils::OpenURLInOverlay(const FString& URL, FOnShowWebUrlClosedBP OnOverlayClosed) {
+}
+
+void UFSDOnlineSystemUtils::OpenProfileWithEvent(APlayerState* Requestor, APlayerState* Requestee, FOnProfileUIClosedBP OnProfileWindowClosed) {
 }
 
 void UFSDOnlineSystemUtils::OpenProfileByUserId(APlayerState* Requestor, const FString& RequesteeUserID) {
@@ -29,6 +31,9 @@ FText UFSDOnlineSystemUtils::OnlinePlayBlockReasonToString(EBlueprintablePrivile
 void UFSDOnlineSystemUtils::GetOnlinePlayBlockReasons(TArray<EBlueprintablePrivilegeResults>& reasons) {
 }
 
+void UFSDOnlineSystemUtils::GetIsUpdatePending(const FOnGetIsUpdatePendingBP& Delegate) {
+}
+
 void UFSDOnlineSystemUtils::GetIsPrivilegeAllowed(const APlayerState* PlayerState, EBlueprintableUserPrivileges Privilege, const FOnGetUserPrivilegeCompleteBPDelegate& Delegate) {
 }
 
@@ -40,6 +45,4 @@ EInviteBlockReason UFSDOnlineSystemUtils::CanPlayerInvite(UObject* WorldContextO
     return EInviteBlockReason::SoloSession;
 }
 
-UFSDOnlineSystemUtils::UFSDOnlineSystemUtils() {
-}
 

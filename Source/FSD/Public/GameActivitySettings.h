@@ -5,7 +5,7 @@
 
 class UGameActivityType;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UGameActivitySettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ private:
     
 public:
     UGameActivitySettings();
+
 };
 

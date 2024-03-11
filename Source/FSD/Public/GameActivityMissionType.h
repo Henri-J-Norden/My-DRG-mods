@@ -5,7 +5,7 @@
 
 class UMissionTemplate;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UGameActivityMissionType : public UGameActivityType {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ public:
     TSoftObjectPtr<UMissionTemplate> ActivityMission;
     
     UGameActivityMissionType();
+
 };
 

@@ -1,18 +1,19 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Components/ActorComponent.h"
-#include "BuffingChangedDelegateDelegate.h"
 #include "GameplayTagContainer.h"
+#include "BoolDelegateDelegate.h"
+#include "Templates/SubclassOf.h"
 #include "EnemyBufferComponent.generated.h"
 
+class AActor;
+class AFSDPawn;
+class UHealthComponentBase;
+class UParticleSystem;
 class UParticleSystemComponent;
 class UStatusEffect;
-class UParticleSystem;
-class UHealthComponentBase;
-class AFSDPawn;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UEnemyBufferComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -29,8 +30,8 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ParticleTangentSize;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
-    FBuffingChangedDelegate OnBuffingChangedEvent;
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FBoolDelegate OnBuffingChangedEvent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float BuffRadius;
@@ -41,16 +42,20 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTagQuery BuffQuery;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<AActor> SubclassBuffQuery;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     TArray<AFSDPawn*> BuffTargets;
     
-    UPROPERTY(BlueprintReadWrite, Export, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     TArray<UParticleSystemComponent*> ParticleInstances;
     
 public:
-    UEnemyBufferComponent();
+    UEnemyBufferComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void SetBuffingEnabled(bool Enabled);
     

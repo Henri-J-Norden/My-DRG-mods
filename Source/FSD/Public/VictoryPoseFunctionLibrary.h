@@ -4,21 +4,22 @@
 #include "VictoryPoseFunctionLibrary.generated.h"
 
 class UObject;
-class UVictoryPose;
 class UPlayerCharacterID;
+class UVictoryPose;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UVictoryPoseFunctionLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UVictoryPoseFunctionLibrary();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static bool IsRandomVictoryPose(UVictoryPose* VictoryPose);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static TArray<UVictoryPose*> GetOwnedVictoryPoses(UObject* WorldContextObject, UPlayerCharacterID* characterID);
     
-    UFUNCTION(BlueprintCallable, BlueprintPure)
+    UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static UVictoryPose* GetEquippedVictoryPose(UObject* WorldContextObject, UPlayerCharacterID* characterID);
     
 };

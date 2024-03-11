@@ -5,7 +5,7 @@
 
 class ACoilGun;
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UCoilGunAnimInstance : public UChargedWeaponAnimInstance {
     GENERATED_BODY()
 public:
@@ -25,11 +25,12 @@ public:
     float MaxCoilSpeed;
     
 private:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ACoilGun* CoilGun;
     
 public:
     UCoilGunAnimInstance();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float GetCoilSpeed(int32 Index) const;
     

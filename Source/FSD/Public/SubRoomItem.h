@@ -5,7 +5,7 @@
 
 class URoomGenerator;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ASubRoomItem : public AGenerationItem {
     GENERATED_BODY()
 public:
@@ -17,6 +17,7 @@ protected:
     int32 Layer;
     
 public:
-    ASubRoomItem();
+    ASubRoomItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

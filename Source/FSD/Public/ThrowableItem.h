@@ -1,18 +1,18 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "AnimatedItem.h"
-#include "Upgradable.h"
 #include "UObject/NoExportTypes.h"
+#include "AnimatedItem.h"
+#include "Templates/SubclassOf.h"
+#include "Upgradable.h"
 #include "ThrowableItem.generated.h"
 
 class AActor;
+class AItem;
 class AThrowableActor;
 class UAnimMontage;
 class UItemUpgrade;
-class AItem;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AThrowableItem : public AAnimatedItem, public IUpgradable {
     GENERATED_BODY()
 public:
@@ -39,39 +39,40 @@ protected:
     float CooldownAfterThrow;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float CooldownAfterDetonation;
+    bool CanThrowBeforeEquipAnimFinish;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    bool CanThrowBeforeEquipAnimFinish;
+    float CooldownAfterEquip;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ThrowDelay;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float ThrowZOffset;
+    FVector ThrowOffset;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     float CooldownLeft;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UItemUpgrade*> upgrades;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSubclassOf<AItem> LoadoutItem;
     
-    UPROPERTY(Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<TWeakObjectPtr<AThrowableActor>> ThrownActors;
     
 public:
-    AThrowableItem();
+    AThrowableItem(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
     void Simulate_Throw(TSubclassOf<AThrowableActor> ActorClass);
     
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
-    void Server_Throw(TSubclassOf<AThrowableActor> ActorClass);
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void Server_Throw(TSubclassOf<AThrowableActor> ActorClass, const FVector& Location);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void ReceiveItemThrown(AThrowableActor* thrownActor);
@@ -82,10 +83,7 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnThrownActorDestroyed(AActor* Actor);
     
-    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-    FVector GetThrowLocation() const;
-    
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

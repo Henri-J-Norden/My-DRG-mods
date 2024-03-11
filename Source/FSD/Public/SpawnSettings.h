@@ -7,7 +7,7 @@
 class UNiagaraSystem;
 class USoundCue;
 
-UCLASS()
+UCLASS(Blueprintable)
 class USpawnSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -23,5 +23,6 @@ protected:
     
 public:
     USpawnSettings();
+
 };
 

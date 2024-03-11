@@ -1,73 +1,11 @@
 #include "PickaxeItem.h"
-#include "Net/UnrealNetwork.h"
 #include "Components/SceneComponent.h"
 #include "DamageComponent.h"
+#include "Net/UnrealNetwork.h"
 
-class USoundCue;
-class UParticleSystem;
-class UPrimitiveComponent;
-class UFSDPhysicalMaterial;
-
-
-void APickaxeItem::SetSpecialCoolDownDuration(float newCooldownDuration) {
-}
-
-void APickaxeItem::Server_TriggerBezerk_Implementation() {
-}
-
-void APickaxeItem::Server_SetState_Implementation(EPickaxeState NewState) {
-}
-
-void APickaxeItem::Server_RemoveDebrisInstance_Implementation(FVector_NetQuantize HitPos, int32 DebrisIndex, int32 remappedIndex) {
-}
-
-void APickaxeItem::Server_HitBlock_Implementation(FVector_NetQuantize Position, int32 Material, bool removeDebris, bool isSpecial) {
-}
-
-void APickaxeItem::Server_DoPowerAttack_Implementation() {
-}
-
-void APickaxeItem::Server_DigBlock2_Implementation(FVector carvePos, FVector carveDirection, int32 TerrainMaterial, bool isSpecial) {
-}
-
-void APickaxeItem::Server_DamageTarget_Implementation(UPrimitiveComponent* TargetComponent, bool isSpecial, const FVector_NetQuantize& ImpactPoint, const FVector_NetQuantizeNormal& ImpactNormal, UFSDPhysicalMaterial* PhysMaterial, uint8 BoneIndex) {
-}
-
-void APickaxeItem::RefreshSpecialCooldown() {
-}
-
-void APickaxeItem::OnRep_State(EPickaxeState oldState) {
-}
-
-void APickaxeItem::OnLoadoutChanged() {
-}
-
-float APickaxeItem::GetSpecialCooldownProgress() const {
-    return 0.0f;
-}
-
-void APickaxeItem::All_SimulateHitBlock_Implementation(FVector_NetQuantize Position, int32 materia, bool removeDebris, bool isSpecial) {
-}
-
-void APickaxeItem::All_SimulateDigDebris_Implementation(FVector_NetQuantize Position, UParticleSystem* Particles, USoundCue* cue) {
-}
-
-void APickaxeItem::All_SimulateDigBlock_Implementation(FVector_NetQuantize Position, bool spawnParticles, int32 Material, float Density, bool isSpecial) {
-}
-
-void APickaxeItem::All_SimulateDamageTarget_Implementation(UPrimitiveComponent* TargetComponent, bool isSpecial, const FVector_NetQuantize& ImpactPoint, const FVector_NetQuantizeNormal& ImpactNormal, UFSDPhysicalMaterial* PhysMaterial, uint8 BoneIndex) {
-}
-
-void APickaxeItem::All_DoPowerAttack_Implementation() {
-}
-
-void APickaxeItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-    
-    DOREPLIFETIME(APickaxeItem, State);
-}
-
-APickaxeItem::APickaxeItem() {
+APickaxeItem::APickaxeItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+    this->CameraShakeOnStartUsing = true;
     this->QuadDamageCarving = false;
     this->FP_Root = CreateDefaultSubobject<USceneComponent>(TEXT("FP_Root"));
     this->TP_Root = CreateDefaultSubobject<USceneComponent>(TEXT("TP_Root"));
@@ -86,6 +24,7 @@ APickaxeItem::APickaxeItem() {
     this->RockMiningBonus = 0;
     this->DirtMiningBonus = 0;
     this->DamageRange = 200.00f;
+    this->MiningRange = 300.00f;
     this->DamageRadius = 50.00f;
     this->OnDamageEnemySlowdownEffect = NULL;
     this->MiningSound = NULL;
@@ -109,5 +48,69 @@ APickaxeItem::APickaxeItem() {
     this->BezerkStatusEffect = NULL;
     this->PowerAttackEnabled = true;
     this->EquippedMaterial = NULL;
+    this->FP_Root->SetupAttachment(RootComponent);
+    this->TP_Root->SetupAttachment(RootComponent);
+    this->FP_Scale->SetupAttachment(FP_Root);
+    this->TP_Scale->SetupAttachment(TP_Root);
 }
+
+
+void APickaxeItem::SetSpecialCoolDownDuration(float newCooldownDuration) {
+}
+
+void APickaxeItem::Server_TriggerBezerk_Implementation() {
+}
+
+void APickaxeItem::Server_SetState_Implementation(EPickaxeState NewState) {
+}
+
+void APickaxeItem::Server_RemoveDebrisInstance_Implementation(FVector_NetQuantize HitPos, int32 DebrisIndex, int32 remappedIndex) {
+}
+
+void APickaxeItem::Server_HitBlock_Implementation(FVector_NetQuantize Position, int32 Material, bool removeDebris, bool isSpecial) {
+}
+
+void APickaxeItem::Server_DoPowerAttack_Implementation() {
+}
+
+void APickaxeItem::Server_DigBlock_Implementation(FVector carvePos, FVector carveDirection, int32 TerrainMaterial, bool isSpecial) {
+}
+
+void APickaxeItem::Server_DamageTarget_Implementation(UPrimitiveComponent* TargetComponent, bool isSpecial, const FVector_NetQuantize& ImpactPoint, const FVector_NetQuantizeNormal& ImpactNormal, UFSDPhysicalMaterial* PhysMaterial, uint8 BoneIndex) {
+}
+
+void APickaxeItem::RefreshSpecialCooldown() {
+}
+
+void APickaxeItem::OnRep_State(EPickaxeState oldState) {
+}
+
+void APickaxeItem::OnLoadoutChanged() {
+}
+
+float APickaxeItem::GetSpecialCooldownProgress() const {
+    return 0.0f;
+}
+
+void APickaxeItem::All_SimulateHitBlock_Implementation(FVector_NetQuantize Position, int32 materia, bool removeDebris, bool isSpecial) {
+}
+
+void APickaxeItem::All_SimulateDigDebris_Implementation(FVector_NetQuantize Position, UFXSystemAsset* Particles, USoundCue* cue) {
+}
+
+void APickaxeItem::All_SimulateDigBlock_Implementation(FVector_NetQuantize Position, bool SpawnParticles, int32 Material, float Density, bool isSpecial) {
+}
+
+void APickaxeItem::All_SimulateDamageTarget_Implementation(UPrimitiveComponent* TargetComponent, bool isSpecial, const FVector_NetQuantize& ImpactPoint, const FVector_NetQuantizeNormal& ImpactNormal, UFSDPhysicalMaterial* PhysMaterial, uint8 BoneIndex) {
+}
+
+void APickaxeItem::All_DoPowerAttack_Implementation() {
+}
+
+void APickaxeItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    
+    DOREPLIFETIME(APickaxeItem, State);
+}
+
 

@@ -3,10 +3,11 @@
 #include "Components/ActorComponent.h"
 #include "TreasureRewarder.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UTreasureRewarder : public UActorComponent {
     GENERATED_BODY()
 public:
-    UTreasureRewarder();
+    UTreasureRewarder(const FObjectInitializer& ObjectInitializer);
+
 };
 

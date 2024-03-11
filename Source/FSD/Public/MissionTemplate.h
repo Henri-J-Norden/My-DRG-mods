@@ -1,31 +1,31 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "SavableDataAsset.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "ObjectiveMissionIcon.h"
 #include "ResourceSpawner.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
+#include "SavableDataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "MissionTemplate.generated.h"
 
-class AProceduralSetup;
-class UMissionDNA;
-class UMissionComplexity;
-class UMutator;
-class UObjective;
-class UWorld;
 class AFSDGameMode;
-class UMissionDuration;
-class UObject;
-class UTexture2D;
-class UDebrisActorComponent;
-class UTutorialComponent;
-class UGeneratedMission;
-class UMissionMutator;
-class UFSDSaveGame;
-class UMissionTemplate;
+class AProceduralSetup;
 class UBiome;
+class UDebrisActorComponent;
+class UFSDSaveGame;
+class UGeneratedMission;
+class UMissionComplexity;
+class UMissionDNA;
+class UMissionDuration;
+class UMissionMutator;
+class UMissionTemplate;
 class UMissionWarning;
+class UMutator;
+class UObject;
+class UObjective;
+class UTexture2D;
+class UTutorialComponent;
+class UWorld;
 
 UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UMissionTemplate : public USavableDataAsset {
@@ -106,6 +106,7 @@ protected:
     
 public:
     UMissionTemplate();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void Receive_SetMissionParameters(UGeneratedMission* mission, FRandomStream& Random);
@@ -132,6 +133,9 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TSubclassOf<AProceduralSetup> GetPLS() const;
     
+    UFUNCTION(BlueprintCallable)
+    TSubclassOf<UObjective> GetObjectiveClass();
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetMissionTypeIndex() const;
     
@@ -141,8 +145,8 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UTexture2D* GetMissionButtonImage() const;
     
-    UFUNCTION(BlueprintCallable)
-    UGeneratedMission* GenerateMission(const UObject* WorldContextObject, UBiome* Biome, int32 Seed, int32 GlobalSeed, int32 missionIndex, UMissionComplexity* limitComplexity, UMissionDuration* limitDuration, UMissionMutator* Mutator, TArray<UMissionWarning*> Warnings, TSubclassOf<UObjective> forceSecondary);
+    UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
+    UGeneratedMission* GenerateMission(const UObject* WorldContextObject, UBiome* Biome, int32 Seed, int32 GlobalSeed, int32 missionIndex, UMissionComplexity* limitComplexity, UMissionDuration* limitDuration, UMissionMutator* Mutator, TArray<UMissionWarning*> Warnings, TArray<TSubclassOf<UObjective>> forceSecondary);
     
 };
 

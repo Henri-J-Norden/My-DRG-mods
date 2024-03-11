@@ -4,11 +4,11 @@
 #include "EPreviewCellSize.h"
 #include "SDFBuilder.generated.h"
 
-class UTerrainMaterialCore;
-class USDFUnionOpComponent;
 class USDFBase;
+class USDFUnionOpComponent;
+class UTerrainMaterialCore;
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSDENGINE_API ASDFBuilder : public ACSGBuilderBase {
     GENERATED_BODY()
 public:
@@ -18,12 +18,13 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UTerrainMaterialCore* PreviewMaterial;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USDFBase* CurrentRoot;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Export, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USDFUnionOpComponent* SDFRoot;
     
-    ASDFBuilder();
+    ASDFBuilder(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -5,7 +5,7 @@
 
 class UReward;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API USeasonEditorRewardWidget : public UUserWidget {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     USeasonEditorRewardWidget();
+
 };
 

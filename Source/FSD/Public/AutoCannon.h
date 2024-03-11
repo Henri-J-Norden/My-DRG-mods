@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "AmmoDrivenWeapon.h"
 #include "Curves/CurveFloat.h"
+#include "AmmoDrivenWeapon.h"
+#include "Templates/SubclassOf.h"
 #include "AutoCannon.generated.h"
 
 class UAnimMontage;
 class UStatusEffect;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AAutoCannon : public AAmmoDrivenWeapon {
     GENERATED_BODY()
 public:
@@ -53,9 +53,10 @@ protected:
     float CurrentFireTime;
     
 public:
-    AAutoCannon();
+    AAutoCannon(const FObjectInitializer& ObjectInitializer);
+
 protected:
-    UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetStatusActive(bool IsActive);
     
 };

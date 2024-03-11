@@ -1,6 +1,21 @@
 #include "ItemPlacerAggregator.h"
 
-class AActor;
+UItemPlacerAggregator::UItemPlacerAggregator(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->PlacementDistance = 200.00f;
+    this->MaxOffsetZ = 0.00f;
+    this->MinOffsetZ = -200.00f;
+    this->ItemHeight = 100.00f;
+    this->ShoutOnPlaced = NULL;
+    this->MarkerType = NULL;
+    this->CanOnlyPlaceOnTerrain = false;
+    this->InvalidAroundSize = 250.00f;
+    this->PlacementMarker = NULL;
+    this->Item = NULL;
+    this->bIsPlacementActive = false;
+    this->bIsMarkerHidden = false;
+    this->bIsMarkerValid = false;
+    this->bCanPlaceMarker = false;
+}
 
 void UItemPlacerAggregator::ToggleValid(bool Valid) {
 }
@@ -24,19 +39,4 @@ void UItemPlacerAggregator::ClearIgnoredActors() {
 void UItemPlacerAggregator::AddIgnoredActor(AActor* InActor) {
 }
 
-UItemPlacerAggregator::UItemPlacerAggregator() {
-    this->PlacementDistance = 200.00f;
-    this->MaxOffsetZ = 0.00f;
-    this->MinOffsetZ = -200.00f;
-    this->ItemHeight = 100.00f;
-    this->ShoutOnPlaced = NULL;
-    this->MarkerType = NULL;
-    this->CanOnlyPlaceOnTerrain = false;
-    this->PlacementMarker = NULL;
-    this->Item = NULL;
-    this->bIsPlacementActive = false;
-    this->bIsMarkerHidden = false;
-    this->bIsMarkerValid = false;
-    this->bCanPlaceMarker = false;
-}
 

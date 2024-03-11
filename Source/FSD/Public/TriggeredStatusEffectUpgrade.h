@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
-#include "ItemUpgrade.h"
 #include "ETriggeredStatusEffectType.h"
+#include "ItemUpgrade.h"
+#include "Templates/SubclassOf.h"
 #include "UpgradeValues.h"
 #include "TriggeredStatusEffectUpgrade.generated.h"
 
-class UStatusEffect;
 class AActor;
 class AFSDPlayerState;
+class UStatusEffect;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class UTriggeredStatusEffectUpgrade : public UItemUpgrade {
     GENERATED_BODY()
 public:
@@ -29,6 +29,7 @@ protected:
     
 public:
     UTriggeredStatusEffectUpgrade();
+
     UFUNCTION(BlueprintCallable)
     void OnEffectShouldTrigger(AActor* PlayerCharacter);
     

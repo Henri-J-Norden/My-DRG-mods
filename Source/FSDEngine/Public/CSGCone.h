@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ConvexMeshWithCachedTree.h"
 #include "CSGConeProperties.h"
+#include "ConvexMeshWithCachedTree.h"
 #include "CSGCone.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCSGCone : public UConvexMeshWithCachedTree {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FCSGConeProperties Properties;
     
     UCSGCone();
+
 };
 

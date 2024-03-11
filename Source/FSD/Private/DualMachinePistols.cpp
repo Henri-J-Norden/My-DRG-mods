@@ -1,12 +1,10 @@
 #include "DualMachinePistols.h"
 
-void ADualMachinePistols::Server_TriggerStatusEffect_Implementation() {
-}
-bool ADualMachinePistols::Server_TriggerStatusEffect_Validate() {
-    return true;
-}
-
-ADualMachinePistols::ADualMachinePistols() {
+ADualMachinePistols::ADualMachinePistols(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->EmptyClipStatusEffect = NULL;
 }
+
+void ADualMachinePistols::Server_TriggerStatusEffect_Implementation() {
+}
+
 

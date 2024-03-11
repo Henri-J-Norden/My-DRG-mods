@@ -3,11 +3,12 @@
 #include "ActorTrackingWidget.h"
 #include "LockOnTrackingWidget.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class ULockOnTrackingWidget : public UActorTrackingWidget {
     GENERATED_BODY()
 public:
     ULockOnTrackingWidget();
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnLockOn(int32 numberOfLockOnsOnThisTarget, int32 totalNumberOfLockOns);
     

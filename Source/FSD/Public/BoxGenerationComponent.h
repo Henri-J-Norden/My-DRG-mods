@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "GenerationComponent.h"
 #include "UObject/NoExportTypes.h"
+#include "GenerationComponent.h"
 #include "BoxGenerationComponent.generated.h"
 
 class UFloodFillSettings;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UBoxGenerationComponent : public UGenerationComponent {
     GENERATED_BODY()
 public:
@@ -25,6 +25,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UFloodFillSettings* Noise;
     
-    UBoxGenerationComponent();
+    UBoxGenerationComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

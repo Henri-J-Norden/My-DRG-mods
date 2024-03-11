@@ -3,7 +3,7 @@
 #include "Mutator.h"
 #include "RewardMutator.generated.h"
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class URewardMutator : public UMutator {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     URewardMutator();
+
 };
 

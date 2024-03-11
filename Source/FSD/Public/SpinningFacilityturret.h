@@ -1,16 +1,16 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "FacilityTurret.h"
 #include "UObject/NoExportTypes.h"
+#include "FacilityTurret.h"
 #include "RandRange.h"
 #include "SpinningFacilityturret.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class ASpinningFacilityturret : public AFacilityTurret {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     FRotator TargetRotation;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -29,8 +29,9 @@ protected:
     float TurnSpeed;
     
 public:
-    ASpinningFacilityturret();
+    ASpinningFacilityturret(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 };
 

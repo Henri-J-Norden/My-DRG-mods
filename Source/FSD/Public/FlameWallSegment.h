@@ -5,15 +5,16 @@
 
 class USphereComponent;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AFlameWallSegment : public AActor {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleDefaultsOnly, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USphereComponent* CollisionComponent;
     
 public:
-    AFlameWallSegment();
+    AFlameWallSegment(const FObjectInitializer& ObjectInitializer);
+
 };
 

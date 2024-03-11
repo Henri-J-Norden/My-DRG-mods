@@ -1,19 +1,34 @@
 #include "DeepCSGWorld.h"
-#include "Templates/SubclassOf.h"
+#include "Components/ArrowComponent.h"
 #include "AsyncPathRequests.h"
+#include "Templates/SubclassOf.h"
 
-class USTLMeshCarver;
-class UPrimitiveComponent;
-class ADebrisDataActor;
-class UStaticMesh;
-class UTerrainMaterial;
-class UDebrisBase;
-class AActor;
-class ADeepCSGWorld;
-class UStaticMeshCarver;
-class ACSGBuilder;
+ADeepCSGWorld::ADeepCSGWorld(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bAlwaysRelevant = true;
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("FakeMoeventBase"));
+    this->MOMTerrrainMaterial = NULL;
+    this->NitraTerrrainMaterial = NULL;
+    this->GoldTerrainType = NULL;
+    this->MOMTerrainType = NULL;
+    this->RockTerrainType = NULL;
+    this->CrystalTerrainType = NULL;
+    this->EmptyTerrainType = NULL;
+    this->DirtTerrainType = NULL;
+    this->DefaultBurntTerrainType = NULL;
+    this->TestLevelCarver = NULL;
+    this->DebrisActorInstance = NULL;
+    this->DebrisActorIndex = 0;
+    this->ProceduralSetup = NULL;
+    this->AsyncPathRequests = CreateDefaultSubobject<UAsyncPathRequests>(TEXT("AsyncPathRequests"));
+}
 
 void ADeepCSGWorld::UnRegisterScannerComponent(UPrimitiveComponent* Component) {
+}
+
+void ADeepCSGWorld::TerrainOp_SpawnDebris_Implementation(const FTerrainSpawnDebrisOperationData& Data) {
 }
 
 void ADeepCSGWorld::TerrainOp_RemoveFloating_Implementation(const FRemoveFloatingIslandOperationData& Data) {
@@ -46,6 +61,9 @@ void ADeepCSGWorld::TerrainOp_CarveCollider_Implementation(const FCarveWithColli
 void ADeepCSGWorld::TerrainMaterialDataLoaded() {
 }
 
+void ADeepCSGWorld::SpawnDebris(UDebrisMesh* Debris, const FVector& Pos, float Radius) {
+}
+
 void ADeepCSGWorld::SetVisibleToScanner(const FVector& Center, const FVector& range) {
 }
 
@@ -61,7 +79,7 @@ void ADeepCSGWorld::ResetEntireWorld() {
 void ADeepCSGWorld::RemoveDebrisInstance_TerrainOp2_Implementation(int32 instance, int32 Component) {
 }
 
-void ADeepCSGWorld::RemoveDebrisInSphere(const FVector& Position, float Radius, bool onlyFragile, bool alsoDurable) {
+void ADeepCSGWorld::RemoveDebrisInSphere(const FVector& Position, float Radius, bool onlyFragile, bool alsoDurable, ESpecialDebrisType onlyType) {
 }
 
 void ADeepCSGWorld::RegisterScannerComponent(UPrimitiveComponent* Component, bool useFogOfWar) {
@@ -84,6 +102,10 @@ bool ADeepCSGWorld::IsPointInsideTerrain(const FVector& Pos) const {
 }
 
 bool ADeepCSGWorld::IsComponentRegisteredWithScanner(UPrimitiveComponent* Component) {
+    return false;
+}
+
+bool ADeepCSGWorld::InitialGenerationDone() const {
     return false;
 }
 
@@ -158,6 +180,10 @@ float ADeepCSGWorld::CalcApproximateTerrainDensity(FVector Pos, float Radius) {
     return 0.0f;
 }
 
+UTerrainMaterial* ADeepCSGWorld::BPGetTerrainMaterial(int32 Handle) const {
+    return NULL;
+}
+
 void ADeepCSGWorld::BaseLayerCommitFinal(bool blocking) {
 }
 
@@ -170,19 +196,4 @@ void ADeepCSGWorld::AttachActorToTerrain(AActor* Actor, FVector Pos) {
 void ADeepCSGWorld::ApplyBaseDebrisCarvers(const TArray<UDebrisBase*>& Carvers) {
 }
 
-ADeepCSGWorld::ADeepCSGWorld() {
-    this->MOMTerrrainMaterial = NULL;
-    this->NitraTerrrainMaterial = NULL;
-    this->GoldTerrainType = NULL;
-    this->MOMTerrainType = NULL;
-    this->RockTerrainType = NULL;
-    this->CrystalTerrainType = NULL;
-    this->EmptyTerrainType = NULL;
-    this->DirtTerrainType = NULL;
-    this->DefaultBurntTerrainType = NULL;
-    this->DebrisActorInstance = NULL;
-    this->DebrisActorIndex = 0;
-    this->ProceduralSetup = NULL;
-    this->AsyncPathRequests = CreateDefaultSubobject<UAsyncPathRequests>(TEXT("AsyncPathRequests"));
-}
 

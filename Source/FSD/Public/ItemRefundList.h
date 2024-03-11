@@ -7,7 +7,7 @@
 
 class UObject;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UItemRefundList : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -23,5 +23,6 @@ protected:
     
 public:
     UItemRefundList();
+
 };
 

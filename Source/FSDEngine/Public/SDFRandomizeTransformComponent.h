@@ -4,13 +4,14 @@
 #include "SDFRandomizeTransformProperties.h"
 #include "SDFRandomizeTransformComponent.generated.h"
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USDFRandomizeTransformComponent : public USDFBaseComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSDFRandomizeTransformProperties Properties;
     
-    USDFRandomizeTransformComponent();
+    USDFRandomizeTransformComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

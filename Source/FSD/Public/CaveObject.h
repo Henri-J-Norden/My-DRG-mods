@@ -3,7 +3,7 @@
 #include "GameFramework/Actor.h"
 #include "CaveObject.generated.h"
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class ACaveObject : public AActor {
     GENERATED_BODY()
 public:
@@ -12,7 +12,8 @@ protected:
     bool CanCharacterStandOn;
     
 public:
-    ACaveObject();
+    ACaveObject(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void TriggerNetworkUpdate();

@@ -4,17 +4,18 @@
 #include "FSDAIController.h"
 #include "HostileGuntowerModuleController.generated.h"
 
-class UAIPerceptionComponent;
 class AActor;
+class UAIPerceptionComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AHostileGuntowerModuleController : public AFSDAIController {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UAIPerceptionComponent* Perception;
     
-    AHostileGuntowerModuleController();
+    AHostileGuntowerModuleController(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void OnPerceptionUpdated(AActor* sensedActor, FAIStimulus Stimulus);
     

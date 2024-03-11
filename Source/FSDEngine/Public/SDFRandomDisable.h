@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "SDFSingleChildBase.h"
 #include "SDFRandomDisableProperties.h"
+#include "SDFSingleChildBase.h"
 #include "SDFRandomDisable.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class USDFRandomDisable : public USDFSingleChildBase {
     GENERATED_BODY()
 public:
@@ -12,5 +12,6 @@ public:
     FSDFRandomDisableProperties Properties;
     
     USDFRandomDisable();
+
 };
 

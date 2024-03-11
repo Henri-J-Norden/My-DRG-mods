@@ -3,13 +3,14 @@
 #include "Components/SceneComponent.h"
 #include "DebrisActorComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UDebrisActorComponent : public USceneComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool Enabled;
     
-    UDebrisActorComponent();
+    UDebrisActorComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -6,7 +6,7 @@
 class UMissionDuration;
 class UMissionTemplate;
 
-UCLASS(BlueprintType, EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUnlockDurationReward : public UUnlockReward {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UUnlockDurationReward();
+
 };
 

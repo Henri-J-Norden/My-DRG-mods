@@ -3,10 +3,11 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "HttpUtilityLibrary.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API UHttpUtilityLibrary : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 public:
     UHttpUtilityLibrary();
+
 };
 

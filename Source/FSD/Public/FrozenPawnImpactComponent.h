@@ -1,26 +1,26 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "DelegateDelegate.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/ActorComponent.h"
 #include "Engine/EngineTypes.h"
+#include "DelegateDelegate.h"
 #include "FrozenPawnImpactComponent.generated.h"
 
-class UPhysicsAsset;
-class UParticleSystem;
-class USoundCue;
-class UPrimitiveComponent;
-class UPhysicalMaterial;
 class AActor;
+class UParticleSystem;
+class UPhysicalMaterial;
+class UPhysicsAsset;
+class UPrimitiveComponent;
+class USoundCue;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UFrozenPawnImpactComponent : public UActorComponent {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDelegate OnStartFallingEvent;
     
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FDelegate OnFreezeImpactEvent;
     
 protected:
@@ -37,7 +37,8 @@ protected:
     UParticleSystem* FrozenDeathparticles;
     
 public:
-    UFrozenPawnImpactComponent();
+    UFrozenPawnImpactComponent(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable)
     void TriggerFrozenRagdoll();

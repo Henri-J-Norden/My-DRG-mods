@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "AmmoDrivenWeapon.h"
 #include "GameplayTagContainer.h"
+#include "AmmoDrivenWeapon.h"
 #include "ZipLineItem.generated.h"
 
 class UDialogDataAsset;
 
-UCLASS(Abstract)
+UCLASS(Abstract, Blueprintable)
 class AZipLineItem : public AAmmoDrivenWeapon {
     GENERATED_BODY()
 public:
@@ -27,7 +27,8 @@ protected:
     FGameplayTagQuery ExcludeSurfaceTags;
     
 public:
-    AZipLineItem();
+    AZipLineItem(const FObjectInitializer& ObjectInitializer);
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     bool CanFireWeapon(FText& FailMsg, UDialogDataAsset*& FailShout);

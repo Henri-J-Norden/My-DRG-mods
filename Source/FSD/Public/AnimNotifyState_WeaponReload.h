@@ -3,10 +3,11 @@
 #include "Animation/AnimNotifies/AnimNotifyState.h"
 #include "AnimNotifyState_WeaponReload.generated.h"
 
-UCLASS(CollapseCategories, EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, EditInlineNew, MinimalAPI)
 class UAnimNotifyState_WeaponReload : public UAnimNotifyState {
     GENERATED_BODY()
 public:
     UAnimNotifyState_WeaponReload();
+
 };
 

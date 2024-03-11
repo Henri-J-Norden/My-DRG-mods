@@ -4,10 +4,10 @@
 #include "ECommunityGoalIndex.h"
 #include "CommunityGoalSettings.generated.h"
 
-class UCommunityGoalFaction;
 class UCommunityGoal;
+class UCommunityGoalFaction;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UCommunityGoalSettings : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -23,6 +23,7 @@ protected:
     
 public:
     UCommunityGoalSettings();
+
     UFUNCTION(BlueprintCallable, BlueprintPure)
     UCommunityGoal* GetGoal(ECommunityGoalIndex Goal) const;
     

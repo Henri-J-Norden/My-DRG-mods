@@ -3,10 +3,11 @@
 #include "Engine/DataAsset.h"
 #include "IconGenerationCameraKey.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UIconGenerationCameraKey : public UDataAsset {
     GENERATED_BODY()
 public:
     UIconGenerationCameraKey();
+
 };
 

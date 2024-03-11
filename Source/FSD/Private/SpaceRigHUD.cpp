@@ -1,25 +1,19 @@
 #include "SpaceRigHUD.h"
 
-class UWindowWidget;
-class UDialogDataAsset;
-class UObject;
+ASpaceRigHUD::ASpaceRigHUD(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->DebugDisplay.AddDefaulted(1);
+    this->bNotificationQueueActive = false;
+}
 
 void ASpaceRigHUD::SetNotificationQueueActive(bool Inactive) {
 }
 
 
 
-UWindowWidget* ASpaceRigHUD::QueueWindowClass(TSoftClassPtr<UWindowWidget> InWindowType) {
-    return NULL;
-}
-
-void ASpaceRigHUD::QueueWindow(UWindowWidget* InWindow) {
+void ASpaceRigHUD::QueueWindowClass(TSoftClassPtr<UWindowWidget> InWindowType) {
 }
 
 void ASpaceRigHUD::QueueNotificationObject(UObject* InObject) {
-}
-
-void ASpaceRigHUD::QueueMissionShout(TSoftObjectPtr<UDialogDataAsset> InShout) {
 }
 
 bool ASpaceRigHUD::IsNotificationQueueEmpty() const {
@@ -30,7 +24,4 @@ UObject* ASpaceRigHUD::DequeueNotificationObject() {
     return NULL;
 }
 
-ASpaceRigHUD::ASpaceRigHUD() {
-    this->bNotificationQueueActive = false;
-}
 

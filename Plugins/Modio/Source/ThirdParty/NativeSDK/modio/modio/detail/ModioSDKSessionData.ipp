@@ -36,7 +36,7 @@ namespace Modio
 			}
 			else
 			{
-				Get() = std::move(SDKSessionData(Options));
+				Get() = SDKSessionData(Options);
 				Get().CurrentInitializationState = InitializationState::Initializing;
 				return true;
 			}
@@ -117,10 +117,10 @@ namespace Modio
 			return Get().SystemModCollection.FilterByUserSubscriptions(Get().UserData.UserSubscriptions);
 		}
 
-		void SDKSessionData::InitializeForAuthenticatedUser(Modio::Detail::AuthenticatedUser AuthenticatedUser,
-															Modio::Detail::OAuthToken AuthToken)
+		void SDKSessionData::InitializeForUser(Modio::User AuthenticatedUser,
+											   Modio::Detail::OAuthToken AuthToken)
 		{
-			Get().UserData.InitializeForAuthenticatedUser(std::move(AuthenticatedUser), std::move(AuthToken));
+			Get().UserData.InitializeForUser(std::move(AuthenticatedUser), std::move(AuthToken));
 		}
 
 		const Modio::Optional<Modio::Detail::OAuthToken> SDKSessionData::GetAuthenticationToken()
@@ -237,7 +237,7 @@ namespace Modio
 				Params.RootDirectory /= "";
 				Modio::Detail::Logger().Log(
 					Modio::LogLevel::Warning, Modio::LogCategory::ModManagement,
-					"Modfile directory path {} does not end in a path separator. Adding manually");
+					"Modfile directory path {} does not end in a path separator. Adding manually", Params.RootDirectory.u8string());
 			}
 
 			auto ExistingEntry = Get().PendingModUploads.find(ID);

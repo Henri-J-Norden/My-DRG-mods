@@ -1,19 +1,19 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Objective.h"
 #include "EliminationDescriptors.h"
 #include "EliminationTarget.h"
+#include "Objective.h"
 #include "EliminationObjective.generated.h"
 
-class UEnemyDescriptor;
+class AActor;
 class AFSDPawn;
 class UCaveInfluencer;
-class UDebrisPositioning;
-class AActor;
 class UDebrisBase;
+class UDebrisPositioning;
+class UEnemyDescriptor;
 class UHealthComponentBase;
 
-UCLASS(Abstract, meta=(BlueprintSpawnableComponent))
+UCLASS(Abstract, Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API UEliminationObjective : public UObjective {
     GENERATED_BODY()
 public:
@@ -39,25 +39,26 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<TSoftObjectPtr<UDebrisBase>> ObjectDebris;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_EnemiesKilled, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_EnemiesKilled, meta=(AllowPrivateAccess=true))
     int32 EnemiesKilled;
     
-    UPROPERTY(BlueprintReadWrite, Transient, ReplicatedUsing=OnRep_EnemiesToKill, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_EnemiesToKill, meta=(AllowPrivateAccess=true))
     int32 EnemiesToKill;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FEliminationDescriptors> TargetDescriptors;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FEliminationDescriptors> TargetQueue;
     
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FEliminationTarget> ActiveEliminationTargets;
     
 public:
-    UEliminationObjective();
+    UEliminationObjective(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void RegisterEliminationTargets(const TArray<AFSDPawn*>& Targets);
     

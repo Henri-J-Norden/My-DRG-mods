@@ -3,10 +3,11 @@
 #include "Components/WidgetComponent.h"
 #include "FirstPersonWidgetComponent.generated.h"
 
-UCLASS(EditInlineNew, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UFirstPersonWidgetComponent : public UWidgetComponent {
     GENERATED_BODY()
 public:
-    UFirstPersonWidgetComponent();
+    UFirstPersonWidgetComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

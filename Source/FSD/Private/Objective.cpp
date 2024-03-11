@@ -2,11 +2,19 @@
 #include "Net/UnrealNetwork.h"
 #include "Templates/SubclassOf.h"
 
-class UTexture2D;
-class UResourceData;
-class UObjectiveWidget;
-class UOptionalObjectiveWidget;
-class UObjective;
+UObjective::UObjective(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->ObjectiveWidgetClass = NULL;
+    this->CompletionRewardInCredits = 0;
+    this->CompletionRewardInXP = 0;
+    this->ScaleObjectiveToMission = true;
+    this->bHasReturnObjective = false;
+    this->RequiredReturnObjectiveCompleted = false;
+    this->ShowObjectiveInHUD = true;
+    this->ObjectiveCompletedStat = NULL;
+    this->IsPrimaryObjective = -1;
+    this->bIsNeededForMissionCompletion = false;
+    this->MissionScale = 1.00f;
+}
 
 void UObjective::SignalObjectiveUpdated() {
 }
@@ -24,6 +32,10 @@ bool UObjective::IsPrimary() const {
 }
 
 bool UObjective::IsObjectiveResource_Implementation(UResourceData* InResource) const {
+    return false;
+}
+
+bool UObjective::IsNeededForMissionCompletion() const {
     return false;
 }
 
@@ -94,16 +106,7 @@ void UObjective::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifeti
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
     DOREPLIFETIME(UObjective, IsPrimaryObjective);
+    DOREPLIFETIME(UObjective, bIsNeededForMissionCompletion);
 }
 
-UObjective::UObjective() {
-    this->ObjectiveWidgetClass = NULL;
-    this->CompletionRewardInCredits = 0;
-    this->CompletionRewardInXP = 0;
-    this->ScaleObjectiveToMission = true;
-    this->RequiredReturnObjectiveCompleted = false;
-    this->ObjectiveCompletedStat = NULL;
-    this->IsPrimaryObjective = -1;
-    this->MissionScale = 1.00f;
-}
 

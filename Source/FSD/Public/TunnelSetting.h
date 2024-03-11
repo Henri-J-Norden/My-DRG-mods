@@ -7,7 +7,7 @@
 class UFloodFillSettings;
 class UTunnelSegmentSetting;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class UTunnelSetting : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -33,5 +33,6 @@ public:
     float Weight;
     
     UTunnelSetting();
+
 };
 

@@ -5,15 +5,16 @@
 
 class AHydraWeedCore;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AHydraWeedHealer : public AEnemyPawn {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AHydraWeedCore* Core;
     
 public:
-    AHydraWeedHealer();
+    AHydraWeedHealer(const FObjectInitializer& ObjectInitializer);
+
 };
 

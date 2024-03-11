@@ -3,10 +3,11 @@
 #include "Animation/AnimNotifies/AnimNotify.h"
 #include "EnemyRangedAttackAnimNotify.generated.h"
 
-UCLASS(CollapseCategories)
+UCLASS(Blueprintable, CollapseCategories)
 class UEnemyRangedAttackAnimNotify : public UAnimNotify {
     GENERATED_BODY()
 public:
     UEnemyRangedAttackAnimNotify();
+
 };
 

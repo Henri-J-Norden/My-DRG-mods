@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "HostileTargetingGuntowerModule.h"
+#include "Templates/SubclassOf.h"
 #include "HomingFireModule.generated.h"
 
 class AProjectile;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AHomingFireModule : public AHostileTargetingGuntowerModule {
     GENERATED_BODY()
 public:
@@ -21,6 +21,7 @@ protected:
     float TimeBetweenShots;
     
 public:
-    AHomingFireModule();
+    AHomingFireModule(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -1,16 +1,15 @@
 #include "FrozenStateComponent.h"
 
-void UFrozenStateComponent::Server_ThawPlayer_Implementation() {
-}
-bool UFrozenStateComponent::Server_ThawPlayer_Validate() {
-    return true;
-}
-
-
-UFrozenStateComponent::UFrozenStateComponent() {
+UFrozenStateComponent::UFrozenStateComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->StateId = 10;
     this->AudioFreeFromIce = NULL;
     this->IcePhysicalMaterial = NULL;
     this->DwarfFleshMaterial = NULL;
     this->SlowAnimationSpeed = 2.00f;
 }
+
+void UFrozenStateComponent::Server_ThawPlayer_Implementation(float Percent) {
+}
+
+
 

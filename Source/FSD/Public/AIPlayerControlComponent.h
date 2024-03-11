@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/ActorComponent.h"
 #include "AIPlayerControlComponent.generated.h"
 
-class UDialogDataAsset;
 class UAnimMontage;
 class UControlEnemyUsable;
+class UDialogDataAsset;
 
-UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAIPlayerControlComponent : public UActorComponent {
     GENERATED_BODY()
 public:
@@ -70,10 +70,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDialogDataAsset* LetGoShout;
     
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UControlEnemyUsable* Usable;
     
 public:
-    UAIPlayerControlComponent();
+    UAIPlayerControlComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

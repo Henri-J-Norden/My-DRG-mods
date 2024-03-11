@@ -1,40 +1,40 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
+#include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Engine/DataAsset.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/NoExportTypes.h"
-#include "HeatSource.h"
-#include "RandRange.h"
+#include "Sound/ReverbSettings.h"
 #include "BiomeEnemyEntry.h"
 #include "BiomeNoiseItem.h"
+#include "HeatSource.h"
+#include "RandRange.h"
 #include "ResourceSpawner.h"
-#include "Sound/ReverbSettings.h"
+#include "Templates/SubclassOf.h"
 #include "Biome.generated.h"
 
-class UParticleSystem;
+class AActor;
+class ADebrisDataActor;
+class UCaveScriptComponent;
+class UCritterDescriptor;
+class UDebrisSet;
+class UDetailNoise;
 class UEnemyDescriptor;
 class UFileMediaSource;
-class UObject;
-class UTexture2D;
-class UUserWidget;
-class UMissionStat;
-class UCaveScriptComponent;
-class UDebrisSet;
-class ADebrisDataActor;
-class AActor;
-class UTerrainMaterial;
-class UMaterialInstance;
 class UFloodFillSettings;
 class ULevelSequence;
-class UDetailNoise;
+class UMaterialInstance;
+class UMissionStat;
+class UObject;
+class UParticleSystem;
 class UPillarSettings;
-class UTunnelSetting;
-class UCritterDescriptor;
-class USoundCue;
 class UReverbEffect;
+class USoundCue;
+class UTerrainMaterial;
+class UTexture2D;
+class UTunnelSetting;
+class UUserWidget;
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class FSD_API UBiome : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -123,22 +123,22 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMissionStat* MissionCompleted;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UFloodFillSettings* CeilingNoise;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDetailNoise* CeilingDetailNoise;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UFloodFillSettings* WallNoise;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDetailNoise* WallDetailNoise;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UFloodFillSettings* FloorNoise;
     
-    UPROPERTY(BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UDetailNoise* FloorDetailNoise;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -221,7 +221,8 @@ protected:
     
 public:
     UBiome();
-    UFUNCTION(BlueprintCallable, BlueprintPure=false)
+
+    UFUNCTION(BlueprintCallable, BlueprintPure=false, meta=(WorldContext="WorldContext"))
     void StartPreload(UObject* WorldContext) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)

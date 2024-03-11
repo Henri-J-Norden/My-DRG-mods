@@ -1,12 +1,25 @@
 #include "UGCSubsystem.h"
 
-class UUGCPackage;
-class UObject;
+UUGCSubsystem::UUGCSubsystem() {
+    this->forceNoMods = false;
+    this->noInternetAccess = false;
+    this->noModioUser = false;
+    this->IsJoining = false;
+    this->UGCRegistry = NULL;
+    this->UGCSettings = NULL;
+    this->UGCLatentActionManager = NULL;
+    this->ModioTermsAndConditionsAccepted = false;
+    this->IsModioModManagementEnabled = false;
+    this->IsLocalUserModsInstalled = false;
+}
 
 void UUGCSubsystem::SetPackagesAsRecentlyInstalled(TArray<UUGCPackage*> RecentMods) {
 }
 
 void UUGCSubsystem::SetModsAsRecentlyInstalled(TArray<FString> RecentMods) {
+}
+
+void UUGCSubsystem::SetModidngSettingsMenuEnabled(bool bEnabled) {
 }
 
 void UUGCSubsystem::SetCheckGameVersion(bool ShouldCheck) {
@@ -37,9 +50,6 @@ void UUGCSubsystem::K2_RequestModMetaData(UObject* WorldContext, FLatentActionIn
 void UUGCSubsystem::K2_RequestModDependencyList(UObject* WorldContext, FLatentActionInfo LatentInfo, const FString& ModId, FString& outParentId, TArray<FString>& outModIds) {
 }
 
-void UUGCSubsystem::K2_RequestHasHostHiddenMods(UObject* WorldContext, FLatentActionInfo LatentInfo, TArray<FString> sHostModIds, TArray<FString> sClientModIds, bool& outHidden) {
-}
-
 void UUGCSubsystem::K2_RequestFetchModUpdates() {
 }
 
@@ -54,6 +64,14 @@ bool UUGCSubsystem::HasOutstadingRequestOfType(EModioRequestType requestType) {
     return false;
 }
 
+TArray<EModioRequestType> UUGCSubsystem::GetQueuedModioRequests() {
+    return TArray<EModioRequestType>();
+}
+
+TArray<FString> UUGCSubsystem::GetNamesOfModsPendingUpdate() {
+    return TArray<FString>();
+}
+
 TArray<FString> UUGCSubsystem::GetNamesOfModsPendingUninstall() {
     return TArray<FString>();
 }
@@ -62,11 +80,15 @@ TArray<FString> UUGCSubsystem::GetNamesOfModsPendingInstall() {
     return TArray<FString>();
 }
 
+bool UUGCSubsystem::GetModdingSettingsMenuEnabled() {
+    return false;
+}
+
 bool UUGCSubsystem::GetCheckGameVersion() {
     return false;
 }
 
-bool UUGCSubsystem::FetchModsForSession(TArray<FString> HostMods, UUGCSubsystem::FUGRequiredModsFetched OnModsFetched, UUGCSubsystem::FUGCHiddenMods OnHostHasHiddenMods) {
+bool UUGCSubsystem::FetchModsForSession(TArray<FString> HostMods, UUGCSubsystem::FUGRequiredModsFetched OnModsFetched) {
     return false;
 }
 
@@ -79,14 +101,4 @@ void UUGCSubsystem::DisableModioModManagement() {
 void UUGCSubsystem::ApplyPendingMods(bool FromJoining) {
 }
 
-UUGCSubsystem::UUGCSubsystem() {
-    this->forceNoMods = false;
-    this->IsJoining = false;
-    this->UGCRegistry = NULL;
-    this->UGCSettings = NULL;
-    this->UGCLatentActionManager = NULL;
-    this->ModioTermsAndConditionsAccepted = false;
-    this->IsModioModManagementEnabled = false;
-    this->IsLocalUserModsInstalled = false;
-}
 

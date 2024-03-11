@@ -5,7 +5,7 @@
 
 class USoundBase;
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_PlaySound2D : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ public:
     float PitchMultiplier;
     
     UAnimNotify_PlaySound2D();
+
 };
 

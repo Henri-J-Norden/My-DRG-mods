@@ -3,7 +3,7 @@
 #include "FlyingBugAnimInstance.h"
 #include "BomberAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UBomberAnimInstance : public UFlyingBugAnimInstance {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UBomberAnimInstance();
+
 };
 

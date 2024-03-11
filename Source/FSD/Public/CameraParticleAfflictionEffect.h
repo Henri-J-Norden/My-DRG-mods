@@ -5,7 +5,7 @@
 
 class UParticleSystem;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UCameraParticleAfflictionEffect : public UAfflictionEffect {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UCameraParticleAfflictionEffect();
+
 };
 

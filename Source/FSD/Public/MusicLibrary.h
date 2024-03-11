@@ -3,10 +3,10 @@
 #include "Engine/DataAsset.h"
 #include "MusicLibrary.generated.h"
 
-class USoundCue;
 class UMusicCategory;
+class USoundCue;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UMusicLibrary : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -17,5 +17,6 @@ public:
     UMusicCategory* Category;
     
     UMusicLibrary();
+
 };
 

@@ -5,13 +5,14 @@
 
 class ULineSegmentCarverComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ALineSegmentCarver : public AGenerationItem {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     ULineSegmentCarverComponent* LineComponent;
     
-    ALineSegmentCarver();
+    ALineSegmentCarver(const FObjectInitializer& ObjectInitializer);
+
 };
 

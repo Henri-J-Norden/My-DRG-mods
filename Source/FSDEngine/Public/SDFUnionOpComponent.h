@@ -4,7 +4,7 @@
 #include "SDFSmoothingProperties.h"
 #include "SDFUnionOpComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSDENGINE_API USDFUnionOpComponent : public USDFBaseComponent {
     GENERATED_BODY()
 public:
@@ -13,6 +13,7 @@ private:
     FSDFSmoothingProperties Properties;
     
 public:
-    USDFUnionOpComponent();
+    USDFUnionOpComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -184,6 +184,11 @@ namespace Modio
 			}
 			else
 			{
+#ifdef MODIO_SERVER_SIDE_TEST
+				Modio::Detail::Logger().Log(Modio::LogLevel::Trace, Modio::LogCategory::Http,
+											"Using MODIO_SERVER_SIDE_TEST");
+				return MODIO_SERVER_SIDE_TEST;
+#else
 				// @todo: Break this out so that we don't need to use this class in conjunction with the SessionData
 				switch (Modio::Detail::SDKSessionData::GetEnvironment())
 				{
@@ -193,6 +198,7 @@ namespace Modio
 						return "api.test.mod.io";
 				}
 				return "";
+#endif
 			}
 		}
 
@@ -248,6 +254,12 @@ namespace Modio
 
 		const Modio::Optional<std::string> HttpRequestParams::GetUrlEncodedPayload() const
 		{
+			// Check first if ContentType has a value before accessing it.
+			if (ContentType.has_value() == false)
+			{
+				return {};
+			}
+
 			// TODO: make this more performant by treating the mime type as a constant so we can do a early exit if we
 			// are using form-data
 			if (Modio::Detail::hash_64_fnv1a_const(ContentType->c_str()) != "application/x-www-form-urlencoded"_hash)
@@ -293,6 +305,14 @@ namespace Modio
 			{
 				return Modio::FileSize(0);
 			}
+
+			if (ContentType.has_value() && ContentType.value() == "application/x-www-form-urlencoded" &&
+				GetUrlEncodedPayload().has_value() == true)
+			{
+				// In case the body of an HTTP request is URL encoded, it should
+				// only return the value of that payload.
+				return Modio::FileSize(GetUrlEncodedPayload().value().size());
+			}
 			else
 			{
 				const std::string BoundaryString =
@@ -307,7 +327,8 @@ namespace Modio
 					if (ContentElement.second.bIsFile)
 					{
 						PayloadSize += Modio::FileSize(
-							fmt::format("; filename=\"{}\"", ContentElement.second.PathToFile->filename().u8string()).size());
+							fmt::format("; filename=\"{}\"", ContentElement.second.PathToFile->filename().u8string())
+								.size());
 					}
 					// Length of the boundary string
 					PayloadSize += Modio::FileSize(BoundaryString.size());
@@ -339,8 +360,7 @@ namespace Modio
 		Modio::Detail::HttpRequestParams::HeaderList HttpRequestParams::GetHeaders() const
 		{
 			// Default headers
-			HeaderList Headers = {{"User-Agent", "Modio-SDKv2-" MODIO_COMMIT_HASH},
-								  {"x-modio-platform", MODIO_TARGET_PLATFORM_ID}};
+			HeaderList Headers = {{"x-modio-platform", MODIO_TARGET_PLATFORM_HEADER}};
 
 			switch (Modio::Detail::SDKSessionData::GetPortal())
 			{
@@ -380,6 +400,7 @@ namespace Modio
 			{
 				Headers.push_back({"Content-Type", "application/x-www-form-urlencoded"});
 			}*/
+
 			if (ContentType.has_value())
 			{
 				if (ContainsFormData())
@@ -391,6 +412,16 @@ namespace Modio
 				{
 					Headers.push_back({"Content-Type", *ContentType});
 				}
+			}
+
+			// Add User Agent Header
+			if (UserAgentOverride.has_value())
+			{
+				Headers.push_back({"User-Agent", UserAgentOverride.value()});
+			}
+			else
+			{
+				Headers.push_back({"User-Agent", "Modio-SDKv2-" MODIO_COMMIT_HASH});
 			}
 
 			const Modio::Optional<std::string>& AuthToken = GetAuthToken();
@@ -410,6 +441,11 @@ namespace Modio
 			}
 			// @todo: Set Content-Type: multipart/form-data for binary payload
 			return Headers;
+		}
+
+		void HttpRequestParams::SetUserAgentOverride(std::string UserAgentHeader)
+		{
+			UserAgentOverride = UserAgentHeader;
 		}
 
 		HttpRequestParams::HttpRequestParams(std::string Server, std::string ResourcePath)
@@ -446,6 +482,15 @@ namespace Modio
 					HeaderString += fmt::format("\r\n{0}\r\n", CurrentPayloadString.value());
 				}
 			}
+
+			// In linux and possibly in other platforms, it is necessary to append the content-length with the size
+			// of the request, that way the server keeps the connection alive and expects that amount of data to be
+			// transferred over the wire.
+			if (ContainsFormData() == true)
+			{
+				HeaderString += fmt::format("content-length: {0}\r\n", GetPayloadSize());
+			}
+
 			Modio::Detail::Buffer HeaderBuffer(HeaderString.length());
 			// Use HeaderBuffer size as param for copy to prevent ever having an overrun
 			std::copy(HeaderString.begin(), HeaderString.begin() + HeaderBuffer.GetSize(), HeaderBuffer.begin());
@@ -522,6 +567,7 @@ namespace Modio
 
 			return TempResourcePath;
 		}
+
 #ifdef MODIO_SEPARATE_COMPILATION
 		HttpRequestParams InvalidParams;
 #endif

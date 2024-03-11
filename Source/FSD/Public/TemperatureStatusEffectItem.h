@@ -4,7 +4,7 @@
 #include "StatusEffectItem.h"
 #include "TemperatureStatusEffectItem.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTemperatureStatusEffectItem : public UStatusEffectItem {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UTemperatureStatusEffectItem();
+
 };
 

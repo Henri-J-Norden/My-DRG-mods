@@ -3,7 +3,7 @@
 #include "MissionDNA.h"
 #include "EscortMissionDNA.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UEscortMissionDNA : public UMissionDNA {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     int32 RefuelLocations;
     
     UEscortMissionDNA();
+
 };
 

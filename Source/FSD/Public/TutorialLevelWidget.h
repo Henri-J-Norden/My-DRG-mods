@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "FSDUserWidget.h"
+#include "Templates/SubclassOf.h"
 #include "TutorialLevelWidget.generated.h"
 
 class UTutorialContentWidget;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UTutorialLevelWidget : public UFSDUserWidget {
     GENERATED_BODY()
 public:
@@ -16,6 +16,7 @@ protected:
     
 public:
     UTutorialLevelWidget();
+
     UFUNCTION(BlueprintCallable)
     void ShowTutorialWidget(TSubclassOf<UTutorialContentWidget> TutorialWidget, bool ignoreQueue);
     

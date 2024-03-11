@@ -5,15 +5,16 @@
 
 class AAmmoDrivenWeapon;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UAmmoDriveWeaponAggregator : public UClipBasedItemAggregator {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     AAmmoDrivenWeapon* Weapon;
     
 public:
-    UAmmoDriveWeaponAggregator();
+    UAmmoDriveWeaponAggregator(const FObjectInitializer& ObjectInitializer);
+
 };
 

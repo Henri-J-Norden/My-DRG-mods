@@ -1,10 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "SpecialEventSpawner.h"
 #include "EncounterSpecialItem.h"
+#include "SpecialEventSpawner.h"
 #include "EncounterSpecialEventSpawner.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UEncounterSpecialEventSpawner : public USpecialEventSpawner {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ protected:
     
 public:
     UEncounterSpecialEventSpawner();
+
 };
 

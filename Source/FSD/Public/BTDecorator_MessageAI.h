@@ -3,7 +3,7 @@
 #include "BehaviorTree/BTDecorator.h"
 #include "BTDecorator_MessageAI.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class UBTDecorator_MessageAI : public UBTDecorator {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ public:
     FName DeactivationMessage;
     
     UBTDecorator_MessageAI();
+
 };
 

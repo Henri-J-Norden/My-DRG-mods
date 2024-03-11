@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ItemUpgrade.h"
 #include "UObject/NoExportTypes.h"
+#include "ItemUpgrade.h"
 #include "WeaponChargeProgressDamageBonus.generated.h"
 
 class UDamageClass;
 
-UCLASS(EditInlineNew, MinimalAPI)
+UCLASS(Blueprintable, EditInlineNew, MinimalAPI)
 class UWeaponChargeProgressDamageBonus : public UItemUpgrade {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UWeaponChargeProgressDamageBonus();
+
 };
 

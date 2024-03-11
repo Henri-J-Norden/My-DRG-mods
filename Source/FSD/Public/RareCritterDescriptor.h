@@ -3,7 +3,7 @@
 #include "BaseCritterDescriptor.h"
 #include "RareCritterDescriptor.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class URareCritterDescriptor : public UBaseCritterDescriptor {
     GENERATED_BODY()
 public:
@@ -13,5 +13,6 @@ protected:
     
 public:
     URareCritterDescriptor();
+
 };
 

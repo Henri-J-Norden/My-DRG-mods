@@ -1,19 +1,5 @@
 #include "SchematicSettings.h"
 
-class USchematic;
-
-bool USchematicSettings::ValidateVanitySchematics() const {
-    return false;
-}
-
-FSchematicType USchematicSettings::GetSchematicTypeData(ESchematicType InType) {
-    return FSchematicType{};
-}
-
-TSet<USchematic*> USchematicSettings::GetSchematics() const {
-    return TSet<USchematic*>();
-}
-
 USchematicSettings::USchematicSettings() {
     this->PricingTable = NULL;
     this->BlankSchematic = NULL;
@@ -28,5 +14,24 @@ USchematicSettings::USchematicSettings() {
     this->VanityCatSideburn = NULL;
     this->VanityCatSkinColor = NULL;
     this->VanityCatVictoryPose = NULL;
+    this->WeaponPaintJob = NULL;
+    this->SchematicGATable = NULL;
 }
+
+bool USchematicSettings::ValidateVanitySchematics() const {
+    return false;
+}
+
+FSchematicType USchematicSettings::GetSchematicTypeData(ESchematicType InType) {
+    return FSchematicType{};
+}
+
+TSet<USchematic*> USchematicSettings::GetSchematics() const {
+    return TSet<USchematic*>();
+}
+
+UOverclockBank* USchematicSettings::GetOverclocksForItem(UItemID* Item) const {
+    return NULL;
+}
+
 

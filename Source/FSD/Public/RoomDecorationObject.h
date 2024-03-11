@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "Engine/DataAsset.h"
+#include "Templates/SubclassOf.h"
 #include "RoomDecorationObject.generated.h"
 
-class UDebrisPositioning;
 class AActor;
+class UDebrisPositioning;
 
-UCLASS()
+UCLASS(Blueprintable)
 class URoomDecorationObject : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -20,5 +20,6 @@ protected:
     
 public:
     URoomDecorationObject();
+
 };
 

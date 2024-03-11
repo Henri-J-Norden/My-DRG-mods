@@ -3,7 +3,7 @@
 #include "UseConditionBase.h"
 #include "UseConditionIsCarrying.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUseConditionIsCarrying : public UUseConditionBase {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     bool Invert;
     
     UUseConditionIsCarrying();
+
 };
 

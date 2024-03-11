@@ -1,13 +1,10 @@
 #include "DamageFunctionLibrary.h"
 
-class UDamageTag;
-class UPawnStatsComponent;
-class UObject;
-class UDamageClass;
-class AActor;
-class UDamageImpulse;
-class USkeletalMeshComponent;
-class ULimbDismembermentList;
+UDamageFunctionLibrary::UDamageFunctionLibrary() {
+}
+
+void UDamageFunctionLibrary::SetPhysicalMaterialOnHit(UFSDPhysicalMaterial* PhysMat, FHitResult& Hit) {
+}
 
 bool UDamageFunctionLibrary::IsGibbedDeath(const TArray<UDamageTag*>& Tags) {
     return false;
@@ -45,6 +42,4 @@ FName UDamageFunctionLibrary::FindClosestBone(USkeletalMeshComponent*& Mesh, con
     return NAME_None;
 }
 
-UDamageFunctionLibrary::UDamageFunctionLibrary() {
-}
 

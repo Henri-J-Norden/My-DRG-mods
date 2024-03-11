@@ -6,7 +6,7 @@
 
 class UFloodFillSettings;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSD_API ULineSegmentCarverComponent : public UGenerationComponent {
     GENERATED_BODY()
 public:
@@ -37,6 +37,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool UseDetailNoise;
     
-    ULineSegmentCarverComponent();
+    ULineSegmentCarverComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

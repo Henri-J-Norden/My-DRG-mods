@@ -1,12 +1,6 @@
 #include "AutoCannon.h"
 
-void AAutoCannon::Server_SetStatusActive_Implementation(bool IsActive) {
-}
-bool AAutoCannon::Server_SetStatusActive_Validate(bool IsActive) {
-    return true;
-}
-
-AAutoCannon::AAutoCannon() {
+AAutoCannon::AAutoCannon(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->StartingFireRate = 3.00f;
     this->MaxFireRate = 5.50f;
     this->FireTimeReductionScale = 5.00f;
@@ -20,4 +14,8 @@ AAutoCannon::AAutoCannon() {
     this->WPN_Fire_2 = NULL;
     this->CurrentFireTime = 0.00f;
 }
+
+void AAutoCannon::Server_SetStatusActive_Implementation(bool IsActive) {
+}
+
 

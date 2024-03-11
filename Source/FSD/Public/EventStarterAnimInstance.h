@@ -3,7 +3,7 @@
 #include "Animation/AnimInstance.h"
 #include "EventStarterAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UEventStarterAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
@@ -22,5 +22,6 @@ protected:
     
 public:
     UEventStarterAnimInstance();
+
 };
 

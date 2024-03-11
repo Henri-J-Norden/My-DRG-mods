@@ -1,11 +1,9 @@
 #include "UIFunctionLibrary.h"
 
-class UObject;
-class UPlayerCharacterID;
-class UNewsTextLists;
-class UMissionNameBank;
+UUIFunctionLibrary::UUIFunctionLibrary() {
+}
 
-void UUIFunctionLibrary::SetLoadoutIcon(UObject* WorldContextObject, UPlayerCharacterID* characterID, int32 loadoutIndex, int32 IconIndex) {
+void UUIFunctionLibrary::SetLoadoutIcon(UObject* WorldContextObject, UPlayerCharacterID* characterID, int32 loadoutIndex, int32 iconIndex) {
 }
 
 void UUIFunctionLibrary::RemoveItemUINotification(UObject* WorldContextObject, TArray<UObject*> Item, bool MatchChildNotifications) {
@@ -36,6 +34,4 @@ void UUIFunctionLibrary::CheckItemUINotification(UObject* WorldContextObject, TA
 void UUIFunctionLibrary::AddItemUINotification(UObject* WorldContextObject, TArray<UObject*> Item) {
 }
 
-UUIFunctionLibrary::UUIFunctionLibrary() {
-}
 

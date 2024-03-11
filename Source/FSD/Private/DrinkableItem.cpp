@@ -1,16 +1,20 @@
 #include "DrinkableItem.h"
 #include "Net/UnrealNetwork.h"
 
+ADrinkableItem::ADrinkableItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->DrinkableData = NULL;
+}
+
 void ADrinkableItem::OnRep_DrinkableData() {
+}
+
+void ADrinkableItem::OnCameraModeChanged(ECharacterCameraMode NewCameraMode, ECharacterCameraMode OldCameraMode) {
 }
 
 void ADrinkableItem::Consume() {
 }
 
 void ADrinkableItem::ClientConsumed_Implementation() {
-}
-bool ADrinkableItem::ClientConsumed_Validate() {
-    return true;
 }
 
 
@@ -20,7 +24,4 @@ void ADrinkableItem::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
     DOREPLIFETIME(ADrinkableItem, DrinkableData);
 }
 
-ADrinkableItem::ADrinkableItem() {
-    this->DrinkableData = NULL;
-}
 

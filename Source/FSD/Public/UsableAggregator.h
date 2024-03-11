@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ItemAggregator.h"
 #include "AggregatorVisibilityChangedDelegateDelegate.h"
+#include "ItemAggregator.h"
 #include "UsableAggregator.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UUsableAggregator : public UItemAggregator {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FAggregatorVisibilityChangedDelegate OnVisibilityChanged;
     
 protected:
@@ -16,7 +16,8 @@ protected:
     FText UsingText;
     
 public:
-    UUsableAggregator();
+    UUsableAggregator(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     float GetProgress();
     

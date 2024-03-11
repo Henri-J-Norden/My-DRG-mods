@@ -8,7 +8,7 @@ class UEnemyWaveController : public UObject {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool IsComplete;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -16,6 +16,7 @@ protected:
     
 public:
     UEnemyWaveController();
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void StartWave();
     

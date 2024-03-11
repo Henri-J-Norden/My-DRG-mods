@@ -1,18 +1,6 @@
 #include "ReflectionHitscanComponent.h"
 
-void UReflectionHitscanComponent::Server_RegisterHit_Reflection_Implementation(const FReflectiveHitscanHit& Hit) {
-}
-
-void UReflectionHitscanComponent::Server_RegisterHit_Implementation(const FReflectiveHitscanHit& Hit) {
-}
-bool UReflectionHitscanComponent::Server_RegisterHit_Validate(const FReflectiveHitscanHit& Hit) {
-    return true;
-}
-
-void UReflectionHitscanComponent::All_ShowHit_Implementation(const FReflectiveHitscanHit& Hit) {
-}
-
-UReflectionHitscanComponent::UReflectionHitscanComponent() {
+UReflectionHitscanComponent::UReflectionHitscanComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->PlatformTerrainType = NULL;
     this->bPlayImpactSound = true;
     this->bShowImpactOnReflections = false;
@@ -20,4 +8,14 @@ UReflectionHitscanComponent::UReflectionHitscanComponent() {
     this->StraightenReflectionFactor = 0.40f;
     this->ReflectionCount = 0;
 }
+
+void UReflectionHitscanComponent::Server_RegisterHit_Reflection_Implementation(const FReflectiveHitscanHit& Hit) {
+}
+
+void UReflectionHitscanComponent::Server_RegisterHit_Implementation(const FReflectiveHitscanHit& Hit) {
+}
+
+void UReflectionHitscanComponent::All_ShowHit_Implementation(const FReflectiveHitscanHit& Hit) {
+}
+
 

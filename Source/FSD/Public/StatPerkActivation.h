@@ -6,7 +6,7 @@
 
 class UPawnStat;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UStatPerkActivation : public UFloatPerkActivation {
     GENERATED_BODY()
 public:
@@ -19,5 +19,6 @@ protected:
     
 public:
     UStatPerkActivation();
+
 };
 

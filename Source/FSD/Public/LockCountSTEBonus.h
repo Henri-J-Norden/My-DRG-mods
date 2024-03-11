@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "DamageBonusBase.h"
+#include "Templates/SubclassOf.h"
 #include "LockCountSTEBonus.generated.h"
 
 class UStatusEffect;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class ULockCountSTEBonus : public UDamageBonusBase {
     GENERATED_BODY()
 public:
@@ -20,5 +20,6 @@ public:
     TSubclassOf<UStatusEffect> StatusEffect;
     
     ULockCountSTEBonus();
+
 };
 

@@ -5,13 +5,14 @@
 
 class ULineSegmentFillerComponent;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ALineSegmentFiller : public AGenerationItem {
     GENERATED_BODY()
 public:
-    UPROPERTY(BlueprintReadWrite, Export, VisibleAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     ULineSegmentFillerComponent* LineComponent;
     
-    ALineSegmentFiller();
+    ALineSegmentFiller(const FObjectInitializer& ObjectInitializer);
+
 };
 

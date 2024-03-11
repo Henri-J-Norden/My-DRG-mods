@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "TwoFacetDynamicIcon.h"
 #include "UObject/NoExportTypes.h"
+#include "TwoFacetDynamicIcon.h"
 #include "TriFacetDynamicIcon.generated.h"
 
 class UTexture2D;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class FSD_API UTriFacetDynamicIcon : public UTwoFacetDynamicIcon {
     GENERATED_BODY()
 public:
@@ -28,5 +28,6 @@ protected:
     
 public:
     UTriFacetDynamicIcon();
+
 };
 

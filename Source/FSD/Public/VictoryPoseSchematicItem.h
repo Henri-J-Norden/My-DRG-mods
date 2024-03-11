@@ -5,7 +5,7 @@
 
 class UVictoryPose;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UVictoryPoseSchematicItem : public USchematicItem {
     GENERATED_BODY()
 public:
@@ -15,5 +15,6 @@ protected:
     
 public:
     UVictoryPoseSchematicItem();
+
 };
 

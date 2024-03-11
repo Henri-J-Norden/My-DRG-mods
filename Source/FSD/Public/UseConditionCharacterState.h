@@ -5,7 +5,7 @@
 
 class UCharacterStateComponent;
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UUseConditionCharacterState : public UUseConditionBase {
     GENERATED_BODY()
 public:
@@ -16,5 +16,6 @@ public:
     TArray<TSoftClassPtr<UCharacterStateComponent>> CharacterStates;
     
     UUseConditionCharacterState();
+
 };
 

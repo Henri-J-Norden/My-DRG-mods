@@ -4,14 +4,15 @@
 #include "EVanitySlot.h"
 #include "CharacterSelectionSwitcher.generated.h"
 
-class UVictoryPose;
 class APlayerCharacter;
+class UVictoryPose;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ACharacterSelectionSwitcher : public AActor {
     GENERATED_BODY()
 public:
-    ACharacterSelectionSwitcher();
+    ACharacterSelectionSwitcher(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnVictoryPoseChanged(UVictoryPose* VictoryPose);
     
@@ -24,7 +25,7 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, BlueprintPure)
     AActor* GetViewerActor() const;
     
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, BlueprintPure)
     APlayerCharacter* GetActiveCharacter() const;
     
 };

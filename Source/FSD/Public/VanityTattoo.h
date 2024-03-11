@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Engine/DataAsset.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataAsset.h"
 #include "VanityTattoo.generated.h"
 
 class UTexture2D;
 
-UCLASS()
+UCLASS(Blueprintable)
 class UVanityTattoo : public UDataAsset {
     GENERATED_BODY()
 public:
@@ -26,5 +26,6 @@ public:
     float ScaleStretch;
     
     UVanityTattoo();
+
 };
 

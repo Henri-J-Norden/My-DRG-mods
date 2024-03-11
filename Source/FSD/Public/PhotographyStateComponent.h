@@ -3,10 +3,11 @@
 #include "CharacterStateComponent.h"
 #include "PhotographyStateComponent.generated.h"
 
-UCLASS(MinimalAPI, meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, MinimalAPI, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UPhotographyStateComponent : public UCharacterStateComponent {
     GENERATED_BODY()
 public:
-    UPhotographyStateComponent();
+    UPhotographyStateComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

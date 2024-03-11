@@ -6,11 +6,12 @@
 class AHydraWeedHealer;
 class AHydraWeedShooter;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AHydraWeedCore : public AEnemyPawn {
     GENERATED_BODY()
 public:
-    AHydraWeedCore();
+    AHydraWeedCore(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void WakupCore();
     

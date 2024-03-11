@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "ProjectileLauncherBaseComponent.h"
+#include "Templates/SubclassOf.h"
 #include "ChargedProjectileLauncherComponent.generated.h"
 
 class AProjectileBase;
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class UChargedProjectileLauncherComponent : public UProjectileLauncherBaseComponent {
     GENERATED_BODY()
 public:
@@ -21,7 +21,8 @@ protected:
     float ProjectileChangeChargeValue;
     
 public:
-    UChargedProjectileLauncherComponent();
+    UChargedProjectileLauncherComponent(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetProjectileClassCharged(TSubclassOf<AProjectileBase> NewProjectileClass);
     

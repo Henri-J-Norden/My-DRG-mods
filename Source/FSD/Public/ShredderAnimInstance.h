@@ -3,7 +3,7 @@
 #include "EnemyAnimInstance.h"
 #include "ShredderAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UShredderAnimInstance : public UEnemyAnimInstance {
     GENERATED_BODY()
 public:
@@ -14,5 +14,6 @@ public:
     bool InSpinRange;
     
     UShredderAnimInstance();
+
 };
 

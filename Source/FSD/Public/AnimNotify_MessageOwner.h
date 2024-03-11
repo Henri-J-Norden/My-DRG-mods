@@ -3,7 +3,7 @@
 #include "Animation/AnimNotifies/AnimNotify.h"
 #include "AnimNotify_MessageOwner.generated.h"
 
-UCLASS(CollapseCategories, MinimalAPI)
+UCLASS(Blueprintable, CollapseCategories, MinimalAPI)
 class UAnimNotify_MessageOwner : public UAnimNotify {
     GENERATED_BODY()
 public:
@@ -11,5 +11,6 @@ public:
     FName Message;
     
     UAnimNotify_MessageOwner();
+
 };
 

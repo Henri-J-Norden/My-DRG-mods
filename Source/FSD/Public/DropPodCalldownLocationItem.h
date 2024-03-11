@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Templates/SubclassOf.h"
 #include "GenerationItem.h"
+#include "Templates/SubclassOf.h"
 #include "DropPodCalldownLocationItem.generated.h"
 
 class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ADropPodCalldownLocationItem : public AGenerationItem {
     GENERATED_BODY()
 public:
@@ -15,6 +15,7 @@ protected:
     TSubclassOf<AActor> CalldownClass;
     
 public:
-    ADropPodCalldownLocationItem();
+    ADropPodCalldownLocationItem(const FObjectInitializer& ObjectInitializer);
+
 };
 

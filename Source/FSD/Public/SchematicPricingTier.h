@@ -3,10 +3,11 @@
 #include "PricingTier.h"
 #include "SchematicPricingTier.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FSD_API USchematicPricingTier : public UPricingTier {
     GENERATED_BODY()
 public:
     USchematicPricingTier();
+
 };
 

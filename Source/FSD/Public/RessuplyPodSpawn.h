@@ -6,11 +6,12 @@
 class AFSDPlayerController;
 class APlayerCharacter;
 
-UCLASS()
+UCLASS(Blueprintable)
 class ARessuplyPodSpawn : public ARessuplyPod {
     GENERATED_BODY()
 public:
-    ARessuplyPodSpawn();
+    ARessuplyPodSpawn(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void SetController(AFSDPlayerController* Controller);
     

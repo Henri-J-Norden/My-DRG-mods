@@ -4,13 +4,14 @@
 #include "SDFModifierProperties.h"
 #include "SDFModifierComponent.generated.h"
 
-UCLASS(meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class FSDENGINE_API USDFModifierComponent : public USDFBaseComponent {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSDFModifierProperties Properties;
     
-    USDFModifierComponent();
+    USDFModifierComponent(const FObjectInitializer& ObjectInitializer);
+
 };
 

@@ -5,7 +5,7 @@
 
 class AActor;
 
-UCLASS()
+UCLASS(Blueprintable)
 class AShredder : public AEnemyDeepPathfinderCharacter {
     GENERATED_BODY()
 public:
@@ -16,12 +16,13 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float SpinRange;
     
-    UPROPERTY(BlueprintReadWrite, Replicated, Transient, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, Transient, meta=(AllowPrivateAccess=true))
     AActor* CurrentTarget;
     
 public:
-    AShredder();
+    AShredder(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
 };
 

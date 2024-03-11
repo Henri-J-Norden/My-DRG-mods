@@ -3,10 +3,11 @@
 #include "PickaxeMeshPart.h"
 #include "PickaxeHandlePart.generated.h"
 
-UCLASS(EditInlineNew)
+UCLASS(Blueprintable, EditInlineNew)
 class UPickaxeHandlePart : public UPickaxeMeshPart {
     GENERATED_BODY()
 public:
     UPickaxeHandlePart();
+
 };
 

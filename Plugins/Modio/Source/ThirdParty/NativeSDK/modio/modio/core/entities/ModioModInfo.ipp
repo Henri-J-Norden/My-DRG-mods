@@ -42,7 +42,22 @@ namespace Modio
 		Detail::ParseSafe(Json, ModInfo.ModId, "id");
 
 		{
-			Detail::ParseSafe(Json, ModInfo.FileInfo, "modfile");
+			Modio::FileMetadata FileInfo;
+			if (Detail ::ParseSafe(Json, FileInfo, "modfile"))
+			{
+				if (FileInfo.ModId == -1) 
+				{
+					// This means that the FileInfo was found in 
+					// the list of object but did not have a parsable
+					// data in the json.
+					ModInfo.FileInfo = {};
+				}
+				else
+				{
+					ModInfo.FileInfo = FileInfo;
+				}
+			}
+
 			Detail::ParseSafe(Json, ModInfo.MetadataBlob, "metadata_blob");
 			Detail::ParseSafe(Json, ModInfo.MetadataKvp, "metadata_kvp");
 			Detail::ParseSafe(Json, ModInfo.Tags, "tags");
@@ -59,11 +74,14 @@ namespace Modio
 			Detail::ParseSafe(Json, ModInfo.ProfileURL, "profile_url");
 			Detail::ParseSafe(Json, ModInfo.ProfileSubmittedBy, "submitted_by");
 			Detail::ParseSafe(Json, ModInfo.ProfileSummary, "summary");
+			Detail::ParseSafe(Json, ModInfo.ModStatus, "status");
 		}
 
 		{
 			Detail::ParseSafe(Json, ModInfo.Stats, "stats");
+			Detail::ParseSafe(Json, ModInfo.ModLogo, "logo");
 		}
+
 		if (Json.contains("media"))
 		{
 			Detail::ParseSafe(Json.at("media"), ModInfo.YoutubeURLs.GetRawList(), "youtube");
@@ -76,7 +94,6 @@ namespace Modio
 	void to_json(nlohmann::json& Json, const Modio::ModInfo& Info)
 	{
 		Json = nlohmann::json {{"id", Info.ModId},
-							   {"modfile", Info.FileInfo},
 							   {"metadata_blob", Info.MetadataBlob},
 							   {"metadata_kvp", Info.MetadataKvp},
 							   {"tags", Info.Tags},
@@ -91,9 +108,14 @@ namespace Modio
 							   {"submitted_by", Info.ProfileSubmittedBy},
 							   {"summary", Info.ProfileSummary},
 							   {"stats", Info.Stats},
+							   {"logo", Info.ModLogo},
 							   {"media", nlohmann::json::object({{"youtube", Info.YoutubeURLs.GetRawList()},
 																 {"sketchfab", Info.SketchfabURLs.GetRawList()},
 																 {"images", Info.GalleryImages}})}};
+		if (Info.FileInfo.has_value())
+		{
+			Json["modfile"] = Info.FileInfo.value();
+		}
 	}
 
 } // namespace Modio

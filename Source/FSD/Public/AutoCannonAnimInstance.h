@@ -3,10 +3,11 @@
 #include "Animation/AnimInstance.h"
 #include "AutoCannonAnimInstance.generated.h"
 
-UCLASS(NonTransient)
+UCLASS(Blueprintable, NonTransient)
 class UAutoCannonAnimInstance : public UAnimInstance {
     GENERATED_BODY()
 public:
     UAutoCannonAnimInstance();
+
 };
 
